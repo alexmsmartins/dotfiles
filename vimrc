@@ -1,4 +1,4 @@
-call pathogen#infect()
+execute pathogen#infect()
 
 """""""""""""""""""""""""""""""""""
 " Syntax and indent
