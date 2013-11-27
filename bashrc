@@ -3,7 +3,7 @@
 # for examples
 
 # If not running interactively, don't do anything
-[ -z "$PS1" ] && return
+#[ -z "$PS1" ] && return
 
 # don't put duplicate lines in the history. See bash(1) for more options
 export HISTCONTROL=erasedups
@@ -58,10 +58,36 @@ if [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
 fi
 
+
+# set PATH so it includes user's private bin if it exists
+if [ -d ~/bin ] ; then
+    export PATH=~/bin:"${PATH}"   
+fi    
+      
+if [ -d /sbin ] ; then
+    export PATH=/sbin:"${PATH}"
+fi
+
+if [ -d /usr/sbin ] ; then
+    export PATH=/usr/sbin:"${PATH}"
+fi
+
+#alex#
+
 #alex# haskell cabal path
 if [ -d ~/.cabal/bin ] ; then
      export PATH=~/.cabal/bin:$PATH
 fi
+
+#alex# eclipse path
+if [ -d ~/eclipse ] ; then
+     export PATH=~/eclipse:$PATH
+fi
+
+#alex# maven 3.0.5 added to $PATH
+#if [ -d ~/apache-maven-3.0.5/bin ] ; then
+#    export PATH=~/apache-maven-3.0.5/bin:"${PATH}"
+#fi
 
 
 #alex# shoud change this to default jvm -> later
@@ -69,46 +95,23 @@ fi
 #export JAVA_HOME="/usr/lib/jvm/java-6-sun"
 export JAVA_HOME="/usr/lib/jvm/java-7-openjdk-amd64"
 export JDK_HOME="/usr/lib/jvm/java-7-openjdk-amd64"
+export IDEA_JDK="/usr/lib/jvm/java-7-oracle"
 export PATH=$JAVA_HOME/bin:$PATH
 
 
 if [ -z $CLASSPATH ]; then
-	CLASSPATH=.
+	export CLASSPATH=.
 else
-	CLASSPATH=.:$CLASSPATH
+	export CLASSPATH=.:$CLASSPATH
 fi
 
-
-CLASSPATH=/home/alex/classpath:$CLASSPATH
-
-
-
-CLASSPATH=/usr/local/lib/libsbmlj.jar:$CLASSPATH
-
-export CLASSPATH
-
-#alex# Jena's SDB
-SDBROOT=/home/alex/SDB-1.3.0
-export SDBROOT
-export SDB_JDBC=/home/alex/classpath/postgresql-8.3-603.jdbc4.jar
-
-#alex# copasi
-export COPASIDIR=/home/alex/copasi
-
-#alex# SBW
-export SBW_HOME=/home/alex/SBW
-export PATH=$SBW_HOME/bin:$PATH
-if [ -z LD_LIBRARY_PATH ]; then
-  LD_LIBRARY_PATH=$SBW_HOME/lib:$LD_LIBRARY_PATH
-else
-  LD_LIBRARY_PATH=$SBW_HOME/lib
-fi
-LD_LIBRARY_PATH="/usr/local:/usr/local/lib"
-export LD_LIBRARY_PATH
-
-
-## /home/alex/CellDesigner4.1
-export PATH=$HOME/CellDesigner4.1:$PATH
+if [ -z LD_LIBRARY_PATH ]; then                                               
+  LD_LIBRARY_PATH=$SBW_HOME/lib:$LD_LIBRARY_PATH                              
+else                                                                          
+  LD_LIBRARY_PATH=$SBW_HOME/lib                                               
+fi                                                                            
+LD_LIBRARY_PATH="/usr/local:/usr/local/lib"                                   
+export LD_LIBRARY_PATH                                                        
 
 #alex# Configuration for Intellij IDEA. This might just be general enough to be usefull with other IDEs or programs.
 # That is the reason for choosing to configure it here and not inside IDEA.
@@ -118,18 +121,21 @@ fi
 
 
 #alex# localization
-export LANG="pt_PT.UTF-8"
-export LC_ALL="pt_PT.UTF-8"
-export LC_CTYPE="pt_PT.UTF-8"
+export LANG="en_GB.UTF-8"
+export LC_ALL="en_GB.UTF-8"
+export LC_CTYPE="en_GB.UTF-8"
+export LC_MESSAGES="en_GB.UTF-8"
 #export LANGUAGE="pt_PT.UTF-8"
 
-export HISTFILESIZE=10000000
-export HISTSIZE=10000000
+HISTFILESIZE=10000000
+HISTSIZE=10000000
 
-export COPASIDIR="/home/alex/copasi"
+#alex#
+export EDITOR="vi"
+export VISUAL="vi"
 
 #alex# mvn 
-#export MAVEN_OPTS="$MAVEN_OPTS -noverify -javaagent:~/ZeroTurnaround/JRebel/jrebel.jar" 
+MAVEN_OPTS="$MAVEN_OPTS -noverify -javaagent:~/ZeroTurnaround/JRebel/jrebel.jar" 
 
 #Taken from http://madebynathan.com/2011/10/04/a-nicer-way-to-use-xclip/
 # A shortcut function that simplifies usage of xclip.
@@ -168,11 +174,12 @@ cb() {
 # Aliases / functions leveraging the cb() function
 # ------------------------------------------------
 # Copy contents of a file
-function cbf() { cat "$1" | cb; }  
+function cbf() { cat "$1" | cb; }
 # Copy current working directory
-alias cbwd="pwd | cb"  
+alias cbwd="pwd | cb"
 # Copy most recent command in bash history
-alias cbhs="cat $HISTFILE | tail -n 1 | cb"  
+alias cbhs="cat $HISTFILE | tail -n 1 | cb"
 
-# path added to sbt 0.12
-export PATH=/home/alex/sbt-0.12/bin:$PATH
+#alex# nvm command
+[ -s $HOME/.nvm/nvm.sh ] && source $HOME/.nvm/nvm.sh # This loads NVM
+[[ -r $NVM_DIR/bash_completion ]] && . $NVM_DIR/bash_completion

@@ -53,3 +53,11 @@ export HEX_CACHE=/home/alex/hex_cache
 export PATH=${HOME}/git-achievements:${PATH}
 alias git="git-achievements"
 
+#alex# less with colors
+
+alias less="less -R"
+
+#alex# vi mode
+set -o vi
+
+[ -s $HOME/.nvm/nvm.sh ] && source $HOME/.nvm/nvm.sh # This loads NVM
