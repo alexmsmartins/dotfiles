@@ -1,3 +1,8 @@
+;; Remove irritating start screen messages
+;;; http://stackoverflow.com/questions/144983/how-do-i-make-emacs-start-without-so-much-fanfare
+(setq inhibit-startup-echo-area-message t)
+(setq inhibit-startup-message t)
+
 ;;; https://github.com/milkypostman/melpa
 (require 'package)
 (add-to-list 'package-archives
