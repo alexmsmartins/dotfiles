@@ -61,6 +61,11 @@
 (add-hook 'LaTeX-mode-hook 'turn-on-reftex)   ; with AUCTeX LaTeX mode
 (setq reftex-plug-into-AUCTeX t)
 
+;;; http://stackoverflow.com/questions/13607156/autocomplete-pandoc-style-citations-from-a-bibtex-file-in-emacs
+(eval-after-load 'reftex-vars
+  '(progn 
+     (setq reftex-cite-format '((?\C-m . "[@%l]")))))
+
 ;;; http://www.emacswiki.org/emacs/MakefileMode
 (require 'make-mode)
 
@@ -108,3 +113,9 @@
 (setq recentf-max-menu-items 25)
 (global-set-key "\C-x\ \C-r" 'recentf-open-files)
 
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(default ((t (:family "Inconsolata" :foundry "unknown" :slant normal :weight normal :height 131 :width normal)))))
