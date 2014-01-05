@@ -1,3 +1,8 @@
+;; Configure fullscreen mode
+;;; http://www.emacswiki.org/emacs/FullScreen#toc2
+(custom-set-variables
+ '(initial-frame-alist (quote ((fullscreen . maximized)))))
+
 ;; Remove irritating start screen messages
 ;;; http://stackoverflow.com/questions/144983/how-do-i-make-emacs-start-without-so-much-fanfare
 (setq inhibit-startup-echo-area-message t)
@@ -107,7 +112,7 @@
 
 
 
-;; http://www.emacswiki.org/emacs-es/RecentFiles
+;;; http://www.emacswiki.org/emacs-es/RecentFiles
 (require 'recentf)
 (recentf-mode 1)
 (setq recentf-max-menu-items 25)
@@ -119,3 +124,8 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(default ((t (:family "Inconsolata" :foundry "unknown" :slant normal :weight normal :height 131 :width normal)))))
+
+;; Zoom using the scroll wheel
+;;; https://stackoverflow.com/questions/5533110/emacs-zoom-in-zoom-out
+(global-set-key [C-mouse-4] 'text-scale-increase)
+(global-set-key [C-mouse-5] 'text-scale-decrease)
