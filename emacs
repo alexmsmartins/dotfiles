@@ -126,6 +126,9 @@
  '(default ((t (:family "Inconsolata" :foundry "unknown" :slant normal :weight normal :height 131 :width normal)))))
 
 ;; Zoom using the scroll wheel
+;; my tweaks
+(global-set-key (kbd "C-+") 'text-scale-increase)
+(global-set-key (kbd "C--") 'text-scale-decrease)
 ;;; https://stackoverflow.com/questions/5533110/emacs-zoom-in-zoom-out
 (global-set-key [C-mouse-4] 'text-scale-increase)
 (global-set-key [C-mouse-5] 'text-scale-decrease)
