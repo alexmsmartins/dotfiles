@@ -3,6 +3,10 @@
 (custom-set-variables
  '(initial-frame-alist (quote ((fullscreen . maximized)))))
 
+;;; Save emacs session
+;;; http://www.gnu.org/software/emacs/manual/html_node/emacs/Saving-Emacs-Sessions.html 
+(desktop-save-mode 1)
+
 ;; Remove irritating start screen messages
 ;;; http://stackoverflow.com/questions/144983/how-do-i-make-emacs-start-without-so-much-fanfare
 (setq inhibit-startup-echo-area-message t)
