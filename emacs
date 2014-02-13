@@ -3,6 +3,10 @@
 (custom-set-variables
  '(initial-frame-alist (quote ((fullscreen . maximized)))))
 
+;;; Save emacs session
+;;; http://www.gnu.org/software/emacs/manual/html_node/emacs/Saving-Emacs-Sessions.html 
+(desktop-save-mode 1)
+
 ;; Remove irritating start screen messages
 ;;; http://stackoverflow.com/questions/144983/how-do-i-make-emacs-start-without-so-much-fanfare
 (setq inhibit-startup-echo-area-message t)
@@ -50,6 +54,18 @@
 ;;; http://www.emacswiki.org/emacs/Evil
 (require 'evil)
 (evil-mode 1)
+;; change mode-line color by evil state
+(lexical-let ((default-color (cons (face-background 'mode-line)
+                                   (face-foreground 'mode-line))))
+  (add-hook 'post-command-hook
+    (lambda ()
+      (let ((color (cond ((minibufferp) default-color)
+                         ((evil-insert-state-p) '("#e80000" . "#ffffff"))
+                         ((evil-emacs-state-p)  '("#444488" . "#ffffff"))
+                         ((buffer-modified-p)   '("#006fa0" . "#ffffff"))
+                         (t default-color))))
+        (set-face-background 'mode-line (car color))
+        (set-face-foreground 'mode-line (cdr color))))))
 
 ;;; https://github.com/redguardtoo/evil-nerd-commenter
 ;(require 'evil-nerd-commenter)
@@ -126,6 +142,9 @@
  '(default ((t (:family "Inconsolata" :foundry "unknown" :slant normal :weight normal :height 131 :width normal)))))
 
 ;; Zoom using the scroll wheel
+;; my tweaks
+(global-set-key (kbd "C-+") 'text-scale-increase)
+(global-set-key (kbd "C--") 'text-scale-decrease)
 ;;; https://stackoverflow.com/questions/5533110/emacs-zoom-in-zoom-out
 (global-set-key [C-mouse-4] 'text-scale-increase)
 (global-set-key [C-mouse-5] 'text-scale-decrease)
