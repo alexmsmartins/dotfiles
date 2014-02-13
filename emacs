@@ -129,3 +129,6 @@
 ;;; https://stackoverflow.com/questions/5533110/emacs-zoom-in-zoom-out
 (global-set-key [C-mouse-4] 'text-scale-increase)
 (global-set-key [C-mouse-5] 'text-scale-decrease)
+
+;; change default font
+(set-default-font "Inconsolata-12")
