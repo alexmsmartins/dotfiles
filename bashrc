@@ -89,6 +89,15 @@ fi
 #    export PATH=~/apache-maven-3.0.5/bin:"${PATH}"
 #fi
 
+#alex# add tup to the PATH
+if [ -d ~/github.com/tup ] ; then
+     export PATH=~/github.com/tup:${PATH}
+     export MANPATH=~/github.com/tup #:${MANPATH}
+fi
+
+
+
+
 
 #alex# shoud change this to default jvm -> later
 #export SCALA_HOME="/home/alex/scala"
