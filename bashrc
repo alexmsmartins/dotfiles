@@ -188,3 +188,10 @@ alias cbhs="cat $HISTFILE | tail -n 1 | cb"
 #alex# nvm command
 [ -s $HOME/.nvm/nvm.sh ] && source $HOME/.nvm/nvm.sh # This loads NVM
 [[ -r $NVM_DIR/bash_completion ]] && . $NVM_DIR/bash_completion
+
+#alex# tup
+if [ -d ~/github.com/tup ] ; then
+  export PATH=~/github.com/tup:$PATH
+  export MANPATH=~/github.com/tup
+fi
+
