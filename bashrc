@@ -92,7 +92,7 @@ fi
 #alex# add tup to the PATH
 if [ -d ~/github.com/tup ] ; then
      export PATH=~/github.com/tup:${PATH}
-     export MANPATH="$(manpath):~/github.com/tup"
+     export MANPATH="$(manpath):${HOME}/github.com/tup/man"
 fi
 
 #alex# shoud change this to default jvm -> later
@@ -188,10 +188,4 @@ alias cbhs="cat $HISTFILE | tail -n 1 | cb"
 #alex# nvm command
 [ -s $HOME/.nvm/nvm.sh ] && source $HOME/.nvm/nvm.sh # This loads NVM
 [[ -r $NVM_DIR/bash_completion ]] && . $NVM_DIR/bash_completion
-
-#alex# tup
-if [ -d ~/github.com/tup ] ; then
-  export PATH=~/github.com/tup:$PATH
-  export MANPATH=~/github.com/tup
-fi
 
