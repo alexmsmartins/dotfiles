@@ -92,12 +92,8 @@ fi
 #alex# add tup to the PATH
 if [ -d ~/github.com/tup ] ; then
      export PATH=~/github.com/tup:${PATH}
-     export MANPATH=~/github.com/tup #:${MANPATH}
+     export MANPATH="$(manpath):~/github.com/tup"
 fi
-
-
-
-
 
 #alex# shoud change this to default jvm -> later
 #export SCALA_HOME="/home/alex/scala"
@@ -119,8 +115,8 @@ if [ -z LD_LIBRARY_PATH ]; then
 else                                                                          
   LD_LIBRARY_PATH=$SBW_HOME/lib                                               
 fi                                                                            
-LD_LIBRARY_PATH="/usr/local:/usr/local/lib"                                   
-export LD_LIBRARY_PATH                                                        
+LD_LIBRARY_PATH="/usr/local:/usr/local/lib"
+export LD_LIBRARY_PATH
 
 #alex# Configuration for Intellij IDEA. This might just be general enough to be usefull with other IDEs or programs.
 # That is the reason for choosing to configure it here and not inside IDEA.
