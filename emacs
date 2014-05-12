@@ -91,20 +91,20 @@
 (require 'make-mode)
 
 ;;; https://github.com/senny/emacs-eclim
-(require 'eclim)
-(global-eclim-mode)
+;(require 'eclim)
+;(global-eclim-mode)
 
 ;; If you want to control eclimd from emacs, also add:
-(require 'eclimd)
+;(require 'eclimd)
 
 ;; Eclipse installation
-(custom-set-variables
+;(custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(eclim-eclipse-dirs (quote ("~/eclipse")))
- '(show-paren-mode t))
+ ;'(eclim-eclipse-dirs (quote ("~/eclipse")))
+ ;'(show-paren-mode t))
 
 ;; Displaying compilation error messages in the echo area
 (setq help-at-pt-display-when-idle t)
@@ -117,14 +117,14 @@
 (ac-config-default)
 
 ;; Configuring company-mode
-(require 'company)
-(require 'company-emacs-eclim)
-(company-emacs-eclim-setup)
-(global-company-mode t)
+;(require 'company)
+;(require 'company-emacs-eclim)
+;(company-emacs-eclim-setup)
+;(global-company-mode t)
 
 ;; add the emacs-eclim source
-(require 'ac-emacs-eclim-source)
-(ac-emacs-eclim-config)
+;(require 'ac-emacs-eclim-source)
+;(ac-emacs-eclim-config)
 
 
 
