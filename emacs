@@ -83,9 +83,9 @@
 (setq reftex-plug-into-AUCTeX t)
 
 ;;; http://stackoverflow.com/questions/13607156/autocomplete-pandoc-style-citations-from-a-bibtex-file-in-emacs
-(eval-after-load 'reftex-vars
-  '(progn 
-     (setq reftex-cite-format '((?\C-m . "[@%l]")))))
+;(eval-after-load 'reftex-vars
+;  '(progn 
+;     (setq reftex-cite-format '((?\C-m . "[@%l]")))))
 
 ;;; http://www.emacswiki.org/emacs/MakefileMode
 (require 'make-mode)
