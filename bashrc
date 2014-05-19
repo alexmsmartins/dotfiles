@@ -189,3 +189,16 @@ alias cbhs="cat $HISTFILE | tail -n 1 | cb"
 [ -s $HOME/.nvm/nvm.sh ] && source $HOME/.nvm/nvm.sh # This loads NVM
 [[ -r $NVM_DIR/bash_completion ]] && . $NVM_DIR/bash_completion
 
+# NPM packages in homedir
+NPM_PACKAGES="$HOME/.npm-packages"
+
+# Tell our environment about user-installed node tools
+PATH="$NPM_PACKAGES/bin:$PATH"
+# Unset manpath so we can inherit from /etc/manpath via the `manpath` command
+#unset MANPATH  # delete if you already modified MANPATH elsewhere in your config
+MANPATH="$NPM_PACKAGES/share/man:$MANPATH"
+
+# Tell Node about these packages
+NODE_PATH="$NPM_PACKAGES/lib/node_modules:$NODE_PATH"
+
+
