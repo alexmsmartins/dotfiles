@@ -1,7 +1,7 @@
 ;; Configure fullscreen mode
 ;;; http://www.emacswiki.org/emacs/FullScreen#toc2
 (custom-set-variables
- '(initial-frame-alist (quote ((fullscreen . maximized)))))
+'(initial-frame-alist (quote ((fullscreen . maximized)))))
 
 ;;; Save emacs session
 ;;; http://www.gnu.org/software/emacs/manual/html_node/emacs/Saving-Emacs-Sessions.html 
@@ -15,26 +15,26 @@
 ;;; https://github.com/milkypostman/melpa
 (require 'package)
 (add-to-list 'package-archives
-             '("melpa" . "http://melpa.milkbox.net/packages/") t)
+	 '("melpa" . "http://melpa.milkbox.net/packages/") t)
 (package-initialize)
 
 ;;; https://github.com/dimitri/el-get
 (add-to-list 'load-path "~/.emacs.d/el-get/el-get")
 
 (unless (require 'el-get nil 'noerror)
-  (with-current-buffer
-      (url-retrieve-synchronously
-       "https://raw.github.com/dimitri/el-get/master/el-get-install.el")
-    (let (el-get-master-branch)
-      (goto-char (point-max))
-      (eval-print-last-sexp))))
+(with-current-buffer
+  (url-retrieve-synchronously
+   "https://raw.github.com/dimitri/el-get/master/el-get-install.el")
+(let (el-get-master-branch)
+  (goto-char (point-max))
+  (eval-print-last-sexp))))
 
 (add-to-list 'el-get-recipe-path "~/.emacs.d/el-get-user/recipes")
 (el-get 'sync)
 
 ;;; http://jblevins.org/projects/markdown-mode/
 (autoload 'markdown-mode "markdown-mode"
-   "Major mode for editing Markdown files" t)
+"Major mode for editing Markdown files" t)
 (add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.txt\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
@@ -44,28 +44,37 @@
 (load "pandoc-mode")
 (add-hook 'markdown-mode-hook 'turn-on-pandoc)
 (defcustom pandoc-binary "~/.cabal/bin/pandoc"
-   "*The full path of the pandoc binary."
-   :group 'pandoc
-   :type 'file)
+"*The full path of the pandoc binary."
+:group 'pandoc
+:type 'file)
 
 ;;; http://www.dr-qubit.org/emacs.php#undo-tree
 (require 'undo-tree)
 
 ;;; http://www.emacswiki.org/emacs/Evil
+(add-to-list 'load-path "~/.emacs.d/evil") ; only without ELPA/el-get
 (require 'evil)
 (evil-mode 1)
 ;; change mode-line color by evil state
 (lexical-let ((default-color (cons (face-background 'mode-line)
-                                   (face-foreground 'mode-line))))
-  (add-hook 'post-command-hook
-    (lambda ()
-      (let ((color (cond ((minibufferp) default-color)
-                         ((evil-insert-state-p) '("#e80000" . "#ffffff"))
-                         ((evil-emacs-state-p)  '("#444488" . "#ffffff"))
-                         ((buffer-modified-p)   '("#006fa0" . "#ffffff"))
-                         (t default-color))))
-        (set-face-background 'mode-line (car color))
-        (set-face-foreground 'mode-line (cdr color))))))
+			       (face-foreground 'mode-line))))
+(add-hook 'post-command-hook
+(lambda ()
+  (let ((color (cond ((minibufferp) default-color)
+		     ((evil-insert-state-p) '("#e80000" . "#ffffff"))
+		     ((evil-emacs-state-p)  '("#444488" . "#ffffff"))
+		     ((buffer-modified-p)   '("#006fa0" . "#ffffff"))
+		     (t default-color))))
+    (set-face-background 'mode-line (car color))
+    (set-face-foreground 'mode-line (cdr color))))))
+
+;;;http://www.emacswiki.org/emacs/Evil#toc19
+(load "elscreen" "ElScreen" t)
+(define-key evil-normal-state-map (kbd "C-w t") 'elscreen-create) ;creat tab
+(define-key evil-normal-state-map (kbd "C-w x") 'elscreen-kill) ;kill tab
+(define-key evil-normal-state-map "gT" 'elscreen-previous) ;previous tab
+(define-key evil-normal-state-map "gt" 'elscreen-next) ;next tab
+
 
 ;;; https://github.com/redguardtoo/evil-nerd-commenter
 ;(require 'evil-nerd-commenter)
@@ -99,12 +108,12 @@
 
 ;; Eclipse installation
 ;(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- ;'(eclim-eclipse-dirs (quote ("~/eclipse")))
- ;'(show-paren-mode t))
+;; custom-set-variables was added by Custom.
+;; If you edit it by hand, you could mess it up, so be careful.
+;; Your init file should contain only one such instance.
+;; If there is more than one, they won't work right.
+;'(eclim-eclipse-dirs (quote ("~/eclipse")))
+;'(show-paren-mode t))
 
 ;; Displaying compilation error messages in the echo area
 (setq help-at-pt-display-when-idle t)
@@ -135,11 +144,11 @@
 (global-set-key "\C-x\ \C-r" 'recentf-open-files)
 
 (custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(default ((t (:family "Inconsolata" :foundry "unknown" :slant normal :weight normal :height 131 :width normal)))))
+;; custom-set-faces was added by Custom.
+;; If you edit it by hand, you could mess it up, so be careful.
+;; Your init file should contain only one such instance.
+;; If there is more than one, they won't work right.
+'(default ((t (:family "Inconsolata" :foundry "unknown" :slant normal :weight normal :height 131 :width normal)))))
 
 ;; Zoom using the scroll wheel
 ;; my tweaks
