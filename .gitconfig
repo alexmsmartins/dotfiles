@@ -1,0 +1,82 @@
+[user]
+	name = Alexandre Martins
+	email = alexmsmartins@gmail.com
+# email = amartins@mdsol.com
+#	email = alexmsmartins@gmail.com
+[core]
+	excludesfile = /Users/amartins/.gitignore_global
+	editor = /usr/local/bin/nvim
+	pager = diff-so-fancy | less --tabs=4 -RFX
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path =
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[commit]
+	template = /Users/amartins/.stCommitMsg
+  verbose = true
+[merge]
+	conflictstyle = diff3
+	tool = p4mergetool
+[filter "lfs"]
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+[push]
+  default = current
+[mergetool "p4mergetool"]
+	cmd = /Applications/p4merge.app/Contents/Resources/launchp4merge $PWD/$BASE $PWD/$REMOTE $PWD/$LOCAL $PWD/$MERGED
+	trustExitCode = false
+[mergetool]
+	keepBackup = false
+[alias]
+    patch = !git --no-pager diff --no-color
+[filesystem "Azul Systems, Inc.|1.8.0_222|/dev/disk1s1"]
+	timestampResolution = 1001 milliseconds
+	minRacyThreshold = 0 nanoseconds
+[filesystem "Oracle Corporation|1.8.0_202|/dev/disk1s1"]
+	timestampResolution = 1001 milliseconds
+	minRacyThreshold = 0 nanoseconds
+[filesystem "AdoptOpenJDK|11.0.4|/dev/disk1s1"]
+	timestampResolution = 8000 nanoseconds
+	minRacyThreshold = 0 nanoseconds
+[filesystem "Azul Systems, Inc.|1.8.0_232|/dev/disk1s1"]
+	timestampResolution = 1001 milliseconds
+	minRacyThreshold = 0 nanoseconds
+[filesystem "Oracle Corporation|11.0.5|/dev/disk1s1"]
+	timestampResolution = 9000 nanoseconds
+	minRacyThreshold = 0 nanoseconds
+[filesystem "Oracle Corporation|11.0.2|/dev/disk1s1"]
+	timestampResolution = 9000 nanoseconds
+	minRacyThreshold = 0 nanoseconds
+[filesystem "JetBrains s.r.o|11.0.5|/dev/disk1s1"]
+	timestampResolution = 14000 nanoseconds
+	minRacyThreshold = 0 nanoseconds
+[filesystem "AdoptOpenJDK|13.0.2|/dev/disk1s1"]
+	timestampResolution = 9000 nanoseconds
+	minRacyThreshold = 0 nanoseconds
+[filesystem "Eclipse OpenJ9|1.8.0_242|/dev/disk1s1"]
+	timestampResolution = 1001 milliseconds
+	minRacyThreshold = 0 nanoseconds
+[filesystem "JetBrains s.r.o|11.0.6|/dev/disk1s1"]
+	timestampResolution = 14000 nanoseconds
+	minRacyThreshold = 0 nanoseconds
+[filesystem "Oracle Corporation|11.0.6|/dev/disk1s1"]
+	timestampResolution = 12000 nanoseconds
+	minRacyThreshold = 0 nanoseconds
+[filesystem "AdoptOpenJDK|11.0.7|/dev/disk1s1"]
+	timestampResolution = 6000 nanoseconds
+	minRacyThreshold = 0 nanoseconds
+[pull]
+	rebase = true
+[filesystem "AdoptOpenJDK|11.0.8|/dev/disk1s1"]
+	timestampResolution = 21000 nanoseconds
+	minRacyThreshold = 0 nanoseconds
+[filesystem "N/A|14.0.1|/dev/disk1s1"]
+	timestampResolution = 9000 nanoseconds
+	minRacyThreshold = 0 nanoseconds
+[filesystem "AdoptOpenJDK|11.0.9|/dev/disk1s1"]
+	timestampResolution = 15000 nanoseconds
+	minRacyThreshold = 0 nanoseconds
