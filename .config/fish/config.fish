@@ -36,14 +36,9 @@ set -x RUBY_CONFIGURE_OPTS --with-openssl-dir=(brew --prefix openssl@1.1)
 contains "$HOME/.cargo/bin" $PATH
 or set fish_user_paths "$HOME/.cargo/bin" $PATH
 
-# Go lang
-contains "$HOME/go/bin" $PATH
-or set fish_user_paths "$HOME/go/bin" $PATH
-
 # Bloop installed with curl 
 # contains "$HOME/.bloop" $PATH
 # or set fish_user_paths "$HOME/.bloop" $PATH
-# export PATH="$PATH:/Users/amartins/Library/Application Support/Coursier/bin"
 contains "$HOME/Library/Application Support/Coursier/bin" $PATH
 or set fish_user_paths "$HOME/Library/Application Support/Coursier/bin" $PATH
 
@@ -109,16 +104,5 @@ launchctl setenv ARTIFACTORY_USER $ARTIFACTORY_USER
 set -x ARTIFACTORY_PASSWORD AKCp5Zm7fN6L6xCdC3PPYBg5hQ82YDgeE7bGV4AgFaiWDzKMD8g7hMVNd8cwGwYczTqRYayAa
 launchctl setenv ARTIFACTORY_PASSWORD $ARTIFACTORY_PASSWORD
 
-test -e {$HOME}/.iterm2_shell_integration.fish ; and source {$HOME}/.iterm2_shell_integration.fish
-
-starship init fish | source
-
-
 set fish_user_paths "/usr/local/opt/openssl@1.1/bin" $fish_user_paths
 
-# rbenv
-status --is-interactive; and source (rbenv init -|psub)
-
-
-# https://github.com/jichu4n/fish-command-timer
-set fish_command_timer_color green
