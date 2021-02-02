@@ -1,22 +1,22 @@
 $include /etc/inputrc
 set editing-mode vi
 $if mode=vi
-set keymap vi-command
-# these are for vi-command mode
-"\e[A":history-search-backward
-"\e[B":history-search-forward
-"\e[C": forward-char
-"\e[D": backward-char
-h:backward-char
-j:history-search-forward
-k:history-search-backward
-l:forward-char
-set keymap vi-insert
-# these are for vi-insert mode
-"\e[A":history-search-backward
-"\e[B":history-search-forward
-"\e[C": forward-char
-"\e[D": backward-char
+  set keymap vi-command
+  # these are for vi-command mode
+  "\e[A":history-search-backward
+  "\e[B":history-search-forward
+  "\e[C": forward-char
+  "\e[D": backward-char
+  h:backward-char
+  j:history-search-forward
+  k:history-search-backward
+  l:forward-char
+  set keymap vi-insert
+  # these are for vi-insert mode
+  "\e[A":history-search-backward
+  "\e[B":history-search-forward
+  "\e[C": forward-char
+  "\e[D": backward-char
 $endif
 
 set show-all-if-ambiguous on

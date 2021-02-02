@@ -262,8 +262,6 @@ call plug#begin()
   " ## Tools
   Plug 'trapd00r/vidir'
 
-  Plug 'preservim/nerdtree'
-
   Plug 'AndrewRadev/linediff.vim'
 
   Plug 'rickhowe/diffchar.vim'
@@ -522,7 +520,18 @@ call plug#begin()
   " use the autocmd hook to call which_key#register(), e.g., register for the Space key:
   autocmd! User vim-which-key call which_key#register('<Space>', 'g:which_key_map')
 
-  " Other
-  Plug 'wakatime/vim-wakatime' " soo slow when profiling neovim startup
-
+  " For host C02D90AYMD6M
+  " Running nvim to generate startup logs... done.
+  " Loading and processing logs... done.
+  " Plugin directory: /Users/amartins/.vim/plugged
+  " =====================================
+  " Top 10 plugins slowing nvim's startup
+  " =====================================
+  " 1	20348.286   vim-wakatime
+  " 2	117.530   nerdtree
+  " let hostname=system('hostname -s')
+  " echo hostname
+  " if hostname != 'C03D90AYMD6M'
+  "   Plug 'wakatime/vim-wakatime' " soo slow when profiling neovim startup
+  " endif
 call plug#end()
