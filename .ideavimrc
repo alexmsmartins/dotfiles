@@ -23,7 +23,10 @@ nmap <leader><leader>s :action KJumpAction<cr>
 nmap <leader><leader>w :action KJumpAction.Word0<cr>
 nmap <leader><leader>l :action KJumpAction.Line<cr>
 
-" Easymotion plugin
+" # Sneak plugin
+set sneak
+
+" # Easymotion plugin
 set easymotion
 
 " allows you to press jk or kj to exit from insert mode
