@@ -28,4 +28,4 @@ addSbtPlugin("ch.epfl.scala" % "sbt-bloop" % "1.4.6")
 addSbtPlugin("com.typesafe" % "sbt-mima-plugin" % "0.8.0")
 
 // Sbt will start showing `scalac` warnings whenever you run tasks like `compile` or `test`, even if there are no changes in sources
-// addSbtPlugin("com.timushev.sbt" % "sbt-rewarn" % "0.1.2")
+addSbtPlugin("com.timushev.sbt" % "sbt-rewarn" % "0.1.2")
