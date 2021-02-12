@@ -1,0 +1,47 @@
+{
+  "languageserver": {
+    "metals": {
+      "command": "metals-vim",
+      "rootPatterns": ["build.sbt"],
+      "filetypes": ["scala", "sbt"]
+    },
+    "dockerfile": {
+      "command": "docker-langserver",
+      "filetypes": ["dockerfile"],
+      "args": ["--stdio"]
+    },
+    "haskell": {
+      "command": "stack ghci --with-ghc intero",
+      "rootPatterns": [
+        "*.cabal",
+        "stack.yaml",
+        "cabal.project",
+        "package.yaml"
+      ],
+      "filetypes": [
+        "hs",
+        "lhs",
+        "haskell"
+      ],
+      "initializationOptions": {
+        "languageServerHaskell": {
+        }
+      }
+    }
+  },
+  "vimlsp.debug": {
+    "type": "boolean",
+    "default": false,
+    "description": "enable coc-vimlsp service debug"
+  },
+  "vimlsp.trace.server": {
+    "type": "string",
+    "default": "off",
+    "enum": [
+      "off",
+      "messages",
+      "verbose"
+    ],
+    "description": "Trace level of vim language server"
+  }
+}
