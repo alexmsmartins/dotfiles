@@ -101,3 +101,4 @@ export SSH_KEY_PATH="~/.ssh/rsa_id"
 # Example aliases
 # alias bashconfig="mate ~/.bashrc"
 # alias ohmybash="mate ~/.oh-my-bash"
+source "$HOME/.cargo/env"

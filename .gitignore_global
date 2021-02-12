@@ -306,6 +306,7 @@ GitHub.sublime-settings
 # Metals -language server for Scala
 .metals
 .bloop
+.bsp
 
 # SBT env and node dotenv related
 .env

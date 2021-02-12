@@ -1,6 +1,6 @@
 [user]
 	name = Alexandre Martins
-	email = alexmsmartins@gmail.com
+# Lets comment out the email to force me to choose one for each new repository
 # email = amartins@mdsol.com
 #	email = alexmsmartins@gmail.com
 [core]
@@ -79,4 +79,7 @@
 	minRacyThreshold = 0 nanoseconds
 [filesystem "AdoptOpenJDK|11.0.9|/dev/disk1s1"]
 	timestampResolution = 15000 nanoseconds
+	minRacyThreshold = 0 nanoseconds
+[filesystem "AdoptOpenJDK|11.0.10|/dev/disk1s2"]
+	timestampResolution = 4000 nanoseconds
 	minRacyThreshold = 0 nanoseconds
