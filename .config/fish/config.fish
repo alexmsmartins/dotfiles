@@ -17,7 +17,6 @@ eval (thefuck --alias | tr '
 ' ';')
 
 # Homebrew
-set -x HOMEBREW_GITHUB_API_TOKEN "2ab00e76829751f9834383350f513c7f3e1ebe62"
 contains "/usr/local/sbin" $PATH
 or set fish_user_paths "/usr/local/sbin" $PATH
 
@@ -101,7 +100,7 @@ set -x ARTIFACTORY_USERNAME amartins
 launchctl setenv ARTIFACTORY_USERNAME $ARTIFACTORY_USERNAME
 set -x ARTIFACTORY_USER amartins
 launchctl setenv ARTIFACTORY_USER $ARTIFACTORY_USER
-set -x ARTIFACTORY_PASSWORD AKCp5Zm7fN6L6xCdC3PPYBg5hQ82YDgeE7bGV4AgFaiWDzKMD8g7hMVNd8cwGwYczTqRYayAa
+# ARTIFACTORY_PASSWORD saved as a universal variable
 launchctl setenv ARTIFACTORY_PASSWORD $ARTIFACTORY_PASSWORD
 
 set fish_user_paths "/usr/local/opt/openssl@1.1/bin" $fish_user_paths
