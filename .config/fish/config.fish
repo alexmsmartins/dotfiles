@@ -108,3 +108,6 @@ set fish_user_paths "/usr/local/opt/openssl@1.1/bin" $fish_user_paths
 # The minimal, blazing-fast, and infinitely customizable prompt for any shell!
 # https://github.com/starship/starship
 starship init fish | source
+
+test -e {$HOME}/.iterm2_shell_integration.fish ; and source {$HOME}/.iterm2_shell_integration.fish
+
