@@ -12,6 +12,19 @@ set updatetime=300
 "" Don't give |ins-completion-menu| messages.
 set shortmess+=c
 
+"" Colors and Themes
+if (has("nvim"))
+  "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
+  let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+endif
+"For Neovim > 0.1.5 and Vim > patch 7.4.1799 < https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162 >
+"Based on Vim patch 7.4.1770 (`guicolors` option) < https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd >
+" < https://github.com/neovim/neovim/wiki/Following-HEAD#20160511 >
+if (has("termguicolors"))
+  set termguicolors
+endif
+
+
 "" Always show signcolumns
 set signcolumn=yes
 
@@ -117,11 +130,11 @@ nnoremap <C-H> <C-W><C-H>
 
 " column witdh to 120 characters
 augroup linelength
-	if exists('+colorcolumn')
-		set colorcolumn=120
-	else
-		au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>120v.\+', -1)
-	endif
+  if exists('+colorcolumn')
+    set colorcolumn=120
+  else
+    au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>120v.\+', -1)
+  endif
 augroup END
 
 " Change to the directory of the current file
@@ -190,6 +203,9 @@ call plug#begin()
   Plug 'neomake/neomake'
 
   Plug 'sbdchd/neoformat'
+
+  " Theme
+  Plug 'tomasr/molokai'
 
   " ## Movement
   Plug 'haya14busa/incsearch.vim'
@@ -500,6 +516,16 @@ call plug#begin()
     " Automatically reload on save
     au BufWritePost *.hs InteroReload
   augroup END
+
+  " ## Arduino
+  Plug 'stevearc/vim-arduino'
+
+  nnoremap <buffer> <leader>am :ArduinoVerify<CR>
+  nnoremap <buffer> <leader>au :ArduinoUpload<CR>
+  nnoremap <buffer> <leader>ad :ArduinoUploadAndSerial<CR>
+  nnoremap <buffer> <leader>ab :ArduinoChooseBoard<CR>
+  nnoremap <buffer> <leader>ap :ArduinoChooseProgrammer<CR>
+
   " ## HTTP
   Plug 'nicwest/vim-http'
 
@@ -535,3 +561,4 @@ call plug#begin()
   "   Plug 'wakatime/vim-wakatime' " soo slow when profiling neovim startup
   " endif
 call plug#end()
+colorscheme molokai

@@ -22,7 +22,7 @@ addSbtPlugin("com.scalapenos" % "sbt-prompt" % "1.0.2")
 addSbtPlugin("com.timushev.sbt" % "sbt-updates" % "0.5.1")
 
 // Bloop - https://github.com/scalacenter/bloop
-addSbtPlugin("ch.epfl.scala" % "sbt-bloop" % "1.4.6")
+addSbtPlugin("ch.epfl.scala" % "sbt-bloop" % "1.4.8")
 
 // A tool for catching binary incompatibility in Scala
 addSbtPlugin("com.typesafe" % "sbt-mima-plugin" % "0.8.0")
