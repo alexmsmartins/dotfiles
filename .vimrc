@@ -207,6 +207,8 @@ call plug#begin()
   " Theme
   Plug 'tomasr/molokai'
 
+  Plug 'sainnhe/sonokai'
+
   " ## Movement
   Plug 'haya14busa/incsearch.vim'
   map /  <Plug>(incsearch-forward)
@@ -561,4 +563,12 @@ call plug#begin()
   "   Plug 'wakatime/vim-wakatime' " soo slow when profiling neovim startup
   " endif
 call plug#end()
-colorscheme molokai
+" colorscheme molokai
+
+" The configuration options placed before `colorscheme sonokai`.
+" Available values: `'default'`, `'atlantis'`, `'andromeda'`, `'shusia'`, `'maia'`
+let g:sonokai_style = 'andromeda'
+let g:sonokai_enable_italic = 1
+let g:sonokai_disable_italic_comment = 1
+
+colorscheme sonokai
