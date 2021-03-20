@@ -1,12 +1,11 @@
 scriptencoding utf-8
 
-" Avoid getting the "Press Enter or type command to continue" at startup
-set shortmess=a
-set cmdheight=1  "2 " Better display for messages
+" Give more space for displaying messages.
+set cmdheight=2 " Better display for messages
 
 
-" Some setup for coc.vim with scala
-"" You will have a bad experience with diagnostic messages with the default 4000.
+" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
+" delays and poor user experience.
 set updatetime=300
 
 "" Don't give |ins-completion-menu| messages.
@@ -468,12 +467,31 @@ call plug#begin()
   Plug 'GEverding/vim-hocon'
 
   " ## Javascript
+  Plug 'pangloss/vim-javascript'
+  " Enables syntax highlighting for JSDocs.
+  let g:javascript_plugin_jsdoc = 1
+  " Enables syntax highlighting for Flow.
+  let g:javascript_plugin_flow = 1
+  " You can customize concealing characters, if your font provides the glyph you want, by defining one or more of the following variables:
+  let g:javascript_conceal_function             = "ƒ"
+  let g:javascript_conceal_null                 = "ø"
+  let g:javascript_conceal_this                 = "@"
+  let g:javascript_conceal_return               = "⇚"
+  let g:javascript_conceal_undefined            = "¿"
+  let g:javascript_conceal_NaN                  = "ℕ"
+  let g:javascript_conceal_prototype            = "¶"
+  let g:javascript_conceal_static               = "•"
+  let g:javascript_conceal_super                = "Ω"
+  let g:javascript_conceal_arrow_function       = "⇒"
+  let g:javascript_conceal_noarg_arrow_function = "🞅"
+  let g:javascript_conceal_underscore_arrow_function = "🞅"
+  " You can enable concealing within VIM with:
+  set conceallevel=1
+  map <leader>l :exec &conceallevel ? "set conceallevel=0" : "set conceallevel=1"<CR>
+
   Plug 'jelera/vim-javascript-syntax'
-  Plug 'ternjs/tern_for_vim'
-  Plug 'othree/javascript-libraries-syntax.vim'
 
   " ### Jsx
-  Plug 'pangloss/vim-javascript'
   Plug 'mxw/vim-jsx'
   let g:jsx_ext_required = 0
 
@@ -481,6 +499,9 @@ call plug#begin()
   Plug 'leafgarland/typescript-vim', { 'do': 'npm -g install tsc' }
   let g:typescript_compiler_binary = 'tsc'
   let g:typescript_compiler_options = ''
+
+  " ## GraphQL
+  Plug 'jparise/vim-graphql'
 
   " ## Rust
   Plug 'rust-lang/rust.vim'
