@@ -1,4 +1,8 @@
+eslint
+gulp
 j2m
+npx
+nvm
 prettier
 tsc
-gulp
+yarn
