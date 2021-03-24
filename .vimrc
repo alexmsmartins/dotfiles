@@ -277,6 +277,10 @@ call plug#begin()
   :noremap <expr> T repmo#ZapKey('T')|sunmap T
 
   " ## Tools
+
+  " Jira
+  Plug 'n0v1c3/vira', { 'do': './install.sh' }
+
   Plug 'trapd00r/vidir'
 
   Plug 'AndrewRadev/linediff.vim'
