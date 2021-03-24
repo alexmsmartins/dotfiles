@@ -92,12 +92,16 @@ direnv hook fish | source
 complete --command aws --no-files --arguments '(begin; set --local --export COMP_SHELL fish; set --local --export COMP_LINE (commandline); aws_completer | sed \'s/ $//\'; end)'
 
 
-set -x ARTIFACTORY_USERNAME amartins
+# The lines below make sure the artifactory related variables are exported 
+# and can be picked up by bash scripts
+set -x ARTIFACTORY_USERNAME $ARTIFACTORY_USERNAME
 launchctl setenv ARTIFACTORY_USERNAME $ARTIFACTORY_USERNAME
-set -x ARTIFACTORY_USER amartins
+set -x ARTIFACTORY_USER $ARTIFACTORY_USER
 launchctl setenv ARTIFACTORY_USER $ARTIFACTORY_USER
-# ARTIFACTORY_PASSWORD saved as a universal variable
+set -x ARTIFACTORY_PASSWORD $ARTIFACTORY_PASSWORD
 launchctl setenv ARTIFACTORY_PASSWORD $ARTIFACTORY_PASSWORD
+set -x ARTIFACTORY_URL $ARTIFACTORY_URL
+launchctl setenv ARTIFACTORY_URL $ARTIFACTORY_URL
 
 set fish_user_paths "/usr/local/opt/openssl@1.1/bin" $fish_user_paths
 
