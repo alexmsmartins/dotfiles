@@ -20,10 +20,6 @@ eval (thefuck --alias | tr '
 contains "/usr/local/sbin" $PATH
 or set fish_user_paths "/usr/local/sbin" $PATH
 
-function git --description 'Alias for hub, which wraps git to provide extra functionality with GitHub.'
-    hub $argv
-end
-
 # Ruby-build from Homebrew
 # ruby-build installs a non-Homebrew OpenSSL for each Ruby version installed and these are never upgraded.
 # To link Rubies to Homebrew's OpenSSL 1.1 (which is upgraded) add the following to your ~/.config/fish/config.fish:
