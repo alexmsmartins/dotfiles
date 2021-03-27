@@ -103,7 +103,9 @@ launchctl setenv ARTIFACTORY_PASSWORD $ARTIFACTORY_PASSWORD
 set -x ARTIFACTORY_URL $ARTIFACTORY_URL
 launchctl setenv ARTIFACTORY_URL $ARTIFACTORY_URL
 
-set fish_user_paths "/usr/local/opt/openssl@1.1/bin" $fish_user_paths
+
+contains "/usr/local/opt/openssl@1.1/bin" $PATH
+or set fish_user_paths "/usr/local/opt/openssl@1.1/bin" $PATH
 
 # The minimal, blazing-fast, and infinitely customizable prompt for any shell!
 # https://github.com/starship/starship
