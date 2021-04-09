@@ -1,5 +1,9 @@
 scriptencoding utf-8
 
+filetype plugin on
+set omnifunc=syntaxcomplete#Complete
+autocmd FileType css set omnifunc=csscomplete#CompleteCSS
+
 " Give more space for displaying messages.
 set cmdheight=2 " Better display for messages
 
@@ -281,6 +285,9 @@ call plug#begin()
   " Jira
   Plug 'n0v1c3/vira', { 'do': './install.sh' }
 
+  " Firefox Ghosttext
+  Plug 'subnut/nvim-ghost.nvim', {'do': ':call nvim_ghost#installer#install()'}
+
   Plug 'trapd00r/vidir'
 
   Plug 'AndrewRadev/linediff.vim'
@@ -507,8 +514,12 @@ call plug#begin()
   " ## GraphQL
   Plug 'jparise/vim-graphql'
 
+  " ## CSS
+  Plug 'ap/vim-css-color'
+
   " ## Rust
   Plug 'rust-lang/rust.vim'
+
   " ## Logs
   Plug 'dzeban/vim-log-syntax'
 
