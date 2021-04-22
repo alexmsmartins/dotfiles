@@ -29,7 +29,7 @@ export SSH_KEY_PATH="~/.ssh/rsa_id"
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 # added by travis gem
-[ -f /Users/amartins/.travis/travis.sh ] && source /Users/amartins/.travis/travis.sh
+[ -f ~/.travis/travis.sh ] && source ~/.travis/travis.sh
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
