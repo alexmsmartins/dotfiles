@@ -78,6 +78,7 @@ nnoremap <leader>qf :action ShowIntentionActions<CR>
 nnoremap <leader>F :action ReformatCode<CR>
 
 " GoTo
+nnoremap gx :action OpenInBrowser<CR>
 nnoremap gd :action GotoDeclaration<CR>
 nnoremap gr :action FindUsages<CR>
 nnoremap <leader>gi :action GotoImplementation<CR>

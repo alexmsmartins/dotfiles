@@ -1,6 +1,7 @@
 scriptencoding utf-8
 
-filetype plugin on
+syntax enable
+filetype plugin indent on
 set omnifunc=syntaxcomplete#Complete
 autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 
@@ -299,7 +300,7 @@ call plug#begin()
   Plug 'tpope/vim-rhubarb'
 
   Plug 'airblade/vim-gitgutter'
-  let g:gitgutter_max_signs = 400
+  let g:gitgutter_max_signs = 3000
 
   " I do not seem to be using tags
   " Plug 'ludovicchabant/vim-gutentags'
