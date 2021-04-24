@@ -1,8 +1,3 @@
-# Call bashrc so that interactive login shells have the same config as non interactive login shells
-if [ -f ~/.bashrc ]; then
-	. ~/.bashrc
-fi
-
 export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
@@ -22,9 +17,6 @@ fi
 export SSH_KEY_PATH="~/.ssh/rsa_id"
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
-
-# added by travis gem
-[ -f ~/.travis/travis.sh ] && source ~/.travis/travis.sh
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
