@@ -7,12 +7,6 @@ export NVM_DIR="$HOME/.nvm"
 
 [ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
 
-# Hub aliasing
-eval "$(hub alias -s)"
-
-if [ -f /path/to/hub.bash_completion ]; then
-  . /usr/local/etc/bash_completion.d
-fi
 
 if [ -e $HOME/.nix-profile/etc/profile.d/nix.sh ]; then . $HOME/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
 

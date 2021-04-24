@@ -1,3 +1,7 @@
+# Call bashrc so that interactive login shells have the same config as non interactive login shells
+if [ -f ~/.bashrc ]; then
+	. ~/.bashrc
+fi
 
 export MANPATH="/usr/local/man:$MANPATH"
 
@@ -16,15 +20,6 @@ fi
 
 # ssh
 export SSH_KEY_PATH="~/.ssh/rsa_id"
-
-# Set personal aliases, overriding those provided by oh-my-bash libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-bash
-# users are encouraged to define aliases within the OSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias bashconfig="mate ~/.bashrc"
-# alias ohmybash="mate ~/.oh-my-bash"
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
