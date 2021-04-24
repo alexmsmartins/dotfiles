@@ -11,5 +11,5 @@ export NVM_DIR="$HOME/.nvm"
 
 [ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
 
-alias config='/usr/bin/git --git-dir=/Users/amartins/.cfg/ --work-tree=/Users/amartins'
+alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 source "$HOME/.cargo/env"
