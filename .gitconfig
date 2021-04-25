@@ -4,7 +4,7 @@
 # email = amartins@mdsol.com
 #	email = alexmsmartins@gmail.com
 [core]
-	excludesfile = /Users/amartins/.gitignore_global
+	excludesfile = ~/.gitignore_global
 	editor = /usr/local/bin/nvim
 	pager = diff-so-fancy | less --tabs=4 -RFX
 [difftool "sourcetree"]
@@ -14,7 +14,7 @@
 	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
 [commit]
-	template = /Users/amartins/.stCommitMsg
+	template = ~/.stCommitMsg
   verbose = true
 [merge]
 	conflictstyle = diff3
