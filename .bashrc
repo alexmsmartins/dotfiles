@@ -44,5 +44,6 @@ if [ "$(uname)" == "Darwin" ]; then
 elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
   echo "Setup brew under GNU/Linux platform"
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+  . /home/linuxbrew/.linuxbrew/etc/profile.d/z.sh
 fi
 
