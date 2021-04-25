@@ -39,9 +39,11 @@ eval "$(direnv hook bash)"
 eval "$(starship init bash)"
 
 if [ "$(uname)" == "Darwin" ]; then
+  export PATH="/usr/local/sbin:$PATH"
   echo "Do something under Mac OS X platform"
 elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
   # Do something under GNU/Linux platform
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+  echo "Do something under Linux platform"
 fi
 
