@@ -47,3 +47,5 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
   . /home/linuxbrew/.linuxbrew/etc/profile.d/z.sh
 fi
 
+# Configure 'z' installed by brew
+. $(brew --repository)/../etc/profile.d/z.sh
