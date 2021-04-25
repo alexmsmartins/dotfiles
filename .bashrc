@@ -40,3 +40,11 @@ eval "$(direnv hook bash)"
 # The minimal, blazing-fast, and infinitely customizable prompt for any shell!
 # https://github.com/starship/starship
 eval "$(starship init bash)"
+
+if [ "$(uname)" == "Darwin" ]; then
+  echo "Do something under Mac OS X platform"
+elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
+  # Do something under GNU/Linux platform
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+fi
+
