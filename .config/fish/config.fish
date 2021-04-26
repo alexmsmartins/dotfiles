@@ -8,6 +8,10 @@ or set fish_user_paths "$HOME/bin" $PATH
 contains "$HOME/.local/bin"  $PATH
 or set fish_user_paths "$HOME/.local/bin" $PATH
 
+# add GNU coreutils to the path - this may change behaviour in the Mac
+contains "/usr/local/opt/coreutils/libexec/gnubin"  $PATH
+or set fish_user_paths "/usr/local/opt/coreutils/libexec/gnubin" $PATH
+
 # add gnu tools (e. g. GNU make) to the path
 # contains "/usr/local/opt/make/libexec/gnubin" $PATH
 # or set fish_user_paths "/usr/local/opt/make/libexec/gnubin" $PATH

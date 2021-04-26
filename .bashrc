@@ -49,3 +49,6 @@ fi
 
 # Configure 'z' installed by brew
 . $(brew --repository)/../etc/profile.d/z.sh
+
+# Add coreutils (this will replace the Mac coreutils with the GNU coreutils
+PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
