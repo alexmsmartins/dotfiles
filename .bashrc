@@ -52,3 +52,7 @@ fi
 
 # Add coreutils (this will replace the Mac coreutils with the GNU coreutils
 PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+
+# Add Nix configuartion
+source ~/.nix-profile/etc/profile.d/nix.sh
+
