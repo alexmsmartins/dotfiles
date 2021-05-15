@@ -201,6 +201,13 @@ call plug#begin()
 
   Plug 'itchyny/lightline.vim'
 
+  " By the way, -- INSERT -- is unnecessary anymore because the mode information is displayed in the statusline. 
+  " This config gets rid of it
+  set noshowmode
+  let g:lightline = {
+      \ 'colorscheme': 'wombat',
+      \ }
+
   Plug 'dense-analysis/ale'
   " Show 5 lines of errors (default: 10)
   let g:ale_list_window_size = 5
@@ -307,14 +314,15 @@ call plug#begin()
   Plug 'airblade/vim-gitgutter'
   let g:gitgutter_max_signs = 3000
 
-  " I do not seem to be using tags
-  " Plug 'ludovicchabant/vim-gutentags'
+  " View and search LSP symbols, tags in Vim/NeoVim.
+  Plug 'liuchengxu/vista.vim'
 
   Plug 'tpope/vim-unimpaired'
 
   Plug 'tpope/vim-repeat'
 
-  Plug 'tpope/vim-surround' " ideavim has a similar extension
+  " ideavim has a similar extension
+  Plug 'tpope/vim-surround'
 
   Plug 'AndrewRadev/linediff.vim'
 
@@ -604,6 +612,10 @@ call plug#begin()
   " if hostname != 'C03D90AYMD6M'
   "   Plug 'wakatime/vim-wakatime' " soo slow when profiling neovim startup
   " endif
+  
+  " ## Other
+  Plug 'frazrepo/vim-rainbow'
+  let g:rainbow_active = 1
 call plug#end()
 " colorscheme molokai
 
