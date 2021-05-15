@@ -39,13 +39,15 @@ eval "$(direnv hook bash)"
 eval "$(starship init bash)"
 
 if [ "$(uname)" == "Darwin" ]; then
-  echo "Setup brew under Mac OS X platform"
+  # Setup brew under Mac OS X platform
   export PATH="/usr/local/sbin:$PATH"
 elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
-  echo "Setup brew under GNU/Linux platform"
+  # Setup brew under GNU/Linux platform
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
   . /home/linuxbrew/.linuxbrew/etc/profile.d/z.sh
 fi
+# Brew will stop updating on every 'brew install'
+export HOMEBREW_NO_AUTO_UPDATE=1
 
 # Configure 'z' installed by brew
 . $(brew --repository)/../etc/profile.d/z.sh

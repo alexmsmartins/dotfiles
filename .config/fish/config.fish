@@ -23,6 +23,8 @@ eval (thefuck --alias | tr '
 # Homebrew
 contains "/usr/local/sbin" $PATH
 or set fish_user_paths "/usr/local/sbin" $PATH
+# Brew will stop updating on every 'brew install'
+set -x HOMEBREW_NO_AUTO_UPDATE 1
 
 # Ruby-build from Homebrew
 # ruby-build installs a non-Homebrew OpenSSL for each Ruby version installed and these are never upgraded.
