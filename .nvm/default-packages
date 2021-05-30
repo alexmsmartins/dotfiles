@@ -3,7 +3,8 @@ gulp
 j2m
 nvm
 prettier
-ts-node
-tsc
 typescript
 yarn
+purescript
+bower
+pulp

@@ -37,12 +37,14 @@ set -x RUBY_CONFIGURE_OPTS --with-openssl-dir=(brew --prefix openssl@1.1)
 contains "$HOME/.cargo/bin" $PATH
 or set fish_user_paths "$HOME/.cargo/bin" $PATH
 
+# Nvm
+load_nvm
+
 # Bloop installed with curl 
 # contains "$HOME/.bloop" $PATH
 # or set fish_user_paths "$HOME/.bloop" $PATH
 contains "$HOME/Library/Application Support/Coursier/bin" $PATH
 or set fish_user_paths "$HOME/Library/Application Support/Coursier/bin" $PATH
-
 
 # content has to be in .config/fish/config.fish
 # if it does not exist, create the file
