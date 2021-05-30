@@ -298,8 +298,18 @@ call plug#begin()
   " Jira
   Plug 'n0v1c3/vira', { 'do': './install.sh' }
 
-  " Firefox Ghosttext
+  " Firefox and Chrome Ghosttext
   Plug 'subnut/nvim-ghost.nvim', {'do': ':call nvim_ghost#installer#install()'}
+  function! s:SetupGhostBuffer()
+      if match(expand("%:a"), '\v/ghost-(github|reddit)\.com-')
+          set ft=markdown
+      endif
+  endfunction
+  
+  augroup vim-ghost
+      au!
+      au User vim-ghost#connected call s:SetupGhostBuffer()
+  augroup END
 
   Plug 'trapd00r/vidir'
 
@@ -467,6 +477,9 @@ call plug#begin()
 
   " # Yaml
   Plug 'mrk21/yaml-vim'
+
+  " # Avro
+  Plug 'gurpreetatwal/vim-avro'
 
   " ## Shell
   Plug 'WolfgangMehner/bash-support'
