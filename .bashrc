@@ -1,8 +1,8 @@
 set -o vi
 
+# NVM
 export NVM_DIR="$HOME/.nvm"
-  . "$HOME/.nvm/nvm.sh"
-
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 [ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
@@ -103,5 +103,5 @@ export HOMEBREW_NO_AUTO_UPDATE=1
 PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 
 # Add Nix configuartion
-source ~/.nix-profile/etc/profile.d/nix.sh
+if [ -e ~/.nix-profile/etc/profile.d/nix.sh ]; then . ~/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
 
