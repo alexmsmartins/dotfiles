@@ -9,12 +9,9 @@ contains "$HOME/.local/bin"  $PATH
 or set fish_user_paths "$HOME/.local/bin" $PATH
 
 # add GNU coreutils to the path - this may change behaviour in the Mac
-contains "/usr/local/opt/coreutils/libexec/gnubin"  $PATH
-or set fish_user_paths "/usr/local/opt/coreutils/libexec/gnubin" $PATH
+# contains "/usr/local/opt/coreutils/libexec/gnubin"  $PATH
+# or set fish_user_paths "/usr/local/opt/coreutils/libexec/gnubin" $PATH
 
-# add gnu tools (e. g. GNU make) to the path
-# contains "/usr/local/opt/make/libexec/gnubin" $PATH
-# or set fish_user_paths "/usr/local/opt/make/libexec/gnubin" $PATH
 
 # Config theFuck
 eval (thefuck --alias | tr '
@@ -45,6 +42,10 @@ load_nvm
 # or set fish_user_paths "$HOME/.bloop" $PATH
 contains "$HOME/Library/Application Support/Coursier/bin" $PATH
 or set fish_user_paths "$HOME/Library/Application Support/Coursier/bin" $PATH
+
+# Python at user level
+contains "$HOME/Library/Python/3.9/bin" $PATH
+or set fish_user_paths "$HOME/Library/Python/3.9/bin" $PATH
 
 # content has to be in .config/fish/config.fish
 # if it does not exist, create the file

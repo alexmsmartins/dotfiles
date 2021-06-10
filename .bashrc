@@ -1,5 +1,8 @@
 set -o vi
 
+# When summoning bash from within another SHELL we need to set this variable so that commands that summon subshells work properly
+export SHELL=/usr/local/bin/bash
+
 # NVM
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -21,6 +24,10 @@ if [[ -n $SSH_CONNECTION ]]; then
 else
   export EDITOR='nvim'
 fi
+
+
+# Add python libraries and executables to the PATH
+PATH="$HOME/Library/Python/3.9/bin:$PATH"
 
 # ssh
 export SSH_KEY_PATH="~/.ssh/rsa_id"
@@ -100,7 +107,7 @@ export HOMEBREW_NO_AUTO_UPDATE=1
 . $(brew --repository)/../etc/profile.d/z.sh
 
 # Add coreutils (this will replace the Mac coreutils with the GNU coreutils
-PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+# PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 
 # Add Nix configuartion
 if [ -e ~/.nix-profile/etc/profile.d/nix.sh ]; then . ~/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer

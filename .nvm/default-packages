@@ -1,10 +1,11 @@
+bash-language-server
+bower
 eslint
 gulp
 j2m
 nvm
 prettier
+pulp
+purescript
 typescript
 yarn
-purescript
-bower
-pulp

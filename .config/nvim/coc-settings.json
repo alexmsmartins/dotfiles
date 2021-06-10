@@ -29,5 +29,6 @@
       }
     }
   },
+  "diagnostic.displayByAle": true,
   "coc.preferences.formatOnSaveFiletypes": ["css", "markdown"]
 }

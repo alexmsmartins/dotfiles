@@ -1,5 +1,4 @@
 scriptencoding utf-8
-
 syntax enable
 filetype plugin indent on
 set omnifunc=syntaxcomplete#Complete
@@ -208,6 +207,10 @@ call plug#begin()
       \ 'colorscheme': 'wombat',
       \ }
 
+  " disable (before plugins are loaded) LSP features in ALE, so ALE does not provide LSP features already provided by coc.nvim.
+  let g:ale_disable_lsp = 1
+  " we also configure coc.nvim to send diagnostics to ALE, so ALE controls how all problems are presented. 
+  " Complementary ption inserted after calling :CocConfig
   Plug 'dense-analysis/ale'
   " Show 5 lines of errors (default: 10)
   let g:ale_list_window_size = 5
@@ -222,8 +225,13 @@ call plug#begin()
 
   " Theme
   Plug 'tomasr/molokai'
-
+  " The configuration options placed before `colorscheme sonokai`.
+  " Available values: `'default'`, `'atlantis'`, `'andromeda'`, `'shusia'`, `'maia'`
+  let g:sonokai_style = 'andromeda'
+  let g:sonokai_enable_italic = 1
+  let g:sonokai_disable_italic_comment = 1
   Plug 'sainnhe/sonokai'
+  Plug 'lifepillar/vim-solarized8'
 
   " ## Movement
   Plug 'haya14busa/incsearch.vim'
@@ -496,11 +504,32 @@ call plug#begin()
 
   " Use release branch (recommend)
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
+  let g:coc_global_extensions = [
+        \'coc-clangd',
+        \'coc-git',
+        \'coc-java',
+        \'coc-jedi',
+        \'coc-json',
+        \'coc-markdownlint',
+        \'coc-metals',
+        \'coc-prettier',
+        \'coc-rust-analyzer',
+        \'coc-sh',
+        \'coc-snippets',
+        \'coc-sql',
+        \'coc-tsserver',
+        \'coc-vimlsp',
+        \'coc-xml',
+        \'coc-yaml',
+        \]
   " coc.nvim lsp mappings
   if filereadable(expand('~/.vim/my-scripts/coc-mappings.vim'))
     source ~/.vim/my-scripts/coc-mappings.vim"
   endif
   " USE CcmdheightocInstall to install Language servers
+  let g:LanguageClient_serverCommands = {
+    \ 'sh': ['bash-language-server', 'start']
+    \ }
 
   Plug 'GEverding/vim-hocon'
 
@@ -630,12 +659,7 @@ call plug#begin()
   Plug 'frazrepo/vim-rainbow'
   let g:rainbow_active = 1
 call plug#end()
-" colorscheme molokai
 
-" The configuration options placed before `colorscheme sonokai`.
-" Available values: `'default'`, `'atlantis'`, `'andromeda'`, `'shusia'`, `'maia'`
-let g:sonokai_style = 'andromeda'
-let g:sonokai_enable_italic = 1
-let g:sonokai_disable_italic_comment = 1
+set background=dark
+colorscheme solarized8_high
 
-colorscheme sonokai
