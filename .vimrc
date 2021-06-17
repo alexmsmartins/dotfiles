@@ -301,6 +301,10 @@ call plug#begin()
   :noremap <expr> t repmo#ZapKey('t')|sunmap t
   :noremap <expr> T repmo#ZapKey('T')|sunmap T
 
+  " ## Databases
+  Plug 'tpope/vim-dadbod'
+  Plug 'kristijanhusak/vim-dadbod-ui'
+
   " ## Tools
 
   " Jira
@@ -319,6 +323,7 @@ call plug#begin()
       au User vim-ghost#connected call s:SetupGhostBuffer()
   augroup END
 
+
   Plug 'trapd00r/vidir'
 
   Plug 'AndrewRadev/linediff.vim'
@@ -331,6 +336,13 @@ call plug#begin()
 
   Plug 'airblade/vim-gitgutter'
   let g:gitgutter_max_signs = 3000
+
+  Plug 'mg979/vim-visual-multi', {'branch': 'master'}
+
+  Plug 'szw/vim-maximizer'
+  nnoremap <silent><F3> :MaximizerToggle<CR>
+  vnoremap <silent><F3> :MaximizerToggle<CR>gv
+  inoremap <silent><F3> <C-o>:MaximizerToggle<CR>
 
   " View and search LSP symbols, tags in Vim/NeoVim.
   Plug 'liuchengxu/vista.vim'
@@ -361,7 +373,8 @@ call plug#begin()
   " ## Navigation and directories
 
   " enhances netrw
-  Plug 'tpope/vim-vinegar'
+  " Plug 'tpope/vim-vinegar'
+  Plug 'dhruvasagar/vim-vinegar' " calls NERDTree instead of netrw
 
   " Directory Tree view 
   Plug 'scrooloose/nerdtree'
@@ -506,6 +519,7 @@ call plug#begin()
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
   let g:coc_global_extensions = [
         \'coc-clangd',
+        \'coc-db',
         \'coc-git',
         \'coc-java',
         \'coc-jedi',
@@ -516,6 +530,7 @@ call plug#begin()
         \'coc-rust-analyzer',
         \'coc-sh',
         \'coc-snippets',
+        \'coc-sqlfluff',
         \'coc-sql',
         \'coc-tsserver',
         \'coc-vimlsp',

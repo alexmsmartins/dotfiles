@@ -11,7 +11,9 @@ addSbtPlugin("com.typesafe.sbt" % "sbt-git" % "1.0.0")
 addSbtPlugin("com.oradian.sbt" % "sbt-sh" % "0.3.0")
 
 // dependency tree
-addSbtPlugin("net.virtual-void" % "sbt-dependency-graph" % "0.10.0-RC1")
+// addSbtPlugin("net.virtual-void" % "sbt-dependency-graph" % "0.10.0-RC1")
+// builtin plugin that replaces sbt-dependency-graph in SBT 1.4.x
+addDependencyTreePlugin
 
 // An SBT plugin for making your SBT prompt more awesome
 // https://github.com/agemooij/sbt-prompt
