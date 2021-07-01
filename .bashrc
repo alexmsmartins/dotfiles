@@ -84,6 +84,7 @@ cdnvm() {
 alias cd='cdnvm'
 cd $PWD
 
+alias draw.io='/Applications/draw.io.app/Contents/MacOS/draw.io'
 
 # unclutter your .profile http://direnv.net
 eval "$(direnv hook bash)"

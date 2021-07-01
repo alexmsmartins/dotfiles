@@ -195,6 +195,8 @@ if empty(glob(data_dir . '/autoload/plug.vim'))
 endif
 call plug#begin()
   " ## General Setup
+  " Vim start up screen
+  Plug 'mhinz/vim-startify'
   " Vim sensible to get backspace across lines, syntax highlighting and other stuff 
   Plug 'tpope/vim-sensible'
 
@@ -317,7 +319,7 @@ call plug#begin()
           set ft=markdown
       endif
   endfunction
-  
+
   augroup vim-ghost
       au!
       au User vim-ghost#connected call s:SetupGhostBuffer()
@@ -493,8 +495,13 @@ call plug#begin()
   " # Json
   Plug 'elzr/vim-json'
 
+  "
+
   " coc.vim uses jsonc as configuration file format. It's basically json with comments support. This line gets comments highlighting
   autocmd FileType json syntax match Comment +\/\/.\+$+
+
+  " # Xmp
+  Plug 'othree/xml.vim'
 
   " # Yaml
   Plug 'mrk21/yaml-vim'
@@ -522,6 +529,7 @@ call plug#begin()
         \'coc-db',
         \'coc-git',
         \'coc-java',
+        \'coc-java-debug',
         \'coc-jedi',
         \'coc-json',
         \'coc-markdownlint',
@@ -532,6 +540,7 @@ call plug#begin()
         \'coc-snippets',
         \'coc-sqlfluff',
         \'coc-sql',
+        \'coc-tabnine',
         \'coc-tsserver',
         \'coc-vimlsp',
         \'coc-xml',
@@ -636,7 +645,8 @@ call plug#begin()
   nnoremap <buffer> <leader>ap :ArduinoChooseProgrammer<CR>
 
   " ## HTTP
-  Plug 'nicwest/vim-http'
+  " Plug 'nicwest/vim-http'
+  Plug 'aquach/vim-http-client'
 
   " ## TMUX
   Plug 'tmux-plugins/vim-tmux-focus-events'
