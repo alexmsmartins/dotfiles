@@ -187,6 +187,12 @@ inoremap M< =>
 inoremap ,m <-
 inoremap m, ->
 
+
+" Docker syntax highlighting
+augroup docker_file
+  autocmd BufNewFile,BufRead Dockerfile* set syntax=dockerfile
+augroup END
+
 " # Vim Plug
 let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
 if empty(glob(data_dir . '/autoload/plug.vim'))
@@ -657,6 +663,11 @@ call plug#begin()
   " 2       4144.174   vim-wakatime
   " 3       3574.485   open-browser.vim
 
+  " ## Docker
+  autocmd BufNewFile,BufRead Dockerfile* set syntax=dockerfile
+  Plug 'skanehira/docker.vim'
+  Plug 'skanehira/docker-compose.vim'
+
   " ## Help
   " On-demand lazy load
   Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
@@ -665,21 +676,6 @@ call plug#begin()
   " use the autocmd hook to call which_key#register(), e.g., register for the Space key:
   autocmd! User vim-which-key call which_key#register('<Space>', 'g:which_key_map')
 
-  " For host C02D90AYMD6M
-  " Running nvim to generate startup logs... done.
-  " Loading and processing logs... done.
-  " Plugin directory: /Users/amartins/.vim/plugged
-  " =====================================
-  " Top 10 plugins slowing nvim's startup
-  " =====================================
-  " 1	20348.286   vim-wakatime
-  " 2	117.530   nerdtree
-  " let hostname=system('hostname -s')
-  " echo hostname
-  " if hostname != 'C03D90AYMD6M'
-  "   Plug 'wakatime/vim-wakatime' " soo slow when profiling neovim startup
-  " endif
-  
   " ## Other
   Plug 'frazrepo/vim-rainbow'
   let g:rainbow_active = 1
