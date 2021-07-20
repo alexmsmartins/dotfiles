@@ -215,10 +215,12 @@ call plug#begin()
       \ 'colorscheme': 'wombat',
       \ }
 
-  " disable (before plugins are loaded) LSP features in ALE, so ALE does not provide LSP features already provided by coc.nvim.
-  let g:ale_disable_lsp = 1
-  " we also configure coc.nvim to send diagnostics to ALE, so ALE controls how all problems are presented. 
-  " Complementary ption inserted after calling :CocConfig
+  if !has('nvim')
+    " disable (before plugins are loaded) LSP features in ALE, so ALE does not provide LSP features already provided by coc.nvim.
+    let g:ale_disable_lsp = 1
+    " we also configure coc.nvim to send diagnostics to ALE, so ALE controls how all problems are presented. 
+    " Complementary ption inserted after calling :CocConfig
+  endif
   Plug 'dense-analysis/ale'
   " Show 5 lines of errors (default: 10)
   let g:ale_list_window_size = 5
@@ -528,38 +530,40 @@ call plug#begin()
 
   " au BufRead,BufNewFile *.sbt set filetype=scala
 
-  " Use release branch (recommend)
-  Plug 'neoclide/coc.nvim', {'branch': 'release'}
-  let g:coc_global_extensions = [
-        \'coc-clangd',
-        \'coc-db',
-        \'coc-git',
-        \'coc-java',
-        \'coc-java-debug',
-        \'coc-jedi',
-        \'coc-json',
-        \'coc-markdownlint',
-        \'coc-metals',
-        \'coc-prettier',
-        \'coc-rust-analyzer',
-        \'coc-sh',
-        \'coc-snippets',
-        \'coc-sqlfluff',
-        \'coc-sql',
-        \'coc-tabnine',
-        \'coc-tsserver',
-        \'coc-vimlsp',
-        \'coc-xml',
-        \'coc-yaml',
-        \]
-  " coc.nvim lsp mappings
-  if filereadable(expand('~/.vim/my-scripts/coc-mappings.vim'))
-    source ~/.vim/my-scripts/coc-mappings.vim"
+  if has('nvim')
+    " Use release branch (recommend)
+    Plug 'neoclide/coc.nvim', {'branch': 'release'}
+    let g:coc_global_extensions = [
+          \'coc-clangd',
+          \'coc-db',
+          \'coc-git',
+          \'coc-java',
+          \'coc-java-debug',
+          \'coc-jedi',
+          \'coc-json',
+          \'coc-markdownlint',
+          \'coc-metals',
+          \'coc-prettier',
+          \'coc-rust-analyzer',
+          \'coc-sh',
+          \'coc-snippets',
+          \'coc-sqlfluff',
+          \'coc-sql',
+          \'coc-tabnine',
+          \'coc-tsserver',
+          \'coc-vimlsp',
+          \'coc-xml',
+          \'coc-yaml',
+          \]
+    " coc.nvim lsp mappings
+    if filereadable(expand('~/.vim/my-scripts/coc-mappings.vim'))
+      source ~/.vim/my-scripts/coc-mappings.vim"
+    endif
+    " USE CcmdheightocInstall to install Language servers
+    let g:LanguageClient_serverCommands = {
+      \ 'sh': ['bash-language-server', 'start']
+      \ }
   endif
-  " USE CcmdheightocInstall to install Language servers
-  let g:LanguageClient_serverCommands = {
-    \ 'sh': ['bash-language-server', 'start']
-    \ }
 
   Plug 'GEverding/vim-hocon'
 
@@ -663,9 +667,11 @@ call plug#begin()
   " 2       4144.174   vim-wakatime
   " 3       3574.485   open-browser.vim
 
-  " ## Docker
   autocmd BufNewFile,BufRead Dockerfile* set syntax=dockerfile
-  Plug 'skanehira/docker.vim'
+  Plug 'kkvh/vim-docker-tools'
+  if !has('nvim')
+    Plug 'skanehira/docker.vim'
+  endif
   Plug 'skanehira/docker-compose.vim'
 
   " ## Help
