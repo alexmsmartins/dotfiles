@@ -5,7 +5,7 @@ set omnifunc=syntaxcomplete#Complete
 autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 
 " Give more space for displaying messages.
-set cmdheight=2 " Better display for messages
+set cmdheight=1 " Better display for messages
 
 
 " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
@@ -17,12 +17,9 @@ set shortmess+=c
 
 "" Colors and Themes
 if (has("nvim"))
-  "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
   let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 endif
-"For Neovim > 0.1.5 and Vim > patch 7.4.1799 < https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162 >
-"Based on Vim patch 7.4.1770 (`guicolors` option) < https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd >
-" < https://github.com/neovim/neovim/wiki/Following-HEAD#20160511 >
+
 if (has("termguicolors"))
   set termguicolors
 endif
@@ -173,10 +170,6 @@ augroup END
 
 
 " # Markdown preview
-" Open markdown files with Chrome.
-augroup preview_markdown_in_chrome
-  autocmd BufEnter *.md execute 'noremap <F5> :!open -a /Applications/Firefox.app/Contents/MacOS/firefox-bin %<CR>'
-augroup END
 
 augroup pandoc_syntax
   autocmd BufNewFile,BufFilePre,BufRead *.md set filetype=markdown
@@ -380,6 +373,8 @@ call plug#begin()
   " Open fileformat.info page about character on current cursor / given character
   Plug 'tyru/open-browser-unicode.vim'
 
+  Plug 'wakatime/vim-wakatime'
+
   " ## Navigation and directories
 
   " enhances netrw
@@ -473,13 +468,39 @@ call plug#begin()
   if filereadable(expand('~/.vim/my-scripts/markdown-preview-mappings.vim'))
     source ~/.vim/my-scripts/markdown-preview-mappings.vim
   endif
+
+  " options for markdown render
+  let g:mkdp_preview_options = {
+      \ 'mkit': {},
+      \ 'katex': {},
+      \ 'uml': {},
+      \ 'maid': {},
+      \ 'disable_sync_scroll': 0,
+      \ 'sync_scroll_type': 'middle',
+      \ 'hide_yaml_meta': 0,
+      \ 'sequence_diagrams': {},
+      \ 'flowchart_diagrams': {},
+      \ 'content_editable': v:true,
+      \ 'disable_filename': 0
+      \ }
+
+  " use a custom port to start server or random for empty
+  let g:mkdp_port = ''
+
+  " preview page title
+  " ${name} will be replace with the file name
+  let g:mkdp_page_title = '「${name}」'
+
+  " recognized filetypes
+  " these filetypes will have MarkdownPreview... commands
+  let g:mkdp_filetypes = ['markdown']
+
   " Realtime preview by Vim. (Markdown, reStructuredText, textile)
-  Plug 'previm/previm'
-  let g:previm_open_cmd = 'open'
+  " Plug 'previm/previm'
+  " let g:previm_open_cmd = 'open'
 
   " Edit embedded markdown tables in sc-im in vim
   Plug 'mipmip/vim-scimark'
-
 
   " ## Vimwiki
   Plug 'vimwiki/vimwiki'
@@ -503,7 +524,8 @@ call plug#begin()
   " # Json
   Plug 'elzr/vim-json'
 
-  "
+  " # CSV/TSV
+  Plug 'mechatroner/rainbow_csv'
 
   " coc.vim uses jsonc as configuration file format. It's basically json with comments support. This line gets comments highlighting
   autocmd FileType json syntax match Comment +\/\/.\+$+
@@ -544,6 +566,7 @@ call plug#begin()
           \'coc-markdownlint',
           \'coc-metals',
           \'coc-prettier',
+          \'coc-rls',
           \'coc-rust-analyzer',
           \'coc-sh',
           \'coc-snippets',

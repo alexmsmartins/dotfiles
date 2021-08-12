@@ -116,6 +116,12 @@ launchctl setenv ARTIFACTORY_URL $ARTIFACTORY_URL
 contains "/usr/local/opt/openssl@1.1/bin" $PATH
 or set fish_user_paths "/usr/local/opt/openssl@1.1/bin" $PATH
 
+
+# Python 3.9 packages in path
+contains "/usr/local/opt/python@3.9/Frameworks/Python.framework/Versions/3.9/bin" $PATH
+or set fish_user_paths "/usr/local/opt/python@3.9/Frameworks/Python.framework/Versions/3.9/bin" $PATH
+
+
 # Add Nix configuration
 bass source ~/.nix-profile/etc/profile.d/nix.sh
 
