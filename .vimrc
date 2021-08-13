@@ -396,6 +396,10 @@ call plug#begin()
       \ 'Ignored'   : '☒',
       \ 'Unknown'   : '?'
       \ }
+  " bookmarks
+  Plug 'Yilin-Yang/vim-markbar'
+  nmap <Leader>m <Plug>ToggleMarkbar
+  Plug 'kshenoy/vim-signature'
 
   " ## Markdown
   Plug 'godlygeek/tabular'
@@ -632,6 +636,7 @@ call plug#begin()
 
   " ## Rust
   Plug 'rust-lang/rust.vim'
+  Plug 'ron-rs/ron.vim'
 
   " ## Logs
   Plug 'dzeban/vim-log-syntax'
