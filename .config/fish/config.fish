@@ -12,6 +12,10 @@ or set fish_user_paths "$HOME/.local/bin" $PATH
 # contains "/usr/local/opt/coreutils/libexec/gnubin"  $PATH
 # or set fish_user_paths "/usr/local/opt/coreutils/libexec/gnubin" $PATH
 
+# Interactive shell abbreviations
+if status --is-interactive
+    abbr --add --global -- blue /Users/amartins/development/amartins-mdsol-notes/Blue_Wave
+end
 
 # Config theFuck
 eval (thefuck --alias | tr '
