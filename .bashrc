@@ -10,7 +10,7 @@ export SHELL=/usr/local/bin/bash
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
 # Rust's Cargo setup
-source "$HOME/.cargo/env"
+. "$HOME/.cargo/env"
 
 # Manpages setup
 export MANPATH="/usr/local/man:$MANPATH"
@@ -22,6 +22,12 @@ else
   export EDITOR='nvim'
 fi
 
+# Opening Typora from the shell on a Mac OS X
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  alias typora="open -a typora"
+  # FIXME: handle typora not being installed
+fi
+
 # Add python libraries and executables to the PATH
 PATH="$HOME/Library/Python/3.9/bin:$PATH"
 
@@ -29,7 +35,7 @@ PATH="$HOME/Library/Python/3.9/bin:$PATH"
 export SSH_KEY_PATH="~/.ssh/rsa_id"
 
 # FZF
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+[ -f ~/.fzf.bash ] && . ~/.fzf.bash
 
 # NVM
 export NVM_DIR="$HOME/.nvm"
