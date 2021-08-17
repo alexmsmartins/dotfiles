@@ -3,20 +3,17 @@ set -o vi
 # When summoning bash from within another SHELL we need to set this variable so that commands that summon subshells work properly
 export SHELL=/usr/local/bin/bash
 
-# NVM
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
+# add bash completions
 [ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
 
+# git repo for dot files
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+
+# Rust's Cargo setup
 source "$HOME/.cargo/env"
 
+# Manpages setup
 export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
@@ -25,19 +22,20 @@ else
   export EDITOR='nvim'
 fi
 
-
 # Add python libraries and executables to the PATH
 PATH="$HOME/Library/Python/3.9/bin:$PATH"
 
 # ssh
 export SSH_KEY_PATH="~/.ssh/rsa_id"
 
+# FZF
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 # NVM
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
 
 cdnvm() {
     cd "$@";
@@ -101,14 +99,12 @@ elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
   . /home/linuxbrew/.linuxbrew/etc/profile.d/z.sh
 fi
+
 # Brew will stop updating on every 'brew install'
 export HOMEBREW_NO_AUTO_UPDATE=1
 
 # Configure 'z' installed by brew
 . $(brew --repository)/../etc/profile.d/z.sh
-
-# Add coreutils (this will replace the Mac coreutils with the GNU coreutils
-# PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 
 # Add Nix configuartion
 if [ -e ~/.nix-profile/etc/profile.d/nix.sh ]; then . ~/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
