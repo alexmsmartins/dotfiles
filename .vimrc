@@ -29,7 +29,9 @@ endif
 set signcolumn=yes
 
 " <leader>
-let mapleader = "\<Space>"
+" let mapleader = "\<Space>"
+let mapleader = ";" " giving ';' as leader a go
+let maplocalleader = "\<Space>" " i never use localLeader but maybe it is time to start trying it.
 
 " Copy to and paste from the system clipboards 
 set clipboard=unnamed,unnamedplus
@@ -148,6 +150,13 @@ augroup END
 " XML/HTML
 runtime macros/matchit.vim
 
+
+
+" # Avro Schema
+augroup avro-schema
+  autocmd BufNewFile,BufRead *.avsc set filetype=json
+augroup END
+
 " # Open gz files
 augroup gzip
  autocmd!
@@ -167,7 +176,6 @@ augroup END
 augroup edit_zip_files_in_vim
   au BufRead,BufNewFile *.jar,*.war,*.ear,*.sar,*.rar set filetype=zip
 augroup END
-
 
 " # Markdown preview
 
@@ -400,6 +408,9 @@ call plug#begin()
   Plug 'Yilin-Yang/vim-markbar'
   nmap <Leader>m <Plug>ToggleMarkbar
   Plug 'kshenoy/vim-signature'
+
+  " ## Syntax highlighting for several launguagents
+  " Plug 'sheerun/vim-polyglot'
 
   " ## Markdown
   Plug 'godlygeek/tabular'
