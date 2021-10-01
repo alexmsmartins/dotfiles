@@ -318,9 +318,6 @@ call plug#begin()
 
   " ## Tools
 
-  " Jira
-  Plug 'n0v1c3/vira', { 'do': './install.sh' }
-
   " Firefox and Chrome Ghosttext
   Plug 'subnut/nvim-ghost.nvim', {'do': ':call nvim_ghost#installer#install()'}
   function! s:SetupGhostBuffer()
@@ -413,6 +410,7 @@ call plug#begin()
   " Plug 'sheerun/vim-polyglot'
 
   " ## Markdown
+  Plug 'bpstahlman/txtfmt'
   Plug 'godlygeek/tabular'
   Plug 'plasticboy/vim-markdown'
   " disable the folding configuration:
@@ -559,6 +557,15 @@ call plug#begin()
   Plug 'WolfgangMehner/awk-support'
   Plug 'WolfgangMehner/vim-support'
   Plug 'dag/vim-fish'
+
+  " ## C
+  Plug 'WolfgangMehner/c-support'
+
+  " ## Verilog
+  Plug 'jmcneal/verilog-support'
+
+  " ## VimL
+  "
 
   " ## Scala
   
