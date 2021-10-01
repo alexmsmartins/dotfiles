@@ -1,6 +1,0 @@
-#!/usr/bin/env bash
-speak=("AHAHHAHAHAHAHAHAH" "PUTUU" "Putu putu putu putu putu putu putu putu putu putu putu putu putu putu putu putu putu putu putu putu putu putu putu putu putu putu putu putu putu putu putu putu putu putu putu putu putu putu putu putu putu putu putu putu putu putu putu putu putu putu putu putu putu putu putu putu putu putu putu putu putu putu putu putu putu putu putu putu putu putu putu putu putu putu putu putu putu putu putu putu putu putu putu putu putu putu putu putu" "calma putu" "Cadê tu putu." "Atende, putu" "Eu também te amo!", "Carrega no botao putu!")
-size=${#speak[@]}
-rand=$(($RANDOM % $size))
-sentence=${speak[$rand]}
-echo "$sentence"
