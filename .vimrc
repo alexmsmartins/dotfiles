@@ -570,46 +570,48 @@ call plug#begin()
   " ## Scala
   
   " Configuration for vim-scala
-  " Plug 'derekwyatt/vim-scala'
+  Plug 'derekwyatt/vim-scala'
 
-  " au BufRead,BufNewFile *.sbt set filetype=scala
+  au BufRead,BufNewFile *.sbt set filetype=scala
 
-  if has('nvim')
-    " Use release branch (recommend)
-    Plug 'neoclide/coc.nvim', {'branch': 'release'}
-    let g:coc_global_extensions = [
-          \'coc-clangd',
-          \'coc-db',
-          \'coc-git',
-          \'coc-java',
-          \'coc-java-debug',
-          \'coc-jedi',
-          \'coc-json',
-          \'coc-markdownlint',
-          \'coc-metals',
-          \'coc-prettier',
-          \'coc-rls',
-          \'coc-rust-analyzer',
-          \'coc-sh',
-          \'coc-snippets',
-          \'coc-sqlfluff',
-          \'coc-sql',
-          \'coc-tabnine',
-          \'coc-tsserver',
-          \'coc-vimlsp',
-          \'coc-xml',
-          \'coc-yaml',
-          \]
-    " coc.nvim lsp mappings
-    if filereadable(expand('~/.vim/my-scripts/coc-mappings.vim'))
-      source ~/.vim/my-scripts/coc-mappings.vim"
-    endif
-    " USE CcmdheightocInstall to install Language servers
-    let g:LanguageClient_serverCommands = {
-      \ 'sh': ['bash-language-server', 'start']
-      \ }
+  " Use release branch (recommend)
+  Plug 'neoclide/coc.nvim', {'branch': 'release'}
+  let g:coc_global_extensions = [
+        \'coc-clangd',
+        \'coc-db',
+        \'coc-git',
+        \'coc-java',
+        \'coc-java-debug',
+        \'coc-jedi',
+        \'coc-json',
+        \'coc-markdownlint',
+        \'coc-metals',
+        \'coc-prettier',
+        \'coc-rls',
+        \'coc-rust-analyzer',
+        \'coc-sh',
+        \'coc-snippets',
+        \'coc-sqlfluff',
+        \'coc-sql',
+        \'coc-tabnine',
+        \'coc-tsserver',
+        \'coc-vimlsp',
+        \'coc-xml',
+        \'coc-yaml',
+        \]
+  " coc.nvim lsp mappings
+  if filereadable(expand('~/.vim/my-scripts/coc-mappings.vim'))
+    source ~/.vim/my-scripts/coc-mappings.vim"
   endif
+  " USE CcmdheightocInstall to install Language servers
+  let g:LanguageClient_serverCommands = {
+    \ 'sh': ['bash-language-server', 'start']
+    \ }
 
+  " ## Snippets
+  Plug 'honza/vim-snippets'
+
+  " ## HOCON
   Plug 'GEverding/vim-hocon'
 
   " ## Javascript

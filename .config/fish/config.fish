@@ -38,9 +38,6 @@ set -x RUBY_CONFIGURE_OPTS --with-openssl-dir=(brew --prefix openssl@1.1)
 contains "$HOME/.cargo/bin" $PATH
 or set fish_user_paths "$HOME/.cargo/bin" $PATH
 
-# Nvm
-load_nvm
-
 # Bloop installed with curl 
 # contains "$HOME/.bloop" $PATH
 # or set fish_user_paths "$HOME/.bloop" $PATH
@@ -113,6 +110,8 @@ set -x ARTIFACTORY_USER $ARTIFACTORY_USER
 launchctl setenv ARTIFACTORY_USER $ARTIFACTORY_USER
 set -x ARTIFACTORY_PASSWORD $ARTIFACTORY_PASSWORD
 launchctl setenv ARTIFACTORY_PASSWORD $ARTIFACTORY_PASSWORD
+set -x ARTIFACTORY_API_TOKEN $ARTIFACTORY_API_TOKEN
+launchctl setenv ARTIFACTORY_API_TOKEN $ARTIFACTORY_API_TOKEN
 set -x ARTIFACTORY_URL $ARTIFACTORY_URL
 launchctl setenv ARTIFACTORY_URL $ARTIFACTORY_URL
 
