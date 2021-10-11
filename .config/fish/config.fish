@@ -115,6 +115,10 @@ launchctl setenv ARTIFACTORY_API_TOKEN $ARTIFACTORY_API_TOKEN
 set -x ARTIFACTORY_URL $ARTIFACTORY_URL
 launchctl setenv ARTIFACTORY_URL $ARTIFACTORY_URL
 
+set -x SNOWSQL_PWD $SNOWSQL_PWD
+launchctl setenv SNOWSQL_PWD $SNOWSQL_PWD
+
+
 
 contains "/usr/local/opt/openssl@1.1/bin" $PATH
 or set fish_user_paths "/usr/local/opt/openssl@1.1/bin" $PATH
