@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+second_auth_method=2 # Okta Verify Push
+auth_group="MedidataUserVPN"
+vpn_server="bigben.mdsol.com"
+printf "Enter $(whoami) password:"
+# Read Password
+read -s password
+# Run Command
+printf "%s\n${auth_group}\n%s\n${second_auth_method}\n" $password $password | sudo --stdin --reset-timestamp openconnect --user=$(whoami) $vpn_server
