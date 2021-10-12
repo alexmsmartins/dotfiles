@@ -4,7 +4,12 @@ set -o vi
 export SHELL=/usr/local/bin/bash
 
 # add bash completions
-[ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
+if [ -f $(brew --prefix)/etc/bash_completion ]; then
+    . $(brew --prefix)/etc/bash_completion
+fi
+if [ -f $(brew --prefix)/profile.d/bash_completion.sh ]; then
+    . $(brew --prefix)/profile.d/bash_completion.sh
+fi
 
 # git repo for dot files
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'

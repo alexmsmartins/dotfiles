@@ -8,5 +8,6 @@ nvm
 prettier
 pulp
 purescript
+spago
 typescript
 yarn
