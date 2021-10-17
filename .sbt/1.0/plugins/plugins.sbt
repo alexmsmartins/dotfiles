@@ -24,7 +24,11 @@ addSbtPlugin("com.scalapenos" % "sbt-prompt" % "1.0.2")
 addSbtPlugin("com.timushev.sbt" % "sbt-updates" % "0.5.3")
 
 // Bloop - https://github.com/scalacenter/bloop
-addSbtPlugin("ch.epfl.scala" % "sbt-bloop" % "1.4.8")
+addSbtPlugin("ch.epfl.scala" % "sbt-bloop" % "1.4.9")
+
+// scala3-migrate has been designed to make the migration to scala 3 easier.
+// It proposes an incremental approach
+addSbtPlugin("ch.epfl.scala" % "sbt-scala3-migrate" % "0.4.4")
 
 // A tool for catching binary incompatibility in Scala
 addSbtPlugin("com.typesafe" % "sbt-mima-plugin" % "0.9.0")

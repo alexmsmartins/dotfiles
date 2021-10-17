@@ -3,10 +3,8 @@ syntax enable
 filetype plugin indent on
 set omnifunc=syntaxcomplete#Complete
 autocmd FileType css set omnifunc=csscomplete#CompleteCSS
-
 " Give more space for displaying messages.
 set cmdheight=1 " Better display for messages
-
 
 " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
 " delays and poor user experience.
@@ -188,6 +186,8 @@ inoremap M< =>
 inoremap ,m <-
 inoremap m, ->
 
+" Python specific key mappings
+set pyxversion=3
 
 " Docker syntax highlighting
 augroup docker_file
@@ -384,23 +384,68 @@ call plug#begin()
 
   " enhances netrw
   " Plug 'tpope/vim-vinegar'
-  Plug 'dhruvasagar/vim-vinegar' " calls NERDTree instead of netrw
+  " Plug 'dhruvasagar/vim-vinegar' " calls NERDTree instead of netrw
 
-  " Directory Tree view 
-  Plug 'scrooloose/nerdtree'
-  Plug 'Xuyuanp/nerdtree-git-plugin'
-  let g:NERDTreeGitStatusIndicatorMapCustom = {
-      \ 'Modified'  : '✹',
-      \ 'Staged'    : '✚',
-      \ 'Untracked' : '✭',
-      \ 'Renamed'   : '➜',
-      \ 'Unmerged'  : '═',
-      \ 'Deleted'   : '✖',
-      \ 'Dirty'     : '✗',
-      \ 'Clean'     : '✔︎',
-      \ 'Ignored'   : '☒',
-      \ 'Unknown'   : '?'
-      \ }
+  " Fern Directory Tree view (drawer
+  Plug 'lambdalisue/fern.vim'
+  let g:fern#disable_default_mappings   = 1
+  let g:fern#disable_drawer_auto_quit   = 1
+  let g:fern#disable_viewer_hide_cursor = 1
+  " Candidate fern launch mappings:
+  noremap <silent> <Leader>d :Fern . -drawer -width=35 -toggle<CR><C-w>=
+  noremap <silent> <Leader>f :Fern . -drawer -reveal=% -width=35<CR><C-w>=
+  noremap <silent> <Leader>. :Fern %:h -drawer -width=35<CR><C-w>=
+  function! FernInit() abort
+    nmap <buffer><expr>
+          \ <Plug>(fern-my-open-expand-collapse)
+          \ fern#smart#leaf(
+          \   "\<Plug>(fern-action-open:select)",
+          \   "\<Plug>(fern-action-expand)",
+          \   "\<Plug>(fern-action-collapse)",
+          \ )
+    nmap <buffer> <CR> <Plug>(fern-my-open-expand-collapse)
+    nmap <buffer> <2-LeftMouse> <Plug>(fern-my-open-expand-collapse)
+    nmap <buffer> m <Plug>(fern-action-mark:toggle)j
+    nmap <buffer> N <Plug>(fern-action-new-file)
+    nmap <buffer> K <Plug>(fern-action-new-dir)
+    nmap <buffer> D <Plug>(fern-action-remove)
+    nmap <buffer> C <Plug>(fern-action-move)
+    nmap <buffer> R <Plug>(fern-action-rename)
+    nmap <buffer> s <Plug>(fern-action-open:split)
+    nmap <buffer> v <Plug>(fern-action-open:vsplit)
+    nmap <buffer> r <Plug>(fern-action-reload)
+    nmap <buffer> <nowait> d <Plug>(fern-action-hidden:toggle)
+    nmap <buffer> <nowait> < <Plug>(fern-action-leave)
+    nmap <buffer> <nowait> > <Plug>(fern-action-enter)
+  endfunction
+  
+  augroup FernEvents
+    autocmd!
+    autocmd FileType fern call FernInit()
+  augroup END
+  " Defx Directory Tree view (drawer)
+  " if has('nvim')
+  "   Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
+  " else
+  "   Plug 'Shougo/defx.nvim'
+  "   Plug 'roxma/nvim-yarp'
+  "   Plug 'roxma/vim-hug-neovim-rpc'
+  " endif
+  " Plug 'scrooloose/nerdtree'
+  " Plug 'Xuyuanp/nerdtree-git-plugin'
+  " let g:NERDTreeGitStatusIndicatorMapCustom = {
+  "     \ 'Modified'  : '✹',
+  "     \ 'Staged'    : '✚',
+  "     \ 'Untracked' : '✭',
+  "     \ 'Renamed'   : '➜',
+  "     \ 'Unmerged'  : '═',
+  "     \ 'Deleted'   : '✖',
+  "     \ 'Dirty'     : '✗',
+  "     \ 'Clean'     : '✔︎',
+  "     \ 'Ignored'   : '☒',
+  "     \ 'Unknown'   : '?'
+  "     \ }
+
   " bookmarks
   Plug 'Yilin-Yang/vim-markbar'
   nmap <Leader>m <Plug>ToggleMarkbar
@@ -558,6 +603,9 @@ call plug#begin()
   Plug 'WolfgangMehner/vim-support'
   Plug 'dag/vim-fish'
 
+  " ## Nix
+  Plug 'LnL7/vim-nix'
+
   " ## C
   Plug 'WolfgangMehner/c-support'
 
@@ -582,11 +630,11 @@ call plug#begin()
         \'coc-git',
         \'coc-java',
         \'coc-java-debug',
-        \'coc-jedi',
         \'coc-json',
         \'coc-markdownlint',
         \'coc-metals',
         \'coc-prettier',
+        \'coc-pyright',
         \'coc-rls',
         \'coc-rust-analyzer',
         \'coc-sh',
