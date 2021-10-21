@@ -11,7 +11,7 @@ addSbtPlugin("com.typesafe.sbt" % "sbt-git" % "1.0.0")
 addSbtPlugin("com.oradian.sbt" % "sbt-sh" % "0.3.0")
 
 // dependency tree
-addSbtPlugin("net.virtual-void" % "sbt-dependency-graph" % "0.10.0-RC1")
+addSbtPlugin("com.dwijnand" % "sbt-project-graph" % "0.4.0")
 // builtin plugin that replaces sbt-dependency-graph in SBT 1.4.x
 addDependencyTreePlugin
 
@@ -35,3 +35,6 @@ addSbtPlugin("com.typesafe" % "sbt-mima-plugin" % "0.9.0")
 
 // Sbt will start showing `scalac` warnings whenever you run tasks like `compile` or `test`, even if there are no changes in sources
 addSbtPlugin("com.timushev.sbt" % "sbt-rewarn" % "0.1.3")
+
+// scala3-migrate has been designed to make the migration to scala 3 easier.
+addSbtPlugin("ch.epfl.scala" % "sbt-scala3-migrate" % "0.4.6")

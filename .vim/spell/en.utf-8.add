@@ -502,3 +502,8 @@ plugins
 Oozie
 JSON-Schema
 JSON-Schema
+ARN
+IAM
+arn
+aws
+iam

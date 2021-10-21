@@ -8,18 +8,14 @@
 # *WARNING* *WARNING* *WARNING* *WARNING* *WARNING* *WARNING*
 
 #If a connection doesn't specify a value, it will default to these
-#
 accountname = NYA97005
 region = us-east-1
 username = amartins
-# password = defaultpassword
-# Password shoud be defined in $SNOWSQL_PWD and stored as an environment variable
+# Password shoud be stored as environment variable $SNOWSQL_PWD
 dbname = MW_DEV_AMARTINS
 #schemaname = defaultschema
 warehousename = MWAREHOUSE_SANDBOX
 rolename = MWAREHOUSE_SANDBOX_ROLE
-# rolename = TASKADMIN
-# rolename = PUBLIC
 #proxy_host = defaultproxyhost
 #proxy_port = defaultproxyport
 
