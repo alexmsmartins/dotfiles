@@ -33,6 +33,9 @@ set -x HOMEBREW_NO_AUTO_UPDATE 1
 set -x RUBY_CONFIGURE_OPTS --with-openssl-dir=(brew --prefix openssl@1.1)
 # Note: this may interfere with building old versions of Ruby (e.g <2.4) that use OpenSSL <1.1.
 
+# Liquibase from brew
+# You should set the environment variable LIQUIBASE_HOME to
+set -x LIQUIBASE_HOME /usr/local/opt/liquibase/libexec
 
 # Cargo (rust)
 contains "$HOME/.cargo/bin" $PATH
