@@ -564,6 +564,15 @@ call plug#begin()
   Plug 'vimwiki/vimwiki'
   let g:vimwiki_list = [{'path': '~/development/amartins-mdsol-notes/',
                         \ 'syntax': 'markdown', 'ext': '.md'}]
+
+  " ## Tasks and project management
+  " Plug 'tools-life/taskwiki' , { 'do': 'pip3 install tasklib'}
+  " color support in charts.
+  " Plug 'powerman/vim-plugin-AnsiEsc'
+  " provides taskwiki file navigation.
+  " Plug 'majutsushi/tagbar'
+  " Plug 'farseer90718/vim-taskwarrior'
+
   " ## PlantUml
   Plug 'aklt/plantuml-syntax'
   Plug 'scrooloose/vim-slumlord'
@@ -639,8 +648,8 @@ call plug#begin()
         \'coc-rust-analyzer',
         \'coc-sh',
         \'coc-snippets',
-        \'coc-sqlfluff',
         \'coc-sql',
+        \'coc-sqlfluff',
         \'coc-tabnine',
         \'coc-tsserver',
         \'coc-vimlsp',
@@ -772,6 +781,7 @@ call plug#begin()
 
   " ## Help
   " On-demand lazy load
+
   Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
 
   " To register the descriptions when using the on-demand load feature,
