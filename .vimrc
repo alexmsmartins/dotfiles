@@ -3,8 +3,6 @@ syntax enable
 filetype plugin indent on
 set omnifunc=syntaxcomplete#Complete
 autocmd FileType css set omnifunc=csscomplete#CompleteCSS
-" Give more space for displaying messages.
-set cmdheight=1 " Better display for messages
 
 " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
 " delays and poor user experience.
@@ -381,11 +379,7 @@ call plug#begin()
   Plug 'wakatime/vim-wakatime'
 
   " ## Navigation and directories
-
-  " enhances netrw
-  " Plug 'tpope/vim-vinegar'
-  " Plug 'dhruvasagar/vim-vinegar' " calls NERDTree instead of netrw
-
+  "
   " Fern Directory Tree view (drawer
   Plug 'lambdalisue/fern.vim'
   let g:fern#disable_default_mappings   = 1
