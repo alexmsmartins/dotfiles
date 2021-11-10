@@ -137,6 +137,9 @@ or set fish_user_paths "/usr/local/opt/python@3.9/Frameworks/Python.framework/Ve
 # Add Nix configuration
 bass source ~/.nix-profile/etc/profile.d/nix.sh
 
+# fzf configuration
+# Revert the default key binding for search directory from 'Ctrl+Alt+F` to 'Ctrl+F'.
+fzf_configure_bindings --directory=\cf
 
 # The minimal, blazing-fast, and infinitely customizable prompt for any shell!
 # https://github.com/starship/starship

@@ -26,7 +26,7 @@ set signcolumn=yes
 
 " <leader>
 " let mapleader = "\<Space>"
-let mapleader = ";" " giving ';' as leader a go
+let mapleader = ";" " giving ';' as leader a go.
 let maplocalleader = "\<Space>" " i never use localLeader but maybe it is time to start trying it.
 
 " Copy to and paste from the system clipboards 
@@ -200,6 +200,9 @@ if empty(glob(data_dir . '/autoload/plug.vim'))
 endif
 call plug#begin()
   " ## General Setup
+  " Fix CursorHold, CursorHoldI and updatetime Performance
+  " This will result in more snappiness for plugins using those events, such as: coc.nvim, vim-gutter, tagbar, vim-devicons, vim-polyglot, etc.
+  Plug 'antoinemadec/FixCursorHold.nvim'
   " Vim start up screen
   Plug 'mhinz/vim-startify'
   " Vim sensible to get backspace across lines, syntax highlighting and other stuff 
@@ -446,7 +449,7 @@ call plug#begin()
   Plug 'kshenoy/vim-signature'
 
   " ## Syntax highlighting for several launguagents
-  " Plug 'sheerun/vim-polyglot'
+  Plug 'sheerun/vim-polyglot'
 
   " ## Markdown
   Plug 'bpstahlman/txtfmt'
@@ -630,6 +633,7 @@ call plug#begin()
   let g:coc_global_extensions = [
         \'coc-clangd',
         \'coc-db',
+        \'coc-diagnostic',
         \'coc-git',
         \'coc-java',
         \'coc-java-debug',

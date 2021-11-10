@@ -95,6 +95,9 @@ cd $PWD
 
 alias draw.io='/Applications/draw.io.app/Contents/MacOS/draw.io'
 
+# vim keys for info command
+alias info='info --vi-keys'
+
 # unclutter your .profile http://direnv.net
 eval "$(direnv hook bash)"
 

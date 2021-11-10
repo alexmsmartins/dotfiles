@@ -17,6 +17,8 @@ $if mode=vi
   "\e[B":history-search-forward
   "\e[C": forward-char
   "\e[D": backward-char
+  "kj" # remap escape
+  "jk" # remap escape
 $endif
 
 set show-all-if-ambiguous on
