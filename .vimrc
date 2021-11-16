@@ -245,49 +245,55 @@ call plug#begin()
   Plug 'sainnhe/sonokai'
   Plug 'lifepillar/vim-solarized8'
 
+
   " ## Movement
-  Plug 'haya14busa/incsearch.vim'
-  map /  <Plug>(incsearch-forward)
-  map ?  <Plug>(incsearch-backward)
-  map g/ <Plug>(incsearch-stay)
+  if has('nvim')
+    " diff behaviour than in vim
+    Plug 'ggandor/lightspeed.nvim'
+  else
+    Plug 'haya14busa/incsearch.vim'
+    map /  <Plug>(incsearch-forward)
+    map ?  <Plug>(incsearch-backward)
+    map g/ <Plug>(incsearch-stay)
 
-  Plug 'haya14busa/incsearch-easymotion.vim'
-  map z/ <Plug>(incsearch-easymotion-/)
-  map z? <Plug>(incsearch-easymotion-?)
-  map zg/ <Plug>(incsearch-easymotion-stay)
+    Plug 'haya14busa/incsearch-easymotion.vim'
+    map z/ <Plug>(incsearch-easymotion-/)
+    map z? <Plug>(incsearch-easymotion-?)
+    map zg/ <Plug>(incsearch-easymotion-stay)
 
-  Plug 'easymotion/vim-easymotion'
-  " You can use other keymappings like <C-l> instead of <CR> if you want to
-  " use these mappings as default search and sometimes want to move cursor with
-  " EasyMotion.
-  let g:EasyMotion_smartcase = 1
-  function! s:incsearch_config(...) abort
-    return incsearch#util#deepextend(deepcopy({
-    \   'modules': [incsearch#config#easymotion#module({'overwin': 1})],
-    \   'keymap': {
-    \     "\<CR>": '<Over>(easymotion)'
-    \   },
-    \   'is_expr': 0
-    \ }), get(a:, 1, {}))
-  endfunction
+    Plug 'easymotion/vim-easymotion'
+    " You can use other keymappings like <C-l> instead of <CR> if you want to
+    " use these mappings as default search and sometimes want to move cursor with
+    " EasyMotion.
+    let g:EasyMotion_smartcase = 1
+    function! s:incsearch_config(...) abort
+      return incsearch#util#deepextend(deepcopy({
+      \   'modules': [incsearch#config#easymotion#module({'overwin': 1})],
+      \   'keymap': {
+      \     "\<CR>": '<Over>(easymotion)'
+      \   },
+      \   'is_expr': 0
+      \ }), get(a:, 1, {}))
+    endfunction
 
-  noremap <silent><expr> /  incsearch#go(<SID>incsearch_config())
-  noremap <silent><expr> ?  incsearch#go(<SID>incsearch_config({'command': '?'}))
-  noremap <silent><expr> g/ incsearch#go(<SID>incsearch_config({'is_stay': 1}))
-  nmap s <Plug>(easymotion-s2)
-  nmap t <Plug>(easymotion-t2)
-  map  / <Plug>(easymotion-sn)
-  omap / <Plug>(easymotion-tn)
+    noremap <silent><expr> /  incsearch#go(<SID>incsearch_config())
+    noremap <silent><expr> ?  incsearch#go(<SID>incsearch_config({'command': '?'}))
+    noremap <silent><expr> g/ incsearch#go(<SID>incsearch_config({'is_stay': 1}))
+    nmap s <Plug>(easymotion-s2)
+    nmap t <Plug>(easymotion-t2)
+    map  / <Plug>(easymotion-sn)
+    omap / <Plug>(easymotion-tn)
 
-  " These `n` & `N` mappings are options. You do not have to map `n` & `N` to EasyMotion.
-  " Without these mappings, `n` & `N` works fine. (These mappings just provide
-  " different highlight method and have some other features )
-  map  n <Plug>(easymotion-next)
-  map  N <Plug>(easymotion-prev)
-  map <Leader>l <Plug>(easymotion-lineforward)
-  map <Leader>j <Plug>(easymotion-j)
-  map <Leader>k <Plug>(easymotion-k)
-  map <Leader>h <Plug>(easymotion-linebackward)
+    " These `n` & `N` mappings are options. You do not have to map `n` & `N` to EasyMotion.
+    " Without these mappings, `n` & `N` works fine. (These mappings just provide
+    " different highlight method and have some other features )
+    map  n <Plug>(easymotion-next)
+    map  N <Plug>(easymotion-prev)
+    map <Leader>l <Plug>(easymotion-lineforward)
+    map <Leader>j <Plug>(easymotion-j)
+    map <Leader>k <Plug>(easymotion-k)
+    map <Leader>h <Plug>(easymotion-linebackward)
+  endif
 
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
   Plug 'junegunn/fzf.vim'
