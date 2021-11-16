@@ -388,6 +388,7 @@ call plug#begin()
   let g:fern#disable_default_mappings   = 1
   let g:fern#disable_drawer_auto_quit   = 1
   let g:fern#disable_viewer_hide_cursor = 1
+  let g:fern#default_hidden = 1
   " Candidate fern launch mappings:
   noremap <silent> <Leader>d :Fern . -drawer -width=35 -toggle<CR><C-w>=
   noremap <silent> <Leader>f :Fern . -drawer -reveal=% -width=35<CR><C-w>=
