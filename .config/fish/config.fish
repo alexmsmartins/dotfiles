@@ -101,6 +101,11 @@ end
 # direnv - 
 direnv hook fish | source
 
+# Use most instead of less as pager (color in manpages for example)
+if which -s most;
+  set -x PAGER most
+end
+
 # Enable AWS CLI autocompletion: github.com/aws/aws-cli/issues/1079
 complete --command aws --no-files --arguments '(begin; set --local --export COMP_SHELL fish; set --local --export COMP_LINE (commandline); aws_completer | sed \'s/ $//\'; end)'
 
@@ -132,7 +137,6 @@ or set fish_user_paths "/usr/local/opt/openssl@1.1/bin" $PATH
 # Python 3.9 packages in path
 contains "/usr/local/opt/python@3.9/Frameworks/Python.framework/Versions/3.9/bin" $PATH
 or set fish_user_paths "/usr/local/opt/python@3.9/Frameworks/Python.framework/Versions/3.9/bin" $PATH
-
 
 # Add Nix configuration
 bass source ~/.nix-profile/etc/profile.d/nix.sh
