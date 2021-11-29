@@ -68,6 +68,14 @@ set showbreak=↪
 set textwidth=0
 set wrapmargin=0
 
+
+" TODO delete this if not used (20211128)
+" To use VIM/NeoVIM as a command line ditor in bash
+augroup syntax_highlight_current_bash_command # after calling \C-e from .inputrc
+  autocmd BufEnter /tmp/bash-fc.* 
+    \ set syntax=bash
+augroup END
+
 " to make Vim automatically refresh any files that haven't been edited by Vim. Also see :checktime.
 " Triger `autoread` when files changes on disk
 " https://unix.stackexchange.com/questions/149209/refresh-changed-content-of-file-opened-in-vim/383044#383044

@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+set -o errexit
+
+printf "### Homebrew - Update ###\n"
+brew update
+brew upgrade
+brew upgrade --cask --greedy
+brew cleanup -s
+brew doctor
+printf "### App Store - Update ###\n"
+mas upgrade
+printf "### Fish Shell - Fisher Plugin Manager - update ###\n"
+fish --command="fisher update"
+printf "### NeoVim - Vim Plug - Update\n"
+nvim --headless +PlugInstall +qall
