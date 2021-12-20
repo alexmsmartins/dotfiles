@@ -1,15 +1,45 @@
 #!/usr/bin/env bash
 set -o errexit
 
-printf "### Homebrew - Update ###\n"
-brew update
-brew upgrade
-brew upgrade --cask --greedy
-brew cleanup -s
-brew doctor
-printf "### App Store - Update ###\n"
-mas upgrade
-printf "### Fish Shell - Fisher Plugin Manager - update ###\n"
-fish --command="fisher update"
-printf "### NeoVim - Vim Plug - Update\n"
-nvim --headless +PlugInstall +qall
+print_heading(){
+  local -r blue=$(tput setaf 4)
+  local -r green=$(tput setaf 2)
+  local -r normal=$(tput sgr0)
+  local -r heading=$1
+  local -r surround="${blue}########################${normal}"
+  printf "%s %s %s\n" "$surround" "${green}${heading}${normal}" "$surround"
+}
+brew_update(){
+  brew update
+  brew upgrade
+  brew upgrade --cask --greedy
+  brew autoremove
+  brew cleanup -s --prune 120
+  brew doctor
+}
+app_store_update(){
+  mas list
+  mas upgrade
+}
+fish_update(){
+  fish --command="fisher update"
+}
+neovim_update(){
+  nvim --headless +PlugUpgrade +PlugUpdate +qall
+}
+
+main(){
+  print_heading "Homebrew - Update"
+  brew_update
+
+  print_heading "App Store - Update"
+  app_store_update
+
+  print_heading "Fish Shell - Fisher Plugin Manager - update"
+  fish_update
+
+  print_heading "NeoVim - Vim Plug - Update"
+  neovim_update
+}
+
+main "$@"
