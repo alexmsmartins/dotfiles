@@ -303,8 +303,11 @@ call plug#begin()
     map <Leader>h <Plug>(easymotion-linebackward)
   endif
 
-  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim'
+  " Commented out in 20211210
+  " Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+  " Plug 'junegunn/fzf.vim'
   map ; :Files<CR>
 
   Plug 'Houl/repmo-vim'
@@ -353,13 +356,6 @@ call plug#begin()
 
   Plug 'rickhowe/diffchar.vim'
 
-  Plug 'tpope/vim-fugitive'
-
-  Plug 'tpope/vim-rhubarb'
-
-  Plug 'airblade/vim-gitgutter'
-  let g:gitgutter_max_signs = 3000
-
   Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 
   Plug 'szw/vim-maximizer'
@@ -393,7 +389,17 @@ call plug#begin()
   " Open fileformat.info page about character on current cursor / given character
   Plug 'tyru/open-browser-unicode.vim'
 
+
   Plug 'wakatime/vim-wakatime'
+
+  " ## Git and other VCSs
+  Plug 'tpope/vim-fugitive'
+
+  Plug 'airblade/vim-gitgutter'
+  let g:gitgutter_max_signs = 3000
+
+  Plug 'tpope/vim-rhubarb'
+
 
   " ## Navigation and directories
   "
@@ -435,6 +441,9 @@ call plug#begin()
     autocmd!
     autocmd FileType fern call FernInit()
   augroup END
+
+  Plug 'lambdalisue/fern-git-status.vim'
+
   " Defx Directory Tree view (drawer)
   " if has('nvim')
   "   Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -649,6 +658,7 @@ call plug#begin()
         \'coc-clangd',
         \'coc-db',
         \'coc-diagnostic',
+        \'coc-docker',
         \'coc-git',
         \'coc-java',
         \'coc-java-debug',
