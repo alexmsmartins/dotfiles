@@ -21,7 +21,3 @@ bloopExportJarClassifiers.in(Global) := Some(Set("sources"))
 libraryDependencies ++= Seq(
     "org.slf4j"     % "jcl-over-slf4j"          % "1.7.29"
   )
-
-// Acyclic is a Scala compiler plugin to let you prohibit circular dependencies between files
-//
-// scalacOptions ++= Seq("-P:acyclic:force")

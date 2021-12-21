@@ -12,6 +12,8 @@ addSbtPlugin("com.oradian.sbt" % "sbt-sh" % "0.3.0")
 
 // dependency tree
 addSbtPlugin("com.dwijnand" % "sbt-project-graph" % "0.4.0")
+// For sbt < 1.3 use:
+// addSbtPlugin("net.virtual-void" % "sbt-dependency-graph" % "0.10.0-RC1")
 // builtin plugin that replaces sbt-dependency-graph in SBT 1.4.x
 addDependencyTreePlugin
 
@@ -24,7 +26,8 @@ addSbtPlugin("com.scalapenos" % "sbt-prompt" % "1.0.2")
 addSbtPlugin("com.timushev.sbt" % "sbt-updates" % "0.6.0")
 
 // Bloop - https://github.com/scalacenter/bloop
-addSbtPlugin("ch.epfl.scala" % "sbt-bloop" % "1.4.9")
+addSbtPlugin("ch.epfl.scala" % "sbt-bloop" % "1.4.11")
+
 
 // scala3-migrate has been designed to make the migration to scala 3 easier.
 // It proposes an incremental approach
