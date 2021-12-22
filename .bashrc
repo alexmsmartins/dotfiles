@@ -123,3 +123,5 @@ export HOMEBREW_NO_AUTO_UPDATE=1
 # Add Nix configuartion
 if [ -e ~/.nix-profile/etc/profile.d/nix.sh ]; then . ~/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
 
+# Oh My BASH
+source $HOME/.bashrc.oh-my-bash
