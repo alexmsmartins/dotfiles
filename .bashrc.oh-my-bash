@@ -60,10 +60,10 @@ completions=(
 # Example format: aliases=(vagrant composer git-avh)
 # Add wisely, as too many aliases slow down shell startup.
 aliases=(
+  chmod
   general
-  vagrant
-  composer
-  git-avh
+  ls
+  misc
 )
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-bash/plugins/*)
@@ -71,8 +71,16 @@ aliases=(
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  git
+  ansible
+  aws
   bashmarks
+  brew
+  git
+  kubectl
+  npm
+  nvm
+  sdkman
+  tmux-autoattach
 )
 
 source $OSH/oh-my-bash.sh
