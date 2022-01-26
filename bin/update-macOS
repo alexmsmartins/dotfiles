@@ -14,7 +14,7 @@ brew_update(){
   brew upgrade
   brew upgrade --cask --greedy
   brew autoremove
-  brew cleanup -s --prune 120
+  brew cleanup --prune 180
   brew doctor
 }
 app_store_update(){
