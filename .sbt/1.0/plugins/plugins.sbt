@@ -23,7 +23,7 @@ addSbtPlugin("com.scalapenos" % "sbt-prompt" % "1.0.2")
 
 // SBT plugin that can check Maven and Ivy repositories for dependency updates
 // https://github.com/rtimush/sbt-updates
-addSbtPlugin("com.timushev.sbt" % "sbt-updates" % "0.6.0")
+addSbtPlugin("com.timushev.sbt" % "sbt-updates" % "0.6.1")
 
 // Bloop - https://github.com/scalacenter/bloop
 addSbtPlugin("ch.epfl.scala" % "sbt-bloop" % "1.4.11")
@@ -31,10 +31,10 @@ addSbtPlugin("ch.epfl.scala" % "sbt-bloop" % "1.4.11")
 
 // scala3-migrate has been designed to make the migration to scala 3 easier.
 // It proposes an incremental approach
-addSbtPlugin("ch.epfl.scala" % "sbt-scala3-migrate" % "0.4.4")
+addSbtPlugin("ch.epfl.scala" % "sbt-scala3-migrate" % "0.5.0")
 
 // A tool for catching binary incompatibility in Scala
-addSbtPlugin("com.typesafe" % "sbt-mima-plugin" % "1.0.0")
+addSbtPlugin("com.typesafe" % "sbt-mima-plugin" % "1.0.1")
 
 // Sbt will start showing `scalac` warnings whenever you run tasks like `compile` or `test`, even if there are no changes in sources
 addSbtPlugin("com.timushev.sbt" % "sbt-rewarn" % "0.1.3")
