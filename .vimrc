@@ -211,8 +211,6 @@ call plug#begin()
   " Fix CursorHold, CursorHoldI and updatetime Performance
   " This will result in more snappiness for plugins using those events, such as: coc.nvim, vim-gutter, tagbar, vim-devicons, vim-polyglot, etc.
   Plug 'antoinemadec/FixCursorHold.nvim'
-  " Vim start up screen
-  Plug 'mhinz/vim-startify'
   " Vim sensible to get backspace across lines, syntax highlighting and other stuff 
   Plug 'tpope/vim-sensible'
 
@@ -336,19 +334,27 @@ call plug#begin()
 
   " ## Tools
 
+  " if has('nvim')
+  "   " Firefox NeoVim integration with Firevim addon
+  "   Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
+  " else
   " Firefox and Chrome Ghosttext
-  Plug 'subnut/nvim-ghost.nvim', {'do': ':call nvim_ghost#installer#install()'}
-  function! s:SetupGhostBuffer()
-      if match(expand("%:a"), '\v/ghost-(github|reddit)\.com-')
-          set ft=markdown
-      endif
-  endfunction
+  if has('nvim')
+    Plug 'subnut/nvim-ghost.nvim', {'do': ':call nvim_ghost#installer#install()'}
+  else
+    Plug 'raghur/vim-ghost', {'do': ':GhostInstall'}
 
-  augroup vim-ghost
-      au!
-      au User vim-ghost#connected call s:SetupGhostBuffer()
-  augroup END
+    function! s:SetupGhostBuffer()
+        if match(expand("%:a"), '\v/ghost-(github|reddit)\.com-')
+            set ft=markdown
+        endif
+    endfunction
 
+    augroup vim-ghost
+        au!
+        au User vim-ghost#connected call s:SetupGhostBuffer()
+    augroup END
+  endif
 
   Plug 'trapd00r/vidir'
 
