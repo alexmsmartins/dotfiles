@@ -3,6 +3,14 @@
 export SDKMAN_DIR="/Users/amartins/.sdkman"
 [[ -s "/Users/amartins/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/amartins/.sdkman/bin/sdkman-init.sh"
 
+# Homebrew autocompletions
+if type brew &>/dev/null
+then
+  FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+
+  autoload -Uz compinit
+  compinit
+fi
 
 # added by Snowflake SnowSQL installer v1.2
 export PATH=/Applications/SnowSQL.app/Contents/MacOS:$PATH
