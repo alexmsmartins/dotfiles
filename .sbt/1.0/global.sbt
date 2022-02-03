@@ -14,8 +14,8 @@ addCommandAlias("offdebug", "set every reStart/debugSettings := None")
 
 addCommandAlias("downloadSources", "updateClassifiers")
 
-// Bloop
-bloopExportJarClassifiers.in(Global) := Some(Set("sources"))
+// Bloop deactivated in 20220202
+// bloopExportJarClassifiers.in(Global) := Some(Set("sources"))
 
 
 libraryDependencies ++= Seq(

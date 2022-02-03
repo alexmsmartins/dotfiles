@@ -25,8 +25,9 @@ addSbtPlugin("com.scalapenos" % "sbt-prompt" % "1.0.2")
 // https://github.com/rtimush/sbt-updates
 addSbtPlugin("com.timushev.sbt" % "sbt-updates" % "0.6.1")
 
+// disabled in 20220202. The purpose is to use BSP from SBT and see how it fairs.
 // Bloop - https://github.com/scalacenter/bloop
-addSbtPlugin("ch.epfl.scala" % "sbt-bloop" % "1.4.11")
+// addSbtPlugin("ch.epfl.scala" % "sbt-bloop" % "1.4.11")
 
 
 // scala3-migrate has been designed to make the migration to scala 3 easier.
