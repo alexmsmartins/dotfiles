@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 set -o errexit
+set -o nounset
 
 print_heading(){
   local -r blue=$(tput setaf 4)
@@ -25,7 +26,13 @@ fish_update(){
   fish --command="fisher update"
 }
 neovim_update(){
-  nvim --headless +PlugUpgrade +PlugUpdate +qall
+  nvim --headless +PlugUpgrade +qall
+  nvim --headless +PlugUpdate +qall
+}
+tmux_update(){
+  if [ -f ~/.tmux/plugins/tpm/bin/update_plugins ]; then 
+    ~/.tmux/plugins/tpm/bin/update_plugins all
+  fi
 }
 
 main(){
@@ -40,6 +47,10 @@ main(){
 
   print_heading "NeoVim - Vim Plug - Update"
   neovim_update
+
+  print_heading "Tmux - Tmux Plugin Manager (aka TMP) - Update"
+  tmux_update
+  print_heading "All updates terminted successfully"
 }
 
 main "$@"
