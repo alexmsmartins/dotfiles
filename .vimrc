@@ -211,7 +211,7 @@ call plug#begin()
   " Fix CursorHold, CursorHoldI and updatetime Performance
   " This will result in more snappiness for plugins using those events, such as: coc.nvim, vim-gutter, tagbar, vim-devicons, vim-polyglot, etc.
   Plug 'antoinemadec/FixCursorHold.nvim'
-  " Vim sensible to get backspace across lines, syntax highlighting and other stuff 
+  " Vim sensible to get backspace across lines, syntax highlighting and other stuff
   Plug 'tpope/vim-sensible'
 
   Plug 'itchyny/lightline.vim'
@@ -303,9 +303,6 @@ call plug#begin()
 
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim'
-  " Commented out in 20211210
-  " Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-  " Plug 'junegunn/fzf.vim'
   map ; :Files<CR>
 
   Plug 'Houl/repmo-vim'
@@ -450,29 +447,6 @@ call plug#begin()
 
   Plug 'lambdalisue/fern-git-status.vim'
 
-  " Defx Directory Tree view (drawer)
-  " if has('nvim')
-  "   Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
-  " else
-  "   Plug 'Shougo/defx.nvim'
-  "   Plug 'roxma/nvim-yarp'
-  "   Plug 'roxma/vim-hug-neovim-rpc'
-  " endif
-  " Plug 'scrooloose/nerdtree'
-  " Plug 'Xuyuanp/nerdtree-git-plugin'
-  " let g:NERDTreeGitStatusIndicatorMapCustom = {
-  "     \ 'Modified'  : '✹',
-  "     \ 'Staged'    : '✚',
-  "     \ 'Untracked' : '✭',
-  "     \ 'Renamed'   : '➜',
-  "     \ 'Unmerged'  : '═',
-  "     \ 'Deleted'   : '✖',
-  "     \ 'Dirty'     : '✗',
-  "     \ 'Clean'     : '✔︎',
-  "     \ 'Ignored'   : '☒',
-  "     \ 'Unknown'   : '?'
-  "     \ }
-
   " bookmarks
   Plug 'Yilin-Yang/vim-markbar'
   nmap <Leader>m <Plug>ToggleMarkbar
@@ -546,43 +520,44 @@ call plug#begin()
   " let g:mdip_imgdir = 'img'
   " let g:mdip_imgname = 'image'
 
-  " If you don't have nodejs and yarn
-  " use pre build
-  Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
-  " Markdown preview mappings
-  if filereadable(expand('~/.vim/my-scripts/markdown-preview-mappings.vim'))
-    source ~/.vim/my-scripts/markdown-preview-mappings.vim
-  endif
-
-  " options for markdown render
-  let g:mkdp_preview_options = {
-      \ 'mkit': {},
-      \ 'katex': {},
-      \ 'uml': {},
-      \ 'maid': {},
-      \ 'disable_sync_scroll': 0,
-      \ 'sync_scroll_type': 'middle',
-      \ 'hide_yaml_meta': 0,
-      \ 'sequence_diagrams': {},
-      \ 'flowchart_diagrams': {},
-      \ 'content_editable': v:true,
-      \ 'disable_filename': 0
-      \ }
-
-  " use a custom port to start server or random for empty
-  let g:mkdp_port = ''
-
-  " preview page title
-  " ${name} will be replace with the file name
-  let g:mkdp_page_title = '「${name}」'
-
-  " recognized filetypes
-  " these filetypes will have MarkdownPreview... commands
-  let g:mkdp_filetypes = ['markdown']
-
-  " Realtime preview by Vim. (Markdown, reStructuredText, textile)
-  " Plug 'previm/previm'
-  " let g:previm_open_cmd = 'open'
+" If you don't have nodejs and yarn
+" use pre build, add 'vim-plug' to the filetype list so vim-plug can update this plugin
+" see: https://github.com/iamcco/markdown-preview.nvim/issues/50
+"  Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+"  " Markdown preview mappings
+"  if filereadable(expand('~/.vim/my-scripts/markdown-preview-mappings.vim'))
+"    source ~/.vim/my-scripts/markdown-preview-mappings.vim
+"  endif
+"
+"  " options for markdown render
+"  let g:mkdp_preview_options = {
+"      \ 'mkit': {},
+"      \ 'katex': {},
+"      \ 'uml': {},
+"      \ 'maid': {},
+"      \ 'disable_sync_scroll': 0,
+"      \ 'sync_scroll_type': 'middle',
+"      \ 'hide_yaml_meta': 0,
+"      \ 'sequence_diagrams': {},
+"      \ 'flowchart_diagrams': {},
+"      \ 'content_editable': v:true,
+"      \ 'disable_filename': 0
+"      \ }
+"
+"  " use a custom port to start server or random for empty
+"  let g:mkdp_port = ''
+"
+"  " preview page title
+"  " ${name} will be replace with the file name
+"  let g:mkdp_page_title = '「${name}」'
+"
+"  " recognized filetypes
+"  " these filetypes will have MarkdownPreview... commands
+"  let g:mkdp_filetypes = ['markdown']
+"
+"  " Realtime preview by Vim. (Markdown, reStructuredText, textile)
+"  " Plug 'previm/previm'
+"  " let g:previm_open_cmd = 'open'
 
   " Edit embedded markdown tables in sc-im in vim
   Plug 'mipmip/vim-scimark'
@@ -796,10 +771,6 @@ call plug#begin()
   Plug 'tmux-plugins/vim-tmux-focus-events'
   Plug 'christoomey/vim-tmux-navigator'
   Plug 'tmux-plugins/vim-tmux'
-  " Plug 'roxma/vim-tmux-clipboard' " makes neovim slow at startup 
-  " 1       4349.237   vim-tmux-clipboard
-  " 2       4144.174   vim-wakatime
-  " 3       3574.485   open-browser.vim
 
   autocmd BufNewFile,BufRead Dockerfile* set syntax=dockerfile
   Plug 'kkvh/vim-docker-tools'

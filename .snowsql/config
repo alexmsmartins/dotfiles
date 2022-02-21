@@ -1,4 +1,4 @@
-[connections]          
+[connections]
 # *WARNING* *WARNING* *WARNING* *WARNING* *WARNING* *WARNING*
 # 
 # The Snowflake user password is stored in plain text in this file.
@@ -12,19 +12,18 @@ accountname = NYA97005
 region = us-east-1
 username = amartins
 # Password shoud be stored as environment variable $SNOWSQL_PWD
-dbname = MW_DEV_AMARTINS
+dbname = MW_DEV_SANDBOX_AMARTINS
 #schemaname = defaultschema
 warehousename = MWAREHOUSE_SANDBOX
 rolename = MWAREHOUSE_SANDBOX_ROLE
+schemaname = PUBLIC
 #proxy_host = defaultproxyhost
 #proxy_port = defaultproxyport
 
-[connections.example]
-#Can be used in SnowSql as #connect example
-
-accountname = accountname
-username = username
-password = password1234
+[connections.MW_DEV_MEDS_CORE]
+dbname = MW_DEV_SANDBOX_AMARTINS
+warehousename = MW_DEV_MEDS_CORE
+rolename = MW_DEV_MEDS_DE_ROLE
 
 [variables]
 # SnowSQL defines the variables in this section on startup.
@@ -41,9 +40,8 @@ auto_completion = True
 # executable.
 log_file = ../snowsql_rt.log
 
-# bootstrap log file location. The file includes the log from SnowSQL bootstrap
-# executable.
-# log_bootstrap_file = ~/.snowsql/log_bootstrap
+# bootstrap log file location. The file includes the log from SnowSQL bootstrap executable.
+log_bootstrap_file = ~/.snowsql/log_bootstrap
 
 # Default log level. Possible values: "CRITICAL", "ERROR", "WARNING", "INFO"
 # and "DEBUG".
@@ -55,7 +53,7 @@ timing = True
 # Table format. Possible values: psql, plain, simple, grid, fancy_grid, pipe,
 # orgtbl, rst, mediawiki, html, latex, latex_booktabs, tsv.
 # Recommended: psql, fancy_grid and grid.
-output_format = pipe
+output_format = grid
 
 # Keybindings: Possible values: emacs, vi.
 # Emacs mode: Ctrl-A is home, Ctrl-E is end. All emacs keybindings are available in the REPL.
