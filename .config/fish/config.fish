@@ -102,9 +102,13 @@ end
 direnv hook fish | source
 
 # Use most instead of less as pager (color in manpages for example)
-if which -s most;
-  set -x PAGER most
-end
+# Commented out on 2022-03-10 because `nix --help` shows escape characters instead of colors while less behavies properly
+# if which -s most;
+#   set -x PAGER most
+# end
+set -x PAGER less
+# TODO setup man pages with colors - investigate further
+# attempted approach in https://unix.stackexchange.com/a/147 did not work on the mac and exhibited raw escape characters instead.
 
 # Enable AWS CLI autocompletion: github.com/aws/aws-cli/issues/1079
 complete --command aws --no-files --arguments '(begin; set --local --export COMP_SHELL fish; set --local --export COMP_LINE (commandline); aws_completer | sed \'s/ $//\'; end)'
@@ -129,9 +133,14 @@ set -x SNOWSQL_PWD $SNOWSQL_PWD
 launchctl setenv SNOWSQL_PWD $SNOWSQL_PWD
 
 
-
-contains "/usr/local/opt/openssl@1.1/bin" $PATH
-or set fish_user_paths "/usr/local/opt/openssl@1.1/bin" $PATH
+# set -x AWS_ACCESS_KEY_ID $AWS_ACCESS_KEY_ID
+# launchctl setenv AWS_ACCESS_KEY_ID $AWS_ACCESS_KEY_ID
+# 
+# set -x AWS_SECRET_ACCESS_KEY $AWS_SECRET_ACCESS_KEY
+# launchctl setenv AWS_SECRET_ACCESS_KEY $AWS_SECRET_ACCESS_KEY
+# 
+# contains "/usr/local/opt/openssl@1.1/bin" $PATH
+# or set fish_user_paths "/usr/local/opt/openssl@1.1/bin" $PATH
 
 
 # Python 3.9 packages in path
@@ -151,3 +160,5 @@ starship init fish | source
 
 test -e {$HOME}/.iterm2_shell_integration.fish ; and source {$HOME}/.iterm2_shell_integration.fish
 
+# Taskwarrior Server
+export TASKDDATA=/var/taskd

@@ -147,6 +147,12 @@ augroup END
 nnoremap ,cd :cd %:p:h<CR>:pwd<CR>
 
 " Python
+if ! has("pythonx")
+  if has("nvim")
+    !pip3 install neovim
+  endif
+endif
+set pyxversion=3
 augroup python
   autocmd FileType python nnoremap <LocalLeader>= :0,$!yapf<CR>
 augroup END
@@ -338,6 +344,12 @@ call plug#begin()
   " Firefox and Chrome Ghosttext
   if has('nvim')
     Plug 'subnut/nvim-ghost.nvim', {'do': ':call nvim_ghost#installer#install()'}
+   " Multiple autocommands can be specified like so -
+   augroup nvim_ghost_user_autocommands
+     au User www.reddit.com,www.stackoverflow.com set filetype=markdown
+     au User www.reddit.com,www.github.com set filetype=markdown
+     au User *github.com set filetype=markdown
+   augroup END
   else
     Plug 'raghur/vim-ghost', {'do': ':GhostInstall'}
 
@@ -563,12 +575,14 @@ call plug#begin()
   Plug 'mipmip/vim-scimark'
 
   " ## Vimwiki
+  " Commented in 20220228 because the <Tab> and <S-Tab> keybindings clash with Coc autocomplete
+  " AND I am not using VimWiki anyway
   Plug 'vimwiki/vimwiki'
   let g:vimwiki_list = [{'path': '~/development/amartins-mdsol-notes/',
                         \ 'syntax': 'markdown', 'ext': '.md'}]
 
   " ## Tasks and project management
-  " Plug 'tools-life/taskwiki' , { 'do': 'pip3 install tasklib'}
+  " Plug 'tools-life/taskwiki' , { 'do': 'pip3 install tasklib'} " , { 'do': 'pip3 install pynvim' }
   " color support in charts.
   " Plug 'powerman/vim-plugin-AnsiEsc'
   " provides taskwiki file navigation.
@@ -640,6 +654,7 @@ call plug#begin()
         \'coc-db',
         \'coc-diagnostic',
         \'coc-docker',
+        \'coc-fish',
         \'coc-git',
         \'coc-java',
         \'coc-java-debug',
@@ -668,6 +683,17 @@ call plug#begin()
   let g:LanguageClient_serverCommands = {
     \ 'sh': ['bash-language-server', 'start']
     \ }
+
+  " use <tab> for trigger completion and navigate to the next complete item
+  function! s:check_back_space() abort
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~ '\s'
+  endfunction
+  
+  inoremap <silent><expr> <Tab>
+        \ pumvisible() ? "\<C-n>" :
+        \ <SID>check_back_space() ? "\<Tab>" :
+        \ coc#refresh()
 
   " ## Snippets
   Plug 'honza/vim-snippets'
@@ -778,15 +804,6 @@ call plug#begin()
     Plug 'skanehira/docker.vim'
   endif
   Plug 'skanehira/docker-compose.vim'
-
-  " ## Help
-  " On-demand lazy load
-
-  Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
-
-  " To register the descriptions when using the on-demand load feature,
-  " use the autocmd hook to call which_key#register(), e.g., register for the Space key:
-  autocmd! User vim-which-key call which_key#register('<Space>', 'g:which_key_map')
 
   " ## Other
   Plug 'frazrepo/vim-rainbow'

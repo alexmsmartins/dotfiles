@@ -1,4 +1,5 @@
 set -o vi
+set termguicolors
 
 # When summoning bash from within another SHELL we need to set this variable so that commands that summon subshells work properly
 export SHELL=/usr/local/bin/bash
@@ -132,3 +133,6 @@ if [ -e ~/.nix-profile/etc/profile.d/nix.sh ]; then . ~/.nix-profile/etc/profile
 
 # Oh My BASH
 source $HOME/.bashrc.oh-my-bash
+
+# Taskwarrior server
+export TASKDDATA=/var/taskd

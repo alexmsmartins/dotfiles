@@ -15,7 +15,7 @@ addSbtPlugin("com.dwijnand" % "sbt-project-graph" % "0.4.0")
 // For sbt < 1.3 use:
 // addSbtPlugin("net.virtual-void" % "sbt-dependency-graph" % "0.10.0-RC1")
 // builtin plugin that replaces sbt-dependency-graph in SBT 1.4.x
-addDependencyTreePlugin
+// addDependencyTreePlugin
 
 // An SBT plugin for making your SBT prompt more awesome
 // https://github.com/agemooij/sbt-prompt

@@ -27,7 +27,9 @@ fish_update(){
 }
 neovim_update(){
   nvim --headless +PlugUpgrade +qall
+  echo ""
   nvim --headless +PlugUpdate +qall
+  echo ""
 }
 tmux_update(){
   if [ -f ~/.tmux/plugins/tpm/bin/update_plugins ]; then 
@@ -42,7 +44,7 @@ main(){
   print_heading "App Store - Update"
   app_store_update
 
-  print_heading "Fish Shell - Fisher Plugin Manager - update"
+  print_heading "Fish Shell - Fisher Plugin Manager - Update"
   fish_update
 
   print_heading "NeoVim - Vim Plug - Update"
@@ -50,6 +52,7 @@ main(){
 
   print_heading "Tmux - Tmux Plugin Manager (aka TMP) - Update"
   tmux_update
+
   print_heading "All updates terminted successfully"
 }
 

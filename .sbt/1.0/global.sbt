@@ -14,10 +14,6 @@ addCommandAlias("offdebug", "set every reStart/debugSettings := None")
 
 addCommandAlias("downloadSources", "updateClassifiers")
 
-// Bloop deactivated in 20220202
-// bloopExportJarClassifiers.in(Global) := Some(Set("sources"))
-
-
 libraryDependencies ++= Seq(
     "org.slf4j"     % "jcl-over-slf4j"          % "1.7.29"
   )

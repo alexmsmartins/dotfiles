@@ -25,6 +25,12 @@ dbname = MW_DEV_SANDBOX_AMARTINS
 warehousename = MW_DEV_MEDS_CORE
 rolename = MW_DEV_MEDS_DE_ROLE
 
+
+[connections.MW_DEV_MEDS_CORE]
+dbname = MW_DEV_SANDBOX_AMARTINS
+warehousename = MW_DEV_MEDS_CORE
+rolename = MWAREHOUSEV2_DEV
+
 [variables]
 # SnowSQL defines the variables in this section on startup.
 # You can use these variables in SQL statements. For details, see
