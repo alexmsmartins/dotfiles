@@ -11,29 +11,58 @@ print_heading(){
   printf "%s %s %s\n" "$surround" "${green}${heading}${normal}" "$surround"
 }
 brew_update(){
-  brew update
-  brew upgrade
-  brew upgrade --cask --greedy
-  brew autoremove
-  brew cleanup --prune 180
-  brew doctor
+  if hash brew &>/dev/null; then
+    brew update
+    brew upgrade
+    brew upgrade --cask --greedy
+    brew autoremove
+    brew cleanup --prune 180
+    brew doctor
+  else
+    echo "The 'brew' command is not installed on this system."
+    echo "Not updating Homebrew packages."
+  fi
 }
 app_store_update(){
-  mas list
-  mas upgrade
+  if hash mas &>/dev/null; then
+    mas list
+    mas upgrade
+  else
+    echo "The 'mas' command is not installed on this system."
+    echo "Not updating App Store packages."
+  fi
 }
 fish_update(){
-  fish --command="fisher update"
+
+  if hash fish &>/dev/null; then
+    fish --command="fisher update"
+  else
+    echo "The 'fish' command is not installed on this system."
+    echo "Not updating fisher packages."
+  fi
 }
 neovim_update(){
-  nvim --headless +PlugUpgrade +qall
-  echo ""
-  nvim --headless +PlugUpdate +qall
-  echo ""
+  if hash nvim &>/dev/null; then
+    nvim --headless +PlugUpgrade +qall
+    echo "\n"
+    nvim --headless +PlugUpdate +qall
+    echo "\n"
+  else
+    echo "The 'nvim' command is not installed on this system."
+    echo "Not updating Vim Plug packages for Neovim."
+  fi
 }
 tmux_update(){
-  if [ -f ~/.tmux/plugins/tpm/bin/update_plugins ]; then 
-    ~/.tmux/plugins/tpm/bin/update_plugins all
+  if hash tmux &>/dev/null; then
+    if [ -f ~/.tmux/plugins/tpm/bin/update_plugins ]; then 
+      ~/.tmux/plugins/tpm/bin/update_plugins all
+    else
+      echo "The 'update_plugins' command is not installed on this system."
+      echo "Not updating Tmux plugins with TPM."
+    fi
+  else
+    echo "The 'tmux' command is not installed on this system."
+    echo "Not updating Tmux plugins."
   fi
 }
 

@@ -1,7 +1,24 @@
-set clipboard=unnamed,unnamedplus
+""" Editing and Reloading the Config
+set clipboard+=unnamed
+set clipboard+=ideaput
+nnoremap \e :e ~/.ideavimrc<CR>
+nnoremap \r :action IdeaVim.ReloadVimRc.reload<CR>
 
+""" Search
 set ignorecase
 set smartcase
+
+
+""" The Leader Key
+let mapleader="
+
+"""" Distraction Free Mode
+nnoremap <c-z> :action ToggleDistractionFreeMode<CR>
+
+""" Terminal
+nnoremap <c-t> :action ActivateTerminalToolWindow<CR>
+nnoremap <leader>t :action Terminal.OpenInTerminal<CR>
+
 
 set surround "similar to tpope/surround
 set multiple-cursors
@@ -16,9 +33,6 @@ set scrolloff=3 " Display at least 3 lines around you cursor
 set number
 set relativenumber
 
-" <leader>
-let mapleader = ";"
-let maplocalleader = "\<Space>"
 
 nmap <leader><leader>s :action KJumpAction<cr>
 nmap <leader><leader>w :action KJumpAction.Word0<cr>

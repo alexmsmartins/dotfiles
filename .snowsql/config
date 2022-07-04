@@ -14,9 +14,9 @@ username = amartins
 # Password shoud be stored as environment variable $SNOWSQL_PWD
 dbname = MW_DEV_SANDBOX_AMARTINS
 #schemaname = defaultschema
-warehousename = MWAREHOUSE_SANDBOX
-rolename = MWAREHOUSE_SANDBOX_ROLE
-schemaname = PUBLIC
+warehousename = MWAREHOUSEV2_NONPROD_MONITOR_WAREHOUSE
+rolename = MWAREHOUSE_DEVELOPER_WRITE_ROLE
+schemaname = DEFAULT
 #proxy_host = defaultproxyhost
 #proxy_port = defaultproxyport
 
@@ -26,7 +26,7 @@ warehousename = MW_DEV_MEDS_CORE
 rolename = MW_DEV_MEDS_DE_ROLE
 
 
-[connections.MW_DEV_MEDS_CORE]
+[connections.MW_DEV_MEDS_CORE_2]
 dbname = MW_DEV_SANDBOX_AMARTINS
 warehousename = MW_DEV_MEDS_CORE
 rolename = MWAREHOUSEV2_DEV

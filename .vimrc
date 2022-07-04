@@ -25,7 +25,6 @@ endif
 set signcolumn=yes
 
 " <leader>
-" let mapleader = "\<Space>"
 let mapleader = ";" " giving ';' as leader a go.
 let maplocalleader = "\<Space>" " i never use localLeader but maybe it is time to start trying it.
 
@@ -532,6 +531,8 @@ call plug#begin()
   " let g:mdip_imgdir = 'img'
   " let g:mdip_imgname = 'image'
 
+  Plug 'ellisonleao/glow.nvim', {'branch': 'main'}
+
 " If you don't have nodejs and yarn
 " use pre build, add 'vim-plug' to the filetype list so vim-plug can update this plugin
 " see: https://github.com/iamcco/markdown-preview.nvim/issues/50
@@ -582,12 +583,12 @@ call plug#begin()
                         \ 'syntax': 'markdown', 'ext': '.md'}]
 
   " ## Tasks and project management
-  " Plug 'tools-life/taskwiki' , { 'do': 'pip3 install tasklib'} " , { 'do': 'pip3 install pynvim' }
+  Plug 'tools-life/taskwiki' , { 'do': 'pip3 install tasklib'} " , { 'do': 'pip3 install pynvim' }
   " color support in charts.
-  " Plug 'powerman/vim-plugin-AnsiEsc'
+  Plug 'powerman/vim-plugin-AnsiEsc'
   " provides taskwiki file navigation.
-  " Plug 'majutsushi/tagbar'
-  " Plug 'farseer90718/vim-taskwarrior'
+  Plug 'majutsushi/tagbar'
+  Plug 'farseer90718/vim-taskwarrior'
 
   " ## PlantUml
   Plug 'aklt/plantuml-syntax'
@@ -751,6 +752,9 @@ call plug#begin()
   " ## Python
   Plug 'python-mode/python-mode', { 'branch': 'develop' }
   let g:pymode_python = 'python3'
+
+  " ## R and RStudio
+  Plug 'jalvesaq/Nvim-R', {'branch': 'stable'}
 
   " ## Haskell
   Plug 'neovimhaskell/haskell-vim'
