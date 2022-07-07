@@ -65,10 +65,20 @@ tmux_update(){
     echo "Not updating Tmux plugins."
   fi
 }
-
+pipx_update(){
+  if hash pipx &>/dev/null; then
+    pipx upgrade-all
+  else
+    echo "The 'pipx' command is not installed on this system."
+    echo "Not updating Pipx Python Apps."
+  fi
+}
 main(){
   print_heading "Homebrew - Update"
   brew_update
+
+  print_heading "Pipx - Update"
+  pipx_update
 
   print_heading "App Store - Update"
   app_store_update

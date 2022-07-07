@@ -536,41 +536,43 @@ call plug#begin()
 " If you don't have nodejs and yarn
 " use pre build, add 'vim-plug' to the filetype list so vim-plug can update this plugin
 " see: https://github.com/iamcco/markdown-preview.nvim/issues/50
-"  Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
-"  " Markdown preview mappings
-"  if filereadable(expand('~/.vim/my-scripts/markdown-preview-mappings.vim'))
-"    source ~/.vim/my-scripts/markdown-preview-mappings.vim
-"  endif
-"
-"  " options for markdown render
-"  let g:mkdp_preview_options = {
-"      \ 'mkit': {},
-"      \ 'katex': {},
-"      \ 'uml': {},
-"      \ 'maid': {},
-"      \ 'disable_sync_scroll': 0,
-"      \ 'sync_scroll_type': 'middle',
-"      \ 'hide_yaml_meta': 0,
-"      \ 'sequence_diagrams': {},
-"      \ 'flowchart_diagrams': {},
-"      \ 'content_editable': v:true,
-"      \ 'disable_filename': 0
-"      \ }
-"
-"  " use a custom port to start server or random for empty
-"  let g:mkdp_port = ''
-"
-"  " preview page title
-"  " ${name} will be replace with the file name
-"  let g:mkdp_page_title = '「${name}」'
-"
-"  " recognized filetypes
-"  " these filetypes will have MarkdownPreview... commands
-"  let g:mkdp_filetypes = ['markdown']
-"
-"  " Realtime preview by Vim. (Markdown, reStructuredText, textile)
-"  " Plug 'previm/previm'
-"  " let g:previm_open_cmd = 'open'
+  Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': 'markdown' }
+  " Markdown preview mappings
+  if filereadable(expand('~/.vim/my-scripts/markdown-preview-mappings.vim'))
+    source ~/.vim/my-scripts/markdown-preview-mappings.vim
+  endif
+
+  " options for markdown render
+  let g:mkdp_preview_options = {
+      \ 'mkit': {},
+      \ 'katex': {},
+      \ 'uml': {},
+      \ 'maid': {},
+      \ 'disable_sync_scroll': 0,
+      \ 'sync_scroll_type': 'middle',
+      \ 'hide_yaml_meta': 0,
+      \ 'sequence_diagrams': {},
+      \ 'flowchart_diagrams': {},
+      \ 'content_editable': v:true,
+      \ 'disable_filename': 0
+      \ }
+
+  " use a custom port to start server or random for empty
+  let g:mkdp_port = ''
+
+  " preview page title
+  " ${name} will be replace with the file name
+  let g:mkdp_page_title = '「${name}」'
+
+  " recognized filetypes
+  " these filetypes will have MarkdownPreview... commands
+  let g:mkdp_filetypes = ['markdown']
+
+  " Realtime preview by Vim. (Markdown, reStructuredText, textile)
+  " TODO - this plugin cannot be used in vimwiki files. Even if the files are
+  " in markdown. I need to solve this.
+  Plug 'previm/previm'
+  let g:previm_open_cmd = 'open -a Safari'
 
   " Edit embedded markdown tables in sc-im in vim
   Plug 'mipmip/vim-scimark'
