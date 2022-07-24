@@ -205,6 +205,10 @@ augroup docker_file
   autocmd BufNewFile,BufRead Dockerfile* set syntax=dockerfile
 augroup END
 
+" :h :DiffOrig
+command DiffOrig vert new | set buftype=nofile | read ++edit # | 0d_
+		\ | diffthis | wincmd p | diffthis
+
 " # Vim Plug
 let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
 if empty(glob(data_dir . '/autoload/plug.vim'))
@@ -466,6 +470,9 @@ call plug#begin()
   " ## Syntax highlighting for several launguagents
   Plug 'sheerun/vim-polyglot'
 
+  " Semantic syntax highlighting 
+  Plug 'jaxbot/semantic-highlight.vim'
+
   " ## Markdown
   Plug 'bpstahlman/txtfmt'
   Plug 'godlygeek/tabular'
@@ -602,7 +609,7 @@ call plug#begin()
       \  0
       \)
 
-  Plug 'tyru/open-browser.vim' " slow at startup
+  Plug 'tyru/open-browser.vim'
 
   " ## Toml
   Plug 'cespare/vim-toml'

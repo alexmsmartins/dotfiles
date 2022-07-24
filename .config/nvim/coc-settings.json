@@ -1,4 +1,102 @@
 {
+  // normal settings
+  //"coc.preferences.colorSupport": true, // disabled because the property is not allowed
+  "coc.preferences.snippetStatusText": "Ⓢ ",
+  "coc.preferences.formatOnSaveFiletypes": [
+    "javascript",
+    "html",
+    "css",
+    "json",
+    "markdown",
+    "typescript",
+    "python",
+    "dart"
+  ],
+
+  // suggest settings
+  "suggest.noselect": false,
+  "suggest.detailField": "abbr",
+  "suggest.snippetIndicator": "",
+  "suggest.removeDuplicateItems": true,
+  "suggest.triggerAfterInsertEnter": true,
+  "suggest.timeout": 2000,
+  "suggest.minTriggerInputLength": 1,
+  "suggest.completionItemKindLabels": {
+    "function": "\uf794",
+    "method": "\uf6a6",
+    "variable": "\uf71b",
+    "constant": "\uf8ff",
+    "struct": "\ufb44",
+    "class": "\uf0e8",
+    "interface": "\ufa52",
+    "text": "\ue612",
+    "enum": "\uf435",
+    "enumMember": "\uf02b",
+    "module": "\uf668",
+    "color": "\ue22b",
+    "property": "\ufab6",
+    "field": "\uf93d",
+    "unit": "\uf475",
+    "file": "\uf471",
+    "value": "\uf8a3",
+    "event": "\ufacd",
+    "folder": "\uf115",
+    "keyword": "\uf893",
+    "snippet": "\uf64d",
+    "operator": "\uf915",
+    "reference": "\uf87a",
+    "typeParameter": "\uf278",
+    "default": "\uf29c"
+  },
+
+  // diagnostic settings
+  "diagnostic.displayByAle": true,
+  "diagnostic.refreshOnInsertMode": true,
+  "diagnostic.errorSign": "✘",
+  "diagnostic.warningSign": "⚠",
+  "diagnostic.infoSign": "",
+  "diagnostic.hintSign": "ஐ",
+  "diagnostic.checkCurrentLine": true,
+  "diagnostic.virtualTextPrefix": " ❯❯❯ ",
+  "diagnostic.virtualText": true,
+  "diagnostic.enableMessage": "never",
+  "diagnostic-languageserver.filetypes": {
+    // lint `sh` (includes `bash`) files
+    "sh": "shellcheck"
+  },
+  "diagnostic-languageserver.formatFiletypes": {
+    // format `sh` (includes `bash`) files using formatter defined below
+    "sh": "shfmt"
+  },
+  "diagnostic-languageserver.formatters": {
+    // define our formatter so that we can reference it from
+    // `diagnostic-languageserver.formatFiletypes`
+    "shfmt": {
+      "command": "shfmt",
+      // all the below args are entirely optional
+      // primarily listed here to call out that flags which take an
+      // argument (such as `-i <num-spaces>` for specifying indentation)
+      // should be split into two strings, the flag and then the value
+      "args": ["-i", "2", "-bn", "-ci", "-sr"]
+    }
+  },
+
+
+  // list settings
+  "list.source.grep.command": "rg",
+
+  // git settings
+  "git.topRemovedSign.text": "▌",
+  "git.changeRemovedSign.text": "▌",
+  "git.removedSign.text": "▌",
+  "git.addedSign.text": "▌",
+  "git.changedSign.text": "▌",
+
+  // other language specific settings
+  "html.autoClosingTags": true,
+  "prettier.proseWrap": "always",
+  "python.formatting.provider": "black",
+
   "languageserver": {
     "haskell": {
       "command": "stack ghci --with-ghc intero",
@@ -26,28 +124,6 @@
     "svls": {
         "command": "svls",
         "filetypes": ["systemverilog"]
-    }
-  },
-  "diagnostic.displayByAle": true,
-  "coc.preferences.formatOnSaveFiletypes": ["css", "markdown"],
-  "diagnostic-languageserver.filetypes": {
-    // lint `sh` (includes `bash`) files
-    "sh": "shellcheck"
-  },
-  "diagnostic-languageserver.formatFiletypes": {
-    // format `sh` (includes `bash`) files using formatter defined below
-    "sh": "shfmt"
-  },
-  "diagnostic-languageserver.formatters": {
-    // define our formatter so that we can reference it from
-    // `diagnostic-languageserver.formatFiletypes`
-    "shfmt": {
-      "command": "shfmt",
-      // all the below args are entirely optional
-      // primarily listed here to call out that flags which take an
-      // argument (such as `-i <num-spaces>` for specifying indentation)
-      // should be split into two strings, the flag and then the value
-      "args": ["-i", "2", "-bn", "-ci", "-sr"]
     }
   }
 }
