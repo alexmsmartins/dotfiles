@@ -340,33 +340,19 @@ call plug#begin()
 
   " ## Tools
 
-  " if has('nvim')
-  "   " Firefox NeoVim integration with Firevim addon
-  "   Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
-  " else
   " Firefox and Chrome Ghosttext
-  if has('nvim')
-    Plug 'subnut/nvim-ghost.nvim', {'do': ':call nvim_ghost#installer#install()'}
-   " Multiple autocommands can be specified like so -
-   augroup nvim_ghost_user_autocommands
-     au User www.reddit.com,www.stackoverflow.com set filetype=markdown
-     au User www.reddit.com,www.github.com set filetype=markdown
-     au User *github.com set filetype=markdown
-   augroup END
-  else
-    Plug 'raghur/vim-ghost', {'do': ':GhostInstall'}
+  Plug 'raghur/vim-ghost', {'do': ':GhostInstall'}
 
-    function! s:SetupGhostBuffer()
-        if match(expand("%:a"), '\v/ghost-(github|reddit)\.com-')
-            set ft=markdown
-        endif
-    endfunction
+  function! s:SetupGhostBuffer()
+      if match(expand("%:a"), '\v/ghost-(github|reddit)\.com-')
+          set ft=markdown
+      endif
+  endfunction
 
-    augroup vim-ghost
-        au!
-        au User vim-ghost#connected call s:SetupGhostBuffer()
-    augroup END
-  endif
+  augroup vim-ghost
+      au!
+      au User vim-ghost#connected call s:SetupGhostBuffer()
+  augroup END
 
   Plug 'trapd00r/vidir'
 
