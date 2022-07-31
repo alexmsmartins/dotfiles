@@ -340,7 +340,7 @@ call plug#begin()
 
   " ## Tools
 
-  " Firefox and Chrome Ghosttext
+  " I can now use NeoVim, VimR, etc as the editor for textfields in the browser.
   Plug 'raghur/vim-ghost', {'do': ':GhostInstall'}
 
   function! s:SetupGhostBuffer()
