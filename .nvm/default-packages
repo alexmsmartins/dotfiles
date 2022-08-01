@@ -1,9 +1,14 @@
+ajv-cli
+any-json
+bash-language-server
+bower
 eslint
 gulp
 j2m
 nvm
 prettier
-ts-node
-tsc
+pulp
+purescript
+spago
 typescript
 yarn

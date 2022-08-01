@@ -17,6 +17,10 @@ $if mode=vi
   "\e[B":history-search-forward
   "\e[C": forward-char
   "\e[D": backward-char
+  "kj" # remap escape
+  "jk" # remap escape
+  # FIXME below command used since 20211128 - delete if not used enough
+  "\C-e": edit-and-execute-command
 $endif
 
 set show-all-if-ambiguous on

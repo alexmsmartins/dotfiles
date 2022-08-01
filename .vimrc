@@ -1,13 +1,8 @@
 scriptencoding utf-8
-
 syntax enable
 filetype plugin indent on
 set omnifunc=syntaxcomplete#Complete
 autocmd FileType css set omnifunc=csscomplete#CompleteCSS
-
-" Give more space for displaying messages.
-set cmdheight=2 " Better display for messages
-
 
 " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
 " delays and poor user experience.
@@ -18,12 +13,9 @@ set shortmess+=c
 
 "" Colors and Themes
 if (has("nvim"))
-  "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
   let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 endif
-"For Neovim > 0.1.5 and Vim > patch 7.4.1799 < https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162 >
-"Based on Vim patch 7.4.1770 (`guicolors` option) < https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd >
-" < https://github.com/neovim/neovim/wiki/Following-HEAD#20160511 >
+
 if (has("termguicolors"))
   set termguicolors
 endif
@@ -33,7 +25,8 @@ endif
 set signcolumn=yes
 
 " <leader>
-let mapleader = "\<Space>"
+let mapleader = ";" " giving ';' as leader a go.
+let maplocalleader = "\<Space>" " i never use localLeader but maybe it is time to start trying it.
 
 " Copy to and paste from the system clipboards 
 set clipboard=unnamed,unnamedplus
@@ -73,6 +66,14 @@ set showbreak=↪
 
 set textwidth=0
 set wrapmargin=0
+
+
+" TODO delete this if not used (20211128)
+" To use VIM/NeoVIM as a command line ditor in bash
+augroup syntax_highlight_current_bash_command # after calling \C-e from .inputrc
+  autocmd BufEnter /tmp/bash-fc.* 
+    \ set syntax=bash
+augroup END
 
 " to make Vim automatically refresh any files that haven't been edited by Vim. Also see :checktime.
 " Triger `autoread` when files changes on disk
@@ -145,12 +146,25 @@ augroup END
 nnoremap ,cd :cd %:p:h<CR>:pwd<CR>
 
 " Python
+if ! has("pythonx")
+  if has("nvim")
+    !pip3 install neovim
+  endif
+endif
+set pyxversion=3
 augroup python
   autocmd FileType python nnoremap <LocalLeader>= :0,$!yapf<CR>
 augroup END
 
 " XML/HTML
 runtime macros/matchit.vim
+
+
+
+" # Avro Schema
+augroup avro-schema
+  autocmd BufNewFile,BufRead *.avsc set filetype=json
+augroup END
 
 " # Open gz files
 augroup gzip
@@ -172,12 +186,7 @@ augroup edit_zip_files_in_vim
   au BufRead,BufNewFile *.jar,*.war,*.ear,*.sar,*.rar set filetype=zip
 augroup END
 
-
 " # Markdown preview
-" Open markdown files with Chrome.
-augroup preview_markdown_in_chrome
-  autocmd BufEnter *.md execute 'noremap <F5> :!open -a /Applications/Firefox.app/Contents/MacOS/firefox-bin %<CR>'
-augroup END
 
 augroup pandoc_syntax
   autocmd BufNewFile,BufFilePre,BufRead *.md set filetype=markdown
@@ -188,6 +197,18 @@ inoremap M< =>
 inoremap ,m <-
 inoremap m, ->
 
+" Python specific key mappings
+set pyxversion=3
+
+" Docker syntax highlighting
+augroup docker_file
+  autocmd BufNewFile,BufRead Dockerfile* set syntax=dockerfile
+augroup END
+
+" :h :DiffOrig
+command DiffOrig vert new | set buftype=nofile | read ++edit # | 0d_
+		\ | diffthis | wincmd p | diffthis
+
 " # Vim Plug
 let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
 if empty(glob(data_dir . '/autoload/plug.vim'))
@@ -196,11 +217,27 @@ if empty(glob(data_dir . '/autoload/plug.vim'))
 endif
 call plug#begin()
   " ## General Setup
-  " Vim sensible to get backspace across lines, syntax highlighting and other stuff 
+  " Fix CursorHold, CursorHoldI and updatetime Performance
+  " This will result in more snappiness for plugins using those events, such as: coc.nvim, vim-gutter, tagbar, vim-devicons, vim-polyglot, etc.
+  Plug 'antoinemadec/FixCursorHold.nvim'
+  " Vim sensible to get backspace across lines, syntax highlighting and other stuff
   Plug 'tpope/vim-sensible'
 
   Plug 'itchyny/lightline.vim'
 
+  " By the way, -- INSERT -- is unnecessary anymore because the mode information is displayed in the statusline. 
+  " This config gets rid of it
+  set noshowmode
+  let g:lightline = {
+      \ 'colorscheme': 'wombat',
+      \ }
+
+  if !has('nvim')
+    " disable (before plugins are loaded) LSP features in ALE, so ALE does not provide LSP features already provided by coc.nvim.
+    let g:ale_disable_lsp = 1
+    " we also configure coc.nvim to send diagnostics to ALE, so ALE controls how all problems are presented. 
+    " Complementary ption inserted after calling :CocConfig
+  endif
   Plug 'dense-analysis/ale'
   " Show 5 lines of errors (default: 10)
   let g:ale_list_window_size = 5
@@ -215,54 +252,65 @@ call plug#begin()
 
   " Theme
   Plug 'tomasr/molokai'
-
+  " The configuration options placed before `colorscheme sonokai`.
+  " Available values: `'default'`, `'atlantis'`, `'andromeda'`, `'shusia'`, `'maia'`
+  let g:sonokai_style = 'andromeda'
+  let g:sonokai_enable_italic = 1
+  let g:sonokai_disable_italic_comment = 1
   Plug 'sainnhe/sonokai'
+  Plug 'lifepillar/vim-solarized8'
+
 
   " ## Movement
-  Plug 'haya14busa/incsearch.vim'
-  map /  <Plug>(incsearch-forward)
-  map ?  <Plug>(incsearch-backward)
-  map g/ <Plug>(incsearch-stay)
+  if has('nvim')
+    " diff behaviour than in vim
+    Plug 'ggandor/lightspeed.nvim'
+  else
+    Plug 'haya14busa/incsearch.vim'
+    map /  <Plug>(incsearch-forward)
+    map ?  <Plug>(incsearch-backward)
+    map g/ <Plug>(incsearch-stay)
 
-  Plug 'haya14busa/incsearch-easymotion.vim'
-  map z/ <Plug>(incsearch-easymotion-/)
-  map z? <Plug>(incsearch-easymotion-?)
-  map zg/ <Plug>(incsearch-easymotion-stay)
+    Plug 'haya14busa/incsearch-easymotion.vim'
+    map z/ <Plug>(incsearch-easymotion-/)
+    map z? <Plug>(incsearch-easymotion-?)
+    map zg/ <Plug>(incsearch-easymotion-stay)
 
-  Plug 'easymotion/vim-easymotion'
-  " You can use other keymappings like <C-l> instead of <CR> if you want to
-  " use these mappings as default search and sometimes want to move cursor with
-  " EasyMotion.
-  let g:EasyMotion_smartcase = 1
-  function! s:incsearch_config(...) abort
-    return incsearch#util#deepextend(deepcopy({
-    \   'modules': [incsearch#config#easymotion#module({'overwin': 1})],
-    \   'keymap': {
-    \     "\<CR>": '<Over>(easymotion)'
-    \   },
-    \   'is_expr': 0
-    \ }), get(a:, 1, {}))
-  endfunction
+    Plug 'easymotion/vim-easymotion'
+    " You can use other keymappings like <C-l> instead of <CR> if you want to
+    " use these mappings as default search and sometimes want to move cursor with
+    " EasyMotion.
+    let g:EasyMotion_smartcase = 1
+    function! s:incsearch_config(...) abort
+      return incsearch#util#deepextend(deepcopy({
+      \   'modules': [incsearch#config#easymotion#module({'overwin': 1})],
+      \   'keymap': {
+      \     "\<CR>": '<Over>(easymotion)'
+      \   },
+      \   'is_expr': 0
+      \ }), get(a:, 1, {}))
+    endfunction
 
-  noremap <silent><expr> /  incsearch#go(<SID>incsearch_config())
-  noremap <silent><expr> ?  incsearch#go(<SID>incsearch_config({'command': '?'}))
-  noremap <silent><expr> g/ incsearch#go(<SID>incsearch_config({'is_stay': 1}))
-  nmap s <Plug>(easymotion-s2)
-  nmap t <Plug>(easymotion-t2)
-  map  / <Plug>(easymotion-sn)
-  omap / <Plug>(easymotion-tn)
+    noremap <silent><expr> /  incsearch#go(<SID>incsearch_config())
+    noremap <silent><expr> ?  incsearch#go(<SID>incsearch_config({'command': '?'}))
+    noremap <silent><expr> g/ incsearch#go(<SID>incsearch_config({'is_stay': 1}))
+    nmap s <Plug>(easymotion-s2)
+    nmap t <Plug>(easymotion-t2)
+    map  / <Plug>(easymotion-sn)
+    omap / <Plug>(easymotion-tn)
 
-  " These `n` & `N` mappings are options. You do not have to map `n` & `N` to EasyMotion.
-  " Without these mappings, `n` & `N` works fine. (These mappings just provide
-  " different highlight method and have some other features )
-  map  n <Plug>(easymotion-next)
-  map  N <Plug>(easymotion-prev)
-  map <Leader>l <Plug>(easymotion-lineforward)
-  map <Leader>j <Plug>(easymotion-j)
-  map <Leader>k <Plug>(easymotion-k)
-  map <Leader>h <Plug>(easymotion-linebackward)
+    " These `n` & `N` mappings are options. You do not have to map `n` & `N` to EasyMotion.
+    " Without these mappings, `n` & `N` works fine. (These mappings just provide
+    " different highlight method and have some other features )
+    map  n <Plug>(easymotion-next)
+    map  N <Plug>(easymotion-prev)
+    map <Leader>l <Plug>(easymotion-lineforward)
+    map <Leader>j <Plug>(easymotion-j)
+    map <Leader>k <Plug>(easymotion-k)
+    map <Leader>h <Plug>(easymotion-linebackward)
+  endif
 
-  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim'
   map ; :Files<CR>
 
@@ -286,13 +334,25 @@ call plug#begin()
   :noremap <expr> t repmo#ZapKey('t')|sunmap t
   :noremap <expr> T repmo#ZapKey('T')|sunmap T
 
+  " ## Databases
+  Plug 'tpope/vim-dadbod'
+  Plug 'kristijanhusak/vim-dadbod-ui'
+
   " ## Tools
 
-  " Jira
-  Plug 'n0v1c3/vira', { 'do': './install.sh' }
+  " I can now use NeoVim, VimR, etc as the editor for textfields in the browser.
+  Plug 'raghur/vim-ghost', {'do': ':GhostInstall'}
 
-  " Firefox Ghosttext
-  Plug 'subnut/nvim-ghost.nvim', {'do': ':call nvim_ghost#installer#install()'}
+  function! s:SetupGhostBuffer()
+      if match(expand("%:a"), '\v/ghost-(github|reddit)\.com-')
+          set ft=markdown
+      endif
+  endfunction
+
+  augroup vim-ghost
+      au!
+      au User vim-ghost#connected call s:SetupGhostBuffer()
+  augroup END
 
   Plug 'trapd00r/vidir'
 
@@ -300,21 +360,22 @@ call plug#begin()
 
   Plug 'rickhowe/diffchar.vim'
 
-  Plug 'tpope/vim-fugitive'
+  Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 
-  Plug 'tpope/vim-rhubarb'
+  Plug 'szw/vim-maximizer'
+  nnoremap <silent><F3> :MaximizerToggle<CR>
+  vnoremap <silent><F3> :MaximizerToggle<CR>gv
+  inoremap <silent><F3> <C-o>:MaximizerToggle<CR>
 
-  Plug 'airblade/vim-gitgutter'
-  let g:gitgutter_max_signs = 3000
-
-  " I do not seem to be using tags
-  " Plug 'ludovicchabant/vim-gutentags'
+  " View and search LSP symbols, tags in Vim/NeoVim.
+  Plug 'liuchengxu/vista.vim'
 
   Plug 'tpope/vim-unimpaired'
 
   Plug 'tpope/vim-repeat'
 
-  Plug 'tpope/vim-surround' " ideavim has a similar extension
+  " ideavim has a similar extension
+  Plug 'tpope/vim-surround'
 
   Plug 'AndrewRadev/linediff.vim'
 
@@ -332,28 +393,74 @@ call plug#begin()
   " Open fileformat.info page about character on current cursor / given character
   Plug 'tyru/open-browser-unicode.vim'
 
+
+  Plug 'wakatime/vim-wakatime'
+
+  " ## Git and other VCSs
+  Plug 'tpope/vim-fugitive'
+
+  Plug 'airblade/vim-gitgutter'
+  let g:gitgutter_max_signs = 3000
+
+  Plug 'tpope/vim-rhubarb'
+
+
   " ## Navigation and directories
+  "
+  " Fern Directory Tree view (drawer
+  Plug 'lambdalisue/fern.vim'
+  let g:fern#disable_default_mappings   = 1
+  let g:fern#disable_drawer_auto_quit   = 1
+  let g:fern#disable_viewer_hide_cursor = 1
+  let g:fern#default_hidden = 1
+  " Candidate fern launch mappings:
+  noremap <silent> <Leader>d :Fern . -drawer -width=35 -toggle<CR><C-w>=
+  noremap <silent> <Leader>f :Fern . -drawer -reveal=% -width=35<CR><C-w>=
+  noremap <silent> <Leader>. :Fern %:h -drawer -width=35<CR><C-w>=
+  function! FernInit() abort
+    nmap <buffer><expr>
+          \ <Plug>(fern-my-open-expand-collapse)
+          \ fern#smart#leaf(
+          \   "\<Plug>(fern-action-open:select)",
+          \   "\<Plug>(fern-action-expand)",
+          \   "\<Plug>(fern-action-collapse)",
+          \ )
+    nmap <buffer> <CR> <Plug>(fern-my-open-expand-collapse)
+    nmap <buffer> <2-LeftMouse> <Plug>(fern-my-open-expand-collapse)
+    nmap <buffer> m <Plug>(fern-action-mark:toggle)j
+    nmap <buffer> N <Plug>(fern-action-new-file)
+    nmap <buffer> K <Plug>(fern-action-new-dir)
+    nmap <buffer> D <Plug>(fern-action-remove)
+    nmap <buffer> C <Plug>(fern-action-move)
+    nmap <buffer> R <Plug>(fern-action-rename)
+    nmap <buffer> s <Plug>(fern-action-open:split)
+    nmap <buffer> v <Plug>(fern-action-open:vsplit)
+    nmap <buffer> r <Plug>(fern-action-reload)
+    nmap <buffer> <nowait> d <Plug>(fern-action-hidden:toggle)
+    nmap <buffer> <nowait> < <Plug>(fern-action-leave)
+    nmap <buffer> <nowait> > <Plug>(fern-action-enter)
+  endfunction
+  
+  augroup FernEvents
+    autocmd!
+    autocmd FileType fern call FernInit()
+  augroup END
 
-  " enhances netrw
-  Plug 'tpope/vim-vinegar'
+  Plug 'lambdalisue/fern-git-status.vim'
 
-  " Directory Tree view 
-  Plug 'scrooloose/nerdtree'
-  Plug 'Xuyuanp/nerdtree-git-plugin'
-  let g:NERDTreeGitStatusIndicatorMapCustom = {
-      \ 'Modified'  : '✹',
-      \ 'Staged'    : '✚',
-      \ 'Untracked' : '✭',
-      \ 'Renamed'   : '➜',
-      \ 'Unmerged'  : '═',
-      \ 'Deleted'   : '✖',
-      \ 'Dirty'     : '✗',
-      \ 'Clean'     : '✔︎',
-      \ 'Ignored'   : '☒',
-      \ 'Unknown'   : '?'
-      \ }
+  " bookmarks
+  Plug 'Yilin-Yang/vim-markbar'
+  nmap <Leader>m <Plug>ToggleMarkbar
+  Plug 'kshenoy/vim-signature'
+
+  " ## Syntax highlighting for several launguagents
+  Plug 'sheerun/vim-polyglot'
+
+  " Semantic syntax highlighting 
+  Plug 'jaxbot/semantic-highlight.vim'
 
   " ## Markdown
+  Plug 'bpstahlman/txtfmt'
   Plug 'godlygeek/tabular'
   Plug 'plasticboy/vim-markdown'
   " disable the folding configuration:
@@ -417,25 +524,67 @@ call plug#begin()
   " let g:mdip_imgdir = 'img'
   " let g:mdip_imgname = 'image'
 
-  " If you don't have nodejs and yarn
-  " use pre build
-  Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
+  Plug 'ellisonleao/glow.nvim', {'branch': 'main'}
+
+" If you don't have nodejs and yarn
+" use pre build, add 'vim-plug' to the filetype list so vim-plug can update this plugin
+" see: https://github.com/iamcco/markdown-preview.nvim/issues/50
+  Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': 'markdown' }
   " Markdown preview mappings
   if filereadable(expand('~/.vim/my-scripts/markdown-preview-mappings.vim'))
     source ~/.vim/my-scripts/markdown-preview-mappings.vim
   endif
+
+  " options for markdown render
+  let g:mkdp_preview_options = {
+      \ 'mkit': {},
+      \ 'katex': {},
+      \ 'uml': {},
+      \ 'maid': {},
+      \ 'disable_sync_scroll': 0,
+      \ 'sync_scroll_type': 'middle',
+      \ 'hide_yaml_meta': 0,
+      \ 'sequence_diagrams': {},
+      \ 'flowchart_diagrams': {},
+      \ 'content_editable': v:true,
+      \ 'disable_filename': 0
+      \ }
+
+  " use a custom port to start server or random for empty
+  let g:mkdp_port = ''
+
+  " preview page title
+  " ${name} will be replace with the file name
+  let g:mkdp_page_title = '「${name}」'
+
+  " recognized filetypes
+  " these filetypes will have MarkdownPreview... commands
+  let g:mkdp_filetypes = ['markdown']
+
   " Realtime preview by Vim. (Markdown, reStructuredText, textile)
+  " TODO - this plugin cannot be used in vimwiki files. Even if the files are
+  " in markdown. I need to solve this.
   Plug 'previm/previm'
-  let g:previm_open_cmd = 'open'
+  let g:previm_open_cmd = 'open -a Safari'
 
   " Edit embedded markdown tables in sc-im in vim
   Plug 'mipmip/vim-scimark'
 
-
   " ## Vimwiki
+  " Commented in 20220228 because the <Tab> and <S-Tab> keybindings clash with Coc autocomplete
+  " AND I am not using VimWiki anyway
   Plug 'vimwiki/vimwiki'
   let g:vimwiki_list = [{'path': '~/development/amartins-mdsol-notes/',
                         \ 'syntax': 'markdown', 'ext': '.md'}]
+
+  " ## Tasks and project management
+  Plug 'tools-life/taskwiki' , { 'do': 'pip3 install tasklib'} " , { 'do': 'pip3 install pynvim' }
+  " color support in charts.
+  Plug 'powerman/vim-plugin-AnsiEsc'
+  " provides taskwiki file navigation.
+  Plug 'majutsushi/tagbar'
+  Plug 'farseer90718/vim-taskwarrior'
+
   " ## PlantUml
   Plug 'aklt/plantuml-syntax'
   Plug 'scrooloose/vim-slumlord'
@@ -446,7 +595,7 @@ call plug#begin()
       \  0
       \)
 
-  Plug 'tyru/open-browser.vim' " slow at startup
+  Plug 'tyru/open-browser.vim'
 
   " ## Toml
   Plug 'cespare/vim-toml'
@@ -454,11 +603,20 @@ call plug#begin()
   " # Json
   Plug 'elzr/vim-json'
 
+  " # CSV/TSV
+  Plug 'mechatroner/rainbow_csv'
+
   " coc.vim uses jsonc as configuration file format. It's basically json with comments support. This line gets comments highlighting
   autocmd FileType json syntax match Comment +\/\/.\+$+
 
+  " # Xmp
+  Plug 'othree/xml.vim'
+
   " # Yaml
   Plug 'mrk21/yaml-vim'
+
+  " # Avro
+  Plug 'gurpreetatwal/vim-avro'
 
   " ## Shell
   Plug 'WolfgangMehner/bash-support'
@@ -466,21 +624,77 @@ call plug#begin()
   Plug 'WolfgangMehner/vim-support'
   Plug 'dag/vim-fish'
 
+  " ## Nix
+  Plug 'LnL7/vim-nix'
+
+  " ## C
+  Plug 'WolfgangMehner/c-support'
+
+  " ## Verilog
+  Plug 'jmcneal/verilog-support'
+
+  " ## VimL
+  "
+
   " ## Scala
   
   " Configuration for vim-scala
-  " Plug 'derekwyatt/vim-scala'
+  Plug 'derekwyatt/vim-scala'
 
-  " au BufRead,BufNewFile *.sbt set filetype=scala
+  au BufRead,BufNewFile *.sbt set filetype=scala
 
   " Use release branch (recommend)
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
+  let g:coc_global_extensions = [
+        \'coc-clangd',
+        \'coc-db',
+        \'coc-diagnostic',
+        \'coc-docker',
+        \'coc-fish',
+        \'coc-git',
+        \'coc-java',
+        \'coc-java-debug',
+        \'coc-json',
+        \'coc-markdownlint',
+        \'coc-metals',
+        \'coc-prettier',
+        \'coc-pyright',
+        \'coc-rls',
+        \'coc-rust-analyzer',
+        \'coc-sh',
+        \'coc-snippets',
+        \'coc-sql',
+        \'coc-sqlfluff',
+        \'coc-tabnine',
+        \'coc-tsserver',
+        \'coc-vimlsp',
+        \'coc-xml',
+        \'coc-yaml',
+        \]
   " coc.nvim lsp mappings
   if filereadable(expand('~/.vim/my-scripts/coc-mappings.vim'))
     source ~/.vim/my-scripts/coc-mappings.vim"
   endif
   " USE CcmdheightocInstall to install Language servers
+  let g:LanguageClient_serverCommands = {
+    \ 'sh': ['bash-language-server', 'start']
+    \ }
 
+  " use <tab> for trigger completion and navigate to the next complete item
+  function! s:check_back_space() abort
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~ '\s'
+  endfunction
+  
+  inoremap <silent><expr> <Tab>
+        \ pumvisible() ? "\<C-n>" :
+        \ <SID>check_back_space() ? "\<Tab>" :
+        \ coc#refresh()
+
+  " ## Snippets
+  Plug 'honza/vim-snippets'
+
+  " ## HOCON
   Plug 'GEverding/vim-hocon'
 
   " ## Javascript
@@ -525,6 +739,7 @@ call plug#begin()
 
   " ## Rust
   Plug 'rust-lang/rust.vim'
+  Plug 'ron-rs/ron.vim'
 
   " ## Logs
   Plug 'dzeban/vim-log-syntax'
@@ -532,6 +747,9 @@ call plug#begin()
   " ## Python
   Plug 'python-mode/python-mode', { 'branch': 'develop' }
   let g:pymode_python = 'python3'
+
+  " ## R and RStudio
+  Plug 'jalvesaq/Nvim-R', {'branch': 'stable'}
 
   " ## Haskell
   Plug 'neovimhaskell/haskell-vim'
@@ -571,46 +789,26 @@ call plug#begin()
   nnoremap <buffer> <leader>ap :ArduinoChooseProgrammer<CR>
 
   " ## HTTP
-  Plug 'nicwest/vim-http'
+  " Plug 'nicwest/vim-http'
+  Plug 'aquach/vim-http-client'
 
   " ## TMUX
   Plug 'tmux-plugins/vim-tmux-focus-events'
   Plug 'christoomey/vim-tmux-navigator'
   Plug 'tmux-plugins/vim-tmux'
-  " Plug 'roxma/vim-tmux-clipboard' " makes neovim slow at startup 
-  " 1       4349.237   vim-tmux-clipboard
-  " 2       4144.174   vim-wakatime
-  " 3       3574.485   open-browser.vim
 
-  " ## Help
-  " On-demand lazy load
-  Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
+  autocmd BufNewFile,BufRead Dockerfile* set syntax=dockerfile
+  Plug 'kkvh/vim-docker-tools'
+  if !has('nvim')
+    Plug 'skanehira/docker.vim'
+  endif
+  Plug 'skanehira/docker-compose.vim'
 
-  " To register the descriptions when using the on-demand load feature,
-  " use the autocmd hook to call which_key#register(), e.g., register for the Space key:
-  autocmd! User vim-which-key call which_key#register('<Space>', 'g:which_key_map')
-
-  " For host C02D90AYMD6M
-  " Running nvim to generate startup logs... done.
-  " Loading and processing logs... done.
-  " Plugin directory: /Users/amartins/.vim/plugged
-  " =====================================
-  " Top 10 plugins slowing nvim's startup
-  " =====================================
-  " 1	20348.286   vim-wakatime
-  " 2	117.530   nerdtree
-  " let hostname=system('hostname -s')
-  " echo hostname
-  " if hostname != 'C03D90AYMD6M'
-  "   Plug 'wakatime/vim-wakatime' " soo slow when profiling neovim startup
-  " endif
+  " ## Other
+  Plug 'frazrepo/vim-rainbow'
+  let g:rainbow_active = 1
 call plug#end()
-" colorscheme molokai
 
-" The configuration options placed before `colorscheme sonokai`.
-" Available values: `'default'`, `'atlantis'`, `'andromeda'`, `'shusia'`, `'maia'`
-let g:sonokai_style = 'andromeda'
-let g:sonokai_enable_italic = 1
-let g:sonokai_disable_italic_comment = 1
+set background=dark
+colorscheme solarized8_high
 
-colorscheme sonokai

@@ -1,0 +1,12 @@
+[directory]
+truncation_length = 2
+truncate_to_repo = false
+style = "yellow"
+format = "[:$path]($style)[$read_only]($read_only_style) "
+
+
+[custom.tztime]
+#command = 'date +"%a %b %d %Y %l:%M%p (%Z%z)"'
+command = 'gdate --utc +%Y-%m-%dT%H:%M:%S.%6NZ'
+when = "true"
+format = '[\[$symbol($output)\]](green)'
