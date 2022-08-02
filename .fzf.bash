@@ -1,13 +1,21 @@
+#!/usr/bin/env bash
+# Install fzf
+# TODO @alexmsmartins This code is shared between zsh and bash (I have not done fish yetggkk)
+# So lets consider refactoring it (after considering pros and cons).
+if [[ ! -d $HOME/.fzf/.git ]]; then
+  git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+~/.fzf/install
+fi
 # Setup fzf
 # ---------
-if [[ ! "$PATH" == */Users/amartins/.fzf/bin* ]]; then
-  export PATH="${PATH:+${PATH}:}/Users/amartins/.fzf/bin"
+if [[ ! "$PATH" == *$HOME/.fzf/bin* ]]; then
+  PATH="${PATH:+${PATH}:}$HOME/.fzf/bin"
 fi
 
 # Auto-completion
 # ---------------
-[[ $- == *i* ]] && source "/Users/amartins/.fzf/shell/completion.bash" 2> /dev/null
+[[ $- == *i* ]] && source "$HOME/.fzf/shell/completion.bash" 2> /dev/null
 
 # Key bindings
 # ------------
-source "/Users/amartins/.fzf/shell/key-bindings.bash"
+source "$HOME/.fzf/shell/key-bindings.bash"
