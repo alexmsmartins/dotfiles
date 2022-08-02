@@ -113,10 +113,18 @@ eval "$(direnv hook bash)"
 # https://github.com/starship/starship
 eval "$(starship init bash)"
 
-if [ "$(uname)" == "Darwin" ]; then
+# TODO @alex run uname and uname -p only once
+if [[ "$(uname)" = "Darwin" ]]; then
+  if [[ "$(uname -p)" = "i386" ]]; then
+    export PATH="/usr/local/sbin:$PATH"
+  elif [[ "$(uname -p)" = "arm" ]]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+  else
+    echo "Homebrew config for OS $(uname) and architecture $(uname -p) is not configured yet! Pleas fix this"
+  fi
   # Setup brew under Mac OS X platform
-  export PATH="/usr/local/sbin:$PATH"
-elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
+elif [[ "$(expr substr $(uname -s) 1 5)" = "Linux" ]]; then
+  echo "Linux"
   # Setup brew under GNU/Linux platform
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
   . /home/linuxbrew/.linuxbrew/etc/profile.d/z.sh
@@ -126,7 +134,7 @@ fi
 export HOMEBREW_NO_AUTO_UPDATE=1
 
 # Configure 'z' installed by brew
-. $(brew --repository)/../etc/profile.d/z.sh
+$(brew --repository)/../etc/profile.d/z.sh
 
 # Add Nix configuartion
 if [ -e ~/.nix-profile/etc/profile.d/nix.sh ]; then . ~/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
