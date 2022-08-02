@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+/Applications/Wolfram\ Engine.app/Contents/Resources/Wolfram\ Player.app/Contents/MacOS/wolframscript "$@"
