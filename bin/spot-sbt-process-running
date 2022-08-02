@@ -1,0 +1,3 @@
+#! /usr/bin/env nu
+# List all SBT instances running and their working directory
+ps -l | where command =~ sbt-launch.jar | format "{pid}" | each { pwdx $it }
