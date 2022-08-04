@@ -1,4 +1,6 @@
-# Defined in /var/folders/ny/cxvbndcx03sb0yrbx6hd35j8qslqdf/T//fish.49xiCE/nvm.fish @ line 2
 function nvm
-    bass source ~/.nvm/nvm.sh --no-use ';' nvm $argv
+  if test ! -e ~/.nvm/mvn.sh
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+  end
+  bass source ~/.nvm/nvm.sh --no-use ';' nvm $argv
 end

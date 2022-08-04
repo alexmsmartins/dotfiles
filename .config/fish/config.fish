@@ -22,8 +22,18 @@ eval (thefuck --alias | tr '
 ' ';')
 
 # Homebrew
-contains "/usr/local/sbin" $PATH
-or set fish_user_paths "/usr/local/sbin" $PATH
+# TODO @alex distinguish architectures specially because of rosseta
+# i386 mac
+#contains "/usr/local/sbin" $PATH
+#or set fish_user_paths "/usr/local/sbin" $PATH
+# arm mac
+contains "/opt/homebrew/bin" $PATH
+or fish_add_path /opt/homebrew/bin
+contains "/opt/homebrew/sbin" $PATH
+or fish_add_path /opt/homebrew/sbin
+
+
+
 # Brew will stop updating on every 'brew install'
 set -x HOMEBREW_NO_AUTO_UPDATE 1
 
@@ -32,10 +42,6 @@ set -x HOMEBREW_NO_AUTO_UPDATE 1
 # To link Rubies to Homebrew's OpenSSL 1.1 (which is upgraded) add the following to your ~/.config/fish/config.fish:
 set -x RUBY_CONFIGURE_OPTS --with-openssl-dir=(brew --prefix openssl@1.1)
 # Note: this may interfere with building old versions of Ruby (e.g <2.4) that use OpenSSL <1.1.
-
-# Liquibase from brew
-# You should set the environment variable LIQUIBASE_HOME to
-set -x LIQUIBASE_HOME /usr/local/opt/liquibase/libexec
 
 # Cargo (rust)
 contains "$HOME/.cargo/bin" $PATH
@@ -148,7 +154,8 @@ contains "/usr/local/opt/python@3.9/Frameworks/Python.framework/Versions/3.9/bin
 or set fish_user_paths "/usr/local/opt/python@3.9/Frameworks/Python.framework/Versions/3.9/bin" $PATH
 
 # Add Nix configuration
-bass source ~/.nix-profile/etc/profile.d/nix.sh
+# TOOD @alex do I want to reinstall nix on the new macbookpro M1?
+# bass source ~/.nix-profile/etc/profile.d/nix.sh
 
 # fzf configuration
 # Revert the default key binding for search directory from 'Ctrl+Alt+F` to 'Ctrl+F'.
