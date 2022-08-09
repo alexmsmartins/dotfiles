@@ -73,6 +73,10 @@ let g:mkdp_preview_options = {
     \ 'flowchart_diagrams': {}
     \ }
 
+" recognized filetypes
+" these filetypes will have MarkdownPreview... commands
+let g:mkdp_filetypes = ['markdown']
+
 " use a custom markdown style must be absolute path
 let g:mkdp_markdown_css = ''
 
