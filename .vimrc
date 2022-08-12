@@ -535,6 +535,9 @@ call plug#begin()
     source ~/.vim/my-scripts/markdown-preview-mappings.vim
   endif
 
+  " ## Hashicorp related plugins
+  Plug 'hashivim/vim-terraform'
+  Plug 'hashivim/vim-vagrant'
 
   " ## Vimwiki
   " Commented in 20220228 because the <Tab> and <S-Tab> keybindings clash with Coc autocomplete

@@ -4,6 +4,15 @@ set termguicolors
 # When summoning bash from within another SHELL we need to set this variable so that commands that summon subshells work properly
 export SHELL=/usr/local/bin/bash
 
+# 
+
+# infinite command line history size - lets see how big this gets
+export HISTFILESIZE=
+export HISTSIZE=
+
+# Command History is stored immediately after running a new command
+declare PROMPT_COMMAND="history -a;history -r"
+
 # add bash completions
 if type brew &>/dev/null
 then
