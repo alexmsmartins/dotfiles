@@ -1,3 +1,4 @@
+# shellcheck shell=sh
 set -o vi
 set termguicolors
 
