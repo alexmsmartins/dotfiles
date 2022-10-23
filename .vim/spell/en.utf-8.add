@@ -536,3 +536,9 @@ ACL
 DEF
 PROT
 Taskwarrior
+queryable
+avro
+snowpipe
+mDatalake
+deduplication
+prodict

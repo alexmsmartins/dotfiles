@@ -65,9 +65,6 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
-" Used to expand decorations in worksheets
-nmap <Leader>ws <Plug>(coc-metals-expand-decoration)
-
 " Use K to either doHover or show documentation in preview window
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 
@@ -91,8 +88,6 @@ nmap <leader>f  <Plug>(coc-format-selected)
 
 augroup mygroup
   autocmd!
-  " Setup formatexpr specified filetype(s).
-  autocmd FileType scala setl formatexpr=CocAction('formatSelected')
   " Update signature help on jump placeholder
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 augroup end
@@ -137,11 +132,3 @@ nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
       \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
-" Toggle panel with Tree Views
-nnoremap <silent> <space>t :<C-u>CocCommand metals.tvp<CR>
-" Toggle Tree View 'metalsBuild'
-nnoremap <silent> <space>tb :<C-u>CocCommand metals.tvp metalsBuild<CR>
-" Toggle Tree View 'metalsCompile'
-nnoremap <silent> <space>tc :<C-u>CocCommand metals.tvp metalsCompile<CR>
-" Reveal current current class (trait or object) in Tree View 'metalsBuild'
-nnoremap <silent> <space>tf :<C-u>CocCommand metals.revealInTreeView metalsBuild<CR>

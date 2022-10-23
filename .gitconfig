@@ -1,7 +1,7 @@
 [user]
 	name = Alexandre Martins
+#	email = alexmsmartins@gmail.com
 # Lets comment out the email to force me to choose one for each new repository
-# email = alexmsmartins@gmail.com
 [core]
 	excludesfile = ~/.gitignore_global
 	editor = nvim
