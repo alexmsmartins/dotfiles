@@ -153,6 +153,11 @@ launchctl setenv SNOWSQL_PWD $SNOWSQL_PWD
 contains "/usr/local/opt/python@3.9/Frameworks/Python.framework/Versions/3.9/bin" $PATH
 or set fish_user_paths "/usr/local/opt/python@3.9/Frameworks/Python.framework/Versions/3.9/bin" $PATH
 
+# Work related scripts
+# TODO @alex move this into an
+contains "/usr/local/opt/python@3.9/Frameworks/Python.framework/Versions/3.9/bin" $PATH
+or set fish_user_paths "/usr/local/opt/python@3.9/Frameworks/Python.framework/Versions/3.9/bin" $PATH
+
 # Add Nix configuration
 # TOOD @alex do I want to reinstall nix on the new macbookpro M1?
 # bass source ~/.nix-profile/etc/profile.d/nix.sh
@@ -169,3 +174,8 @@ test -e {$HOME}/.iterm2_shell_integration.fish ; and source {$HOME}/.iterm2_shel
 
 # Taskwarrior Server
 export TASKDDATA=/var/taskd
+
+# Local and private configuration
+source $HOME/.config/fish/config_local.fish
+
+

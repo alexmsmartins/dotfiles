@@ -38,7 +38,7 @@ nmap <leader><leader>s :action KJumpAction<cr>
 nmap <leader><leader>w :action KJumpAction.Word0<cr>
 nmap <leader><leader>l :action KJumpAction.Line<cr>
 
-" # Sneak plugin
+" # Sneak plugin: makes two character sS movements work
 set sneak
 
 " # Easymotion plugin
@@ -47,6 +47,9 @@ set easymotion
 " # Which key plugin
 set which-key
 set notimeout
+
+" # Quickscope plugin: makes fFtT movements and highlights work
+set quickscope
 
 " allows you to press jk or kj to exit from insert mode
 inoremap jk <Esc>

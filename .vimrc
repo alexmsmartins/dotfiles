@@ -58,8 +58,9 @@ set scrolloff=5
 " allw the cursor to go over the line limit in block mode
 set virtualedit=block
 
-" Turn on line wrapping
-set wrap
+" Turn off line wrapping
+" having this option on did not help view or navigate logs better
+set nowrap
 set linebreak
 set list  " list disables linebreak
 set showbreak=↪
@@ -606,11 +607,85 @@ call plug#begin()
   "
 
   " ## Scala
-  
-  " Configuration for vim-scala
-  Plug 'derekwyatt/vim-scala'
+  " disable coc-nvim for scala type 
+  " From https://github.com/neoclide/coc.nvim/issues/349
+  function! s:disable_coc_for_type()
+          let l:filesuffix_blacklist = ['scala', 'sbt']
+  	if index(l:filesuffix_blacklist, expand('%:e')) != -1
+  		let b:coc_enabled = 0
+  	endif
+  endfunction
+  autocmd BufRead,BufNewFile * call s:disable_coc_for_type()
 
+  " Configuration for vim-scala or nvim-metals
+  if has('nvim')
+    Plug 'hrsh7th/nvim-cmp'
+    " depends on
+      Plug 'hrsh7th/cmp-nvim-lsp'
+      Plug 'hrsh7th/cmp-vsnip'
+      Plug 'hrsh7th/vim-vsnip'
+    Plug 'scalameta/nvim-metals'
+    " depends on
+      Plug 'nvim-lua/plenary.nvim'
+      Plug 'mfussenegger/nvim-dap'
+
+      " TODO @alex insert lua config here from 
+      "
+      nnoremap <silent> gd          <cmd>lua vim.lsp.buf.definition()<CR>
+      nnoremap <silent> K           <cmd>lua vim.lsp.buf.hover()<CR>
+      nnoremap <silent> gi          <cmd>lua vim.lsp.buf.implementation()<CR>
+      nnoremap <silent> gr          <cmd>lua vim.lsp.buf.references()<CR>
+      nnoremap <silent> gds         <cmd>lua vim.lsp.buf.document_symbol()<CR>
+      nnoremap <silent> gws         <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
+      nnoremap <silent> <leader>rn  <cmd>lua vim.lsp.buf.rename()<CR>
+      nnoremap <silent> <leader>f   <cmd>lua vim.lsp.buf.formatting()<CR>
+      nnoremap <silent> <leader>ca  <cmd>lua vim.lsp.buf.code_action()<CR>
+      nnoremap <silent> <leader>ws  <cmd>lua require'metals'.worksheet_hover()<CR>
+      nnoremap <silent> <leader>a   <cmd>lua require'metals'.open_all_diagnostics()<CR>
+      nnoremap <silent> <space>d    <cmd>lua vim.lsp.diagnostic.set_loclist()<CR>
+      nnoremap <silent> [c          <cmd>lua vim.lsp.diagnostic.goto_prev { wrap = false }<CR>
+      nnoremap <silent> ]c          <cmd>lua vim.lsp.diagnostic.goto_next { wrap = false }<CR>
+      
+      "-----------------------------------------------------------------------------
+      " nvim-lsp Settings
+      "-----------------------------------------------------------------------------
+      " If you just use the latest stable version, then setting this isn't necessary
+      let g:metals_server_version = '0.9.8+10-334e402e-SNAPSHOT'
+      
+      "-----------------------------------------------------------------------------
+      " nvim-metals setup with a few additions such as nvim-completions
+      "-----------------------------------------------------------------------------
+
+
+      " TODO @alex uncomment or move into a lua config file
+      " source /Users/amartins/.vimrc.metals.lua
+      
+      "-----------------------------------------------------------------------------
+      " completion-nvim settings
+      "-----------------------------------------------------------------------------
+      " Use <Tab> and <S-Tab> to navigate through popup menu
+      inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+      inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+      
+      "-----------------------------------------------------------------------------
+      " Helpful general settings
+      "-----------------------------------------------------------------------------
+      " Needed for compltions _only_ if you aren't using completion-nvim
+      autocmd FileType scala setlocal omnifunc=v:lua.vim.lsp.omnifunc
+      
+      " Set completeopt to have a better completion experience
+      set completeopt=menuone,noinsert,noselect
+      
+      " Avoid showing message extra message when using completion
+      set shortmess+=c
+
+  else
+    Plug 'derekwyatt/vim-scala'
+  endif
+  
   au BufRead,BufNewFile *.sbt set filetype=scala
+  
+
 
   " Use release branch (recommend)
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -625,7 +700,6 @@ call plug#begin()
         \'coc-java-debug',
         \'coc-json',
         \'coc-markdownlint',
-        \'coc-metals',
         \'coc-prettier',
         \'coc-pyright',
         \'coc-rls',
@@ -642,7 +716,7 @@ call plug#begin()
         \]
   " coc.nvim lsp mappings
   if filereadable(expand('~/.vim/my-scripts/coc-mappings.vim'))
-    source ~/.vim/my-scripts/coc-mappings.vim"
+    source ~/.vim/my-scripts/coc-mappings.vim
   endif
   " USE CcmdheightocInstall to install Language servers
   let g:LanguageClient_serverCommands = {
