@@ -174,3 +174,8 @@ test -e {$HOME}/.iterm2_shell_integration.fish ; and source {$HOME}/.iterm2_shel
 
 # Taskwarrior Server
 export TASKDDATA=/var/taskd
+
+# Local and private configuration
+source $HOME/.config/fish/config_local.fish
+
+
