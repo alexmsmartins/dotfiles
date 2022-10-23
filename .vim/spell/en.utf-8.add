@@ -536,6 +536,7 @@ ACL
 DEF
 PROT
 Taskwarrior
+<<<<<<< HEAD
 queryable
 avro
 snowpipe
