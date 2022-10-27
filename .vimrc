@@ -368,6 +368,12 @@ call plug#begin()
   vnoremap <silent><F3> :MaximizerToggle<CR>gv
   inoremap <silent><F3> <C-o>:MaximizerToggle<CR>
 
+  " Vim Terminal Help does the following:
+  "  - setup a keymap ALT+=
+  "  - use ALT+SHIFT+h/j/k/l to move around between windows
+  "  - it provides a drop command in the internal terminal to tell outside vim to open a file
+  Plug 'skywind3000/vim-terminal-help'
+
   " View and search LSP symbols, tags in Vim/NeoVim.
   Plug 'liuchengxu/vista.vim'
 

@@ -5,6 +5,7 @@ bower
 eslint
 gulp
 j2m
+neovim
 nvm
 prettier
 pulp
