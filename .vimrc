@@ -114,6 +114,11 @@ augroup autosave
   au FocusLost * :wa
 augroup END
 
+" move between buffers
+" TODO @alex try another shortcut
+map <C-Tab> :bnext<cr>
+map <C-S-Tab> :bprevious<cr>
+
 " Spellchecking for markdown files
 augroup markdown_spelling
   au FileType markdown setl spell spelllang=en_gb
@@ -377,13 +382,18 @@ call plug#begin()
   " View and search LSP symbols, tags in Vim/NeoVim.
   Plug 'liuchengxu/vista.vim'
 
+  " This plugin provides several pairs of bracket maps.
+  " - ]q is :cnext. [q is :cprevious.
+  " - ]a is :next. [b is :bprevious. .
+  " - [<Space> and ]<Space> add newlines before and after the cursor line.
+  " See the documentation in :h unimpaired for the full set of 20 mappings and mnemonics. All of them take a count
   Plug 'tpope/vim-unimpaired'
-
+  " The . command works with all operator mappings in tpope/unimpaired, and will work with the linewise mappings as well if you install repeat.vim.
   Plug 'tpope/vim-repeat'
 
   " ideavim has a similar extension
   Plug 'tpope/vim-surround'
-
+  
   Plug 'AndrewRadev/linediff.vim'
 
   Plug 'jremmen/vim-ripgrep'
@@ -460,6 +470,12 @@ call plug#begin()
   nmap <Leader>m <Plug>ToggleMarkbar
   Plug 'kshenoy/vim-signature'
 
+  " ## Help
+  Plug 'sudormrfbin/cheatsheet.nvim'
+  
+  Plug 'nvim-lua/popup.nvim'
+  Plug 'nvim-lua/plenary.nvim'
+  Plug 'nvim-telescope/telescope.nvim'
   " ## Syntax highlighting for several launguagents
   Plug 'sheerun/vim-polyglot'
 
