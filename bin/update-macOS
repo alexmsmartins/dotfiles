@@ -16,8 +16,8 @@ brew_update(){
     brew upgrade
     brew upgrade --cask --greedy
     brew autoremove
+    # remove downloads older than 6 months
     brew cleanup --prune 180
-    brew doctor
   else
     echo "The 'brew' command is not installed on this system."
     echo "Not updating Homebrew packages."
@@ -97,7 +97,7 @@ main(){
   print_heading "Tmux - Tmux Plugin Manager (aka TMP) - Update"
   tmux_update
 
-  print_heading "All updates terminted successfully"
+  print_heading "All updates terminated successfully"
 }
 
 main "$@"

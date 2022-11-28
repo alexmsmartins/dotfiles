@@ -7,10 +7,12 @@ nnoremap \r :action IdeaVim.ReloadVimRc.reload<CR>
 """ Search
 set ignorecase
 set smartcase
-
+set incsearch " Highlight search results when typing
+set hlsearch " Highlight search results
 
 """ The Leader Key
-let mapleader="
+let mapleader = ";" " giving ';' as leader a go.
+let maplocalleader = "\<Space>" " i never use localLeader but maybe it is time to start trying it.
 
 """" Distraction Free Mode
 nnoremap <c-z> :action ToggleDistractionFreeMode<CR>
@@ -19,14 +21,14 @@ nnoremap <c-z> :action ToggleDistractionFreeMode<CR>
 nnoremap <c-t> :action ActivateTerminalToolWindow<CR>
 nnoremap <leader>t :action Terminal.OpenInTerminal<CR>
 
+""" Nerdtree
+set nerdtree
 
 set surround "similar to tpope/surround
 set multiple-cursors
 set history=1000
 set visualbell
 set noerrorbells
-set incsearch " Highlight search results when typing
-set hlsearch " Highlight search results
 set scrolloff=3 " Display at least 3 lines around you cursor
 
 " line numbering setup
@@ -41,12 +43,27 @@ nmap <leader><leader>l :action KJumpAction.Line<cr>
 " # Sneak plugin: makes two character sS movements work
 set sneak
 
+
+set multicursor
+
+map q <Plug>(multicursor-ms/)
+map z <Plug>(multicursor-mcv)
+map Z <Plug>(multicursor-mcr)
+
 " # Easymotion plugin
 set easymotion
+set notimeout
 
 " # Which key plugin
 set which-key
 set notimeout
+
+let g:WhichKeyDesc_display = "<leader>d Display options"
+
+let g:WhichKeyDesc_zen_mode = "<leader>dz Toggle Zen mode"
+let g:WhichKeyDesc_df_mode = "<leader>dd Toggle Distraction-Free mode"
+let g:WhichKeyDesc_fullscreen = "<leader>df Toggle full screen"
+
 
 " # Quickscope plugin: makes fFtT movements and highlights work
 set quickscope
@@ -144,3 +161,7 @@ nnoremap [h :action VcsShowPrevChangeMarker<cr>
 " Misc
 nnoremap <leader>vr :source ~/.ideavimrc<CR>
 noremap <leader>vr :source ~/.ideavimrc<CR>
+
+
+" TODO @alex go through the following keyboard mappings
+" https://www.cyberwizard.io/posts/the-ultimate-ideavim-setup/
