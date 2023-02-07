@@ -64,10 +64,6 @@ let g:WhichKeyDesc_zen_mode = "<leader>dz Toggle Zen mode"
 let g:WhichKeyDesc_df_mode = "<leader>dd Toggle Distraction-Free mode"
 let g:WhichKeyDesc_fullscreen = "<leader>df Toggle full screen"
 
-
-" # Quickscope plugin: makes fFtT movements and highlights work
-set quickscope
-
 " allows you to press jk or kj to exit from insert mode
 inoremap jk <Esc>
 inoremap kj <Esc>

@@ -316,6 +316,15 @@ call plug#begin()
     map <Leader>h <Plug>(easymotion-linebackward)
   endif
 
+  " movement
+  Plug 'mg979/vim-visual-multi', {'branch': 'master'}
+  " Trigger a highlight in the appropriate direction when pressing these keys:
+  let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
+
+  " An always-on highlight for a unique character in every word on a line to help you use f, F and family.
+  Plug 'unblevable/quick-scope'       " Plug
+
+
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim'
   map ; :Files<CR>
@@ -365,8 +374,6 @@ call plug#begin()
   Plug 'AndrewRadev/linediff.vim'
 
   Plug 'rickhowe/diffchar.vim'
-
-  Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 
   Plug 'szw/vim-maximizer'
   nnoremap <silent><F3> :MaximizerToggle<CR>
@@ -470,6 +477,7 @@ call plug#begin()
   nmap <Leader>m <Plug>ToggleMarkbar
   Plug 'kshenoy/vim-signature'
 
+
   " ## Help
   Plug 'sudormrfbin/cheatsheet.nvim'
   
@@ -557,6 +565,8 @@ call plug#begin()
   if filereadable(expand('~/.vim/my-scripts/markdown-preview-mappings.vim'))
     source ~/.vim/my-scripts/markdown-preview-mappings.vim
   endif
+
+  Plug 'michaelb/sniprun', {'do': 'bash install.sh'}
 
   " ## Hashicorp related plugins
   Plug 'hashivim/vim-terraform'
