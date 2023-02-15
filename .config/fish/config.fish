@@ -179,3 +179,5 @@ export TASKDDATA=/var/taskd
 source $HOME/.config/fish/config_local.fish
 
 
+
+set -q GHCUP_INSTALL_BASE_PREFIX[1]; or set GHCUP_INSTALL_BASE_PREFIX $HOME ; set -gx PATH $HOME/.cabal/bin /Users/amartins/.ghcup/bin $PATH # ghcup-env
