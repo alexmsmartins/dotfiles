@@ -838,21 +838,11 @@ call plug#begin()
   let g:haskell_indent_disable = 0 " using hindent instead
   Plug 'alx741/vim-hindent'
   Plug 'mpickering/hlint-refactor-vim'
-  Plug 'parsonsmatt/intero-neovim'
-  " Intero
-  augroup interoMaps
-    au!
-    " Background process and window management
-    au FileType haskell nnoremap <silent> <leader>is :InteroStart<CR>
-    au FileType haskell nnoremap <silent> <leader>ik :InteroKill<CR>
-  
-    " Open intero/GHCi split horizontally
-    au FileType haskell nnoremap <silent> <leader>ioh :InteroOpen<CR>
-    " Open intero/GHCi split vertically
-    au FileType haskell nnoremap <silent> <leader>iov :InteroOpen<CR><C-W>H
-    " Automatically reload on save
-    au BufWritePost *.hs InteroReload
-  augroup END
+
+  Plug 'mrcjkb/haskell-tools.nvim'
+  " depends on
+    Plug 'nvim-lua/plenary.nvim'
+
 
   " ## Arduino
   Plug 'stevearc/vim-arduino'
