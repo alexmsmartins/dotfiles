@@ -247,7 +247,9 @@ call plug#begin()
   Plug 'dense-analysis/ale'
   " Show 5 lines of errors (default: 10)
   let g:ale_list_window_size = 5
-  let g:ale_linters = {'haskell': ['hlint', 'ghc',], 'scala': ['scalafmt']}
+  " 2023-02-24 TODO @alex chekcing if HAskell works better withou ale
+  " let g:ale_linters = {'haskell': ['hlint', 'ghc',], 'scala': ['scalafmt']}
+  let g:ale_linters = {'scala': ['scalafmt']}
   let g:ale_haskell_ghc_options = '-fno-code -v0 -isrc'
   let g:ale_set_balloons = 1
 
@@ -354,20 +356,6 @@ call plug#begin()
   Plug 'kristijanhusak/vim-dadbod-ui'
 
   " ## Tools
-
-  " I can now use NeoVim, VimR, etc as the editor for textfields in the browser.
-  Plug 'raghur/vim-ghost', {'do': ':GhostInstall'}
-
-  function! s:SetupGhostBuffer()
-      if match(expand("%:a"), '\v/ghost-(github|reddit)\.com-')
-          set ft=markdown
-      endif
-  endfunction
-
-  augroup vim-ghost
-      au!
-      au User vim-ghost#connected call s:SetupGhostBuffer()
-  augroup END
 
   Plug 'trapd00r/vidir'
 
@@ -480,10 +468,11 @@ call plug#begin()
 
   " ## Help
   Plug 'sudormrfbin/cheatsheet.nvim'
-  
-  Plug 'nvim-lua/popup.nvim'
-  Plug 'nvim-lua/plenary.nvim'
-  Plug 'nvim-telescope/telescope.nvim'
+    " depends on
+    Plug 'nvim-lua/popup.nvim'
+    Plug 'nvim-lua/plenary.nvim'
+    Plug 'nvim-telescope/telescope.nvim'
+
   " ## Syntax highlighting for several launguagents
   Plug 'sheerun/vim-polyglot'
 
@@ -565,8 +554,6 @@ call plug#begin()
   if filereadable(expand('~/.vim/my-scripts/markdown-preview-mappings.vim'))
     source ~/.vim/my-scripts/markdown-preview-mappings.vim
   endif
-
-  Plug 'michaelb/sniprun', {'do': 'bash install.sh'}
 
   " ## Hashicorp related plugins
   Plug 'hashivim/vim-terraform'
@@ -836,12 +823,15 @@ call plug#begin()
   let g:haskell_enable_static_pointers = 1  " to enable highlighting of `static`
   let g:haskell_backpack = 1                " to enable highlighting of backpack keywords
   let g:haskell_indent_disable = 0 " using hindent instead
+  Plug 'neovim/nvim-lspconfig'
+
   Plug 'alx741/vim-hindent'
   Plug 'mpickering/hlint-refactor-vim'
 
   Plug 'mrcjkb/haskell-tools.nvim'
   " depends on
     Plug 'nvim-lua/plenary.nvim'
+    Plug 'nvim-telescope/telescope.nvim'
 
 
   " ## Arduino
@@ -854,7 +844,6 @@ call plug#begin()
   nnoremap <buffer> <leader>ap :ArduinoChooseProgrammer<CR>
 
   " ## HTTP
-  " Plug 'nicwest/vim-http'
   Plug 'aquach/vim-http-client'
 
   " ## TMUX
