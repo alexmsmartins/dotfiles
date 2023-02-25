@@ -1,5 +1,6 @@
 [user]
 	name = Alexandre Martins
+	email = alexmsmartins@gmail.com
 #	email = alexmsmartins@gmail.com
 # Lets comment out the email to force me to choose one for each new repository
 [core]
