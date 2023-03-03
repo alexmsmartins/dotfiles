@@ -250,7 +250,7 @@ call plug#begin()
   " 2023-02-24 TODO @alex chekcing if HAskell works better withou ale
   " let g:ale_linters = {'haskell': ['hlint', 'ghc',], 'scala': ['scalafmt']}
   let g:ale_linters = {'scala': ['scalafmt']}
-  let g:ale_haskell_ghc_options = '-fno-code -v0 -isrc'
+  " let g:ale_haskell_ghc_options = '-fno-code -v0 -isrc'
   let g:ale_set_balloons = 1
 
   " This was the plugin that took more startup time
@@ -546,14 +546,15 @@ call plug#begin()
 
   Plug 'ellisonleao/glow.nvim', {'branch': 'main'}
 
-" If you don't have nodejs and yarn
-" use pre build, add 'vim-plug' to the filetype list so vim-plug can update this plugin
-" see: https://github.com/iamcco/markdown-preview.nvim/issues/50
+  " If you don't have nodejs and yarn
+  " use pre build, add 'vim-plug' to the filetype list so vim-plug can update this plugin
+  " see: https://github.com/iamcco/markdown-preview.nvim/issues/50
   Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': 'markdown' }
   " Markdown preview mappings
   if filereadable(expand('~/.vim/my-scripts/markdown-preview-mappings.vim'))
     source ~/.vim/my-scripts/markdown-preview-mappings.vim
   endif
+
 
   " ## Hashicorp related plugins
   Plug 'hashivim/vim-terraform'
@@ -754,7 +755,17 @@ call plug#begin()
         \ coc#refresh()
 
   " ## Snippets
+
+  " When we are editing Markdown files, it is nice to have some code snippets to improve efficiency. Fortunately, UltiSnips combined with vim-snippets3 provides a lot of useful snippets for Markdown files.
+  " The two plugins can be install via vim-plug:
+  Plug 'SirVer/ultisnips'
   Plug 'honza/vim-snippets'
+
+  " We need to set up UltiSnips to use it. The following is an example setting:
+  " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+  let g:UltiSnipsExpandTrigger="<tab>"  " use <Tab> to trigger autocompletion
+  let g:UltiSnipsJumpForwardTrigger="<c-n>"
+  let g:UltiSnipsJumpBackwardTrigger="<c-p>"
 
   " ## HOCON
   Plug 'GEverding/vim-hocon'
@@ -814,24 +825,24 @@ call plug#begin()
   Plug 'jalvesaq/Nvim-R', {'branch': 'stable'}
 
   " ## Haskell
-  Plug 'neovimhaskell/haskell-vim'
-  let g:haskell_enable_quantification = 1   " to enable highlighting of `forall`
-  let g:haskell_enable_recursivedo = 1      " to enable highlighting of `mdo` and `rec`
-  let g:haskell_enable_arrowsyntax = 1      " to enable highlighting of `proc`
-  let g:haskell_enable_pattern_synonyms = 1 " to enable highlighting of `pattern`
-  let g:haskell_enable_typeroles = 1        " to enable highlighting of type roles
-  let g:haskell_enable_static_pointers = 1  " to enable highlighting of `static`
-  let g:haskell_backpack = 1                " to enable highlighting of backpack keywords
-  let g:haskell_indent_disable = 0 " using hindent instead
-  Plug 'neovim/nvim-lspconfig'
+  " Plug 'neovimhaskell/haskell-vim'
+  " let g:haskell_enable_quantification = 1   " to enable highlighting of `forall`
+  " let g:haskell_enable_recursivedo = 1      " to enable highlighting of `mdo` and `rec`
+  " let g:haskell_enable_arrowsyntax = 1      " to enable highlighting of `proc`
+  " let g:haskell_enable_pattern_synonyms = 1 " to enable highlighting of `pattern`
+  " let g:haskell_enable_typeroles = 1        " to enable highlighting of type roles
+  " let g:haskell_enable_static_pointers = 1  " to enable highlighting of `static`
+  " let g:haskell_backpack = 1                " to enable highlighting of backpack keywords
+  " let g:haskell_indent_disable = 0 " using hindent instead
+  " Plug 'neovim/nvim-lspconfig'
 
-  Plug 'alx741/vim-hindent'
-  Plug 'mpickering/hlint-refactor-vim'
+  " Plug 'alx741/vim-hindent'
+  " Plug 'mpickering/hlint-refactor-vim'
 
   Plug 'mrcjkb/haskell-tools.nvim'
-  " depends on
-    Plug 'nvim-lua/plenary.nvim'
-    Plug 'nvim-telescope/telescope.nvim'
+   " depends on
+     Plug 'nvim-lua/plenary.nvim'
+     Plug 'nvim-telescope/telescope.nvim' " optional
 
 
   " ## Arduino
