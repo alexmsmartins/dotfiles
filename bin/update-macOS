@@ -42,11 +42,11 @@ fish_update(){
     echo "Not updating fisher packages."
   fi
 }
-neovim_update(){
-  if hash nvim &>/dev/null; then
-    nvim --headless +PlugUpgrade +qall
+vim_update(){
+  if hash vim &>/dev/null; then
+    vim --headless +PlugUpgrade +qall
     echo "\n"
-    nvim --headless +PlugUpdate +qall
+    vim --headless +PlugUpdate +qall
     echo "\n"
     # TODO @alex figure out if there  is a better place/way to install taskwiki python dependencies (maybe done by vim-plug)
     # both python packages installed below are used by taskwiki
@@ -54,8 +54,8 @@ neovim_update(){
     # FIXME The use of a `pip3` might break in other OS's. Maybe we should try to handle this somehow and even default to pip?
     pip3 install --upgrade packaging
   else
-    echo "The 'nvim' command is not installed on this system."
-    echo "Not updating Vim Plug packages for Neovim."
+    echo "The 'vim' command is not installed on this system."
+    echo "Not updating Vim Plug packages for Vim."
   fi
 }
 tmux_update(){
@@ -92,8 +92,8 @@ main(){
   print_heading "Fish Shell - Fisher Plugin Manager - Update"
   fish_update
 
-  print_heading "NeoVim - Vim Plug - Update"
-  neovim_update
+  print_heading "Vim - Vim Plug - Update"
+  vim_update
 
   print_heading "Tmux - Tmux Plugin Manager (aka TMP) - Update"
   tmux_update
