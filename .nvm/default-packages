@@ -13,3 +13,4 @@ purescript
 spago
 typescript
 yarn
+snowsql-formatter-cli

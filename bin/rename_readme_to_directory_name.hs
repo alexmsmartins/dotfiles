@@ -11,8 +11,8 @@ import System.Directory (doesDirectoryExist, doesFileExist, getDirectoryContents
 import System.FilePath (takeBaseName, (</>))
 
 -- Recursively find all README.md files in the given directory and rename them
-renameReadmeFiles :: FilePath -> IO ()
-renameReadmeFiles dir = do
+renameReadmeFiles :: FilePath -> String -> IO ()
+renameReadmeFiles dir originalFileName = do
   -- Get a list of all entries in the directory (excluding . and ..)
   subdirs <- listDirectory dir
   -- For each subdirectory, check if it contains a README.md file
@@ -22,7 +22,7 @@ renameReadmeFiles dir = do
       renameReadmeFileInDir :: FilePath -> FilePath -> IO ()
       renameReadmeFileInDir parentDir subdir = do
         let subdirPath = parentDir </> subdir
-            readmePath = subdirPath </> "README.md"
+            readmePath = subdirPath </> originalFileName
         -- Check if the subdirPath is a directory
         isDir <- doesDirectoryExist subdirPath
         -- Check if the readmePath exists
@@ -34,23 +34,24 @@ renameReadmeFiles dir = do
             let newFilePath = subdirPath </> takeBaseName subdir <.> ".md"
             renameFile readmePath newFilePath
           -- for each subdirectory, enter it and recursively run the function again
-          renameReadmeFiles subdirPath
+          renameReadmeFiles subdirPath originalFileName
 
-runMain :: String -> IO ()
-runMain [] = return ()
-runMain dirPath = do
-  putStrLn  dirPath
-  renameReadmeFiles dirPath
+runMain :: String -> String -> IO ()
+runMain [] _ = return ()
+runMain _ [] = return ()
+runMain dirPath originalFileName = do
+  putStrLn $ dirPath ++ "/" ++ originalFileName
+  renameReadmeFiles dirPath originalFileName
 
 main :: IO ()
 main = do
   args <- getArgs
   putStrLn $ "We got " ++ show (length args) ++ " parameters."
   case args of
-    [path] -> do
+    [path, originalFileName] -> do
       isDir <- doesDirectoryExist path
       when isDir $ do
-        runMain path
+        runMain path originalFileName
     _ -> do
       putStrLn "The number of parameters is wrong."
 
