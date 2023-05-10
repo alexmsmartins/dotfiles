@@ -758,14 +758,14 @@ call plug#begin()
 
   " When we are editing Markdown files, it is nice to have some code snippets to improve efficiency. Fortunately, UltiSnips combined with vim-snippets3 provides a lot of useful snippets for Markdown files.
   " The two plugins can be install via vim-plug:
-  Plug 'SirVer/ultisnips'
-  Plug 'honza/vim-snippets'
+  " Plug 'SirVer/ultisnips'
+  " Plug 'honza/vim-snippets'
 
   " We need to set up UltiSnips to use it. The following is an example setting:
   " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-  let g:UltiSnipsExpandTrigger="<tab>"  " use <Tab> to trigger autocompletion
-  let g:UltiSnipsJumpForwardTrigger="<c-n>"
-  let g:UltiSnipsJumpBackwardTrigger="<c-p>"
+  "let g:UltiSnipsExpandTrigger="<tab>"  " use <Tab> to trigger autocompletion
+  " let g:UltiSnipsJumpForwardTrigger="<c-n>"
+  " let g:UltiSnipsJumpBackwardTrigger="<c-p>"
 
   " ## HOCON
   Plug 'GEverding/vim-hocon'
