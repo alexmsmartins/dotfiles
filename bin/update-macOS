@@ -44,9 +44,9 @@ fish_update(){
 }
 vim_update(){
   if hash vim &>/dev/null; then
-    vim --headless +PlugUpgrade +qall
+    vim +PlugUpgrade +qall
     echo "\n"
-    vim --headless +PlugUpdate +qall
+    vim +PlugUpdate +qall
     echo "\n"
     # TODO @alex figure out if there  is a better place/way to install taskwiki python dependencies (maybe done by vim-plug)
     # both python packages installed below are used by taskwiki
