@@ -1,7 +1,7 @@
 # I am barely using zsh so, for now, this is mainly a file for automatic installers to drop their config so that, when I drop into ZSH, my tools still work.
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/Users/amartins/.sdkman"
-[[ -s "/Users/amartins/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/amartins/.sdkman/bin/sdkman-init.sh"
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
 # Homebrew autocompletions
 if type brew &>/dev/null
@@ -49,6 +49,9 @@ eval $(thefuck --alias)
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
 # Added by Toolbox App
-export PATH="$PATH:/Users/amartins/Library/Application Support/JetBrains/Toolbox/scripts"
+export PATH="$PATH:$HOME/Library/Application Support/JetBrains/Toolbox/scripts"
 # added by Snowflake SnowSQL installer v1.2
 export PATH=/Applications/SnowSQL.app/Contents/MacOS:$PATH
+
+# added by travis gem
+[ ! -s $HOME/.travis/travis.sh ] || source $HOME/.travis/travis.sh

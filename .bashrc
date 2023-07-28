@@ -128,7 +128,7 @@ if [[ "$(uname)" = "Darwin" ]]; then
   if [[ "$(uname -p)" = "i386" ]]; then
     export PATH="/usr/local/sbin:$PATH"
   elif [[ "$(uname -p)" = "arm" ]]; then
-    eval "$(/opt/homebrew/bin/brew shellenv)"
+    eval "$($HOMEBREW_PREFIX/bin/brew shellenv)"
   else
     echo "Homebrew config for OS $(uname) and architecture $(uname -p) is not configured yet! Pleas fix this"
   fi
@@ -149,9 +149,6 @@ $(brew --repository)/../etc/profile.d/z.sh
 # Add Nix configuartion
 if [ -e ~/.nix-profile/etc/profile.d/nix.sh ]; then . ~/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
 
-# Oh My BASH
-source "$HOME/.bashrc.oh-my-bash"
-
 # Taskwarrior server
 export TASKDDATA=/var/taskd
 
@@ -159,3 +156,6 @@ export TASKDDATA=/var/taskd
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+# added by travis gem
+[ ! -s /Users/amartins/.travis/travis.sh ] || source /Users/amartins/.travis/travis.sh
