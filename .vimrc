@@ -568,12 +568,14 @@ call plug#begin()
                         \ 'syntax': 'markdown', 'ext': '.md'}]
 
   " ## Tasks and project management
-  Plug 'tools-life/taskwiki' , { 'do': 'pip3 install tasklib'} " , { 'do': 'pip3 install pynvim' }
+  " 20230710 Stopped using taskwarrior and taskwiki.
+  " 20230710 I should remove these plugins if the need to restore them does not arise.
+  " Plug 'tools-life/taskwiki' , { 'do': 'pip3 install tasklib'} " , { 'do': 'pip3 install pynvim' }
   " color support in charts.
-  Plug 'powerman/vim-plugin-AnsiEsc'
+  " Plug 'powerman/vim-plugin-AnsiEsc'
   " provides taskwiki file navigation.
-  Plug 'majutsushi/tagbar'
-  Plug 'farseer90718/vim-taskwarrior'
+  " Plug 'majutsushi/tagbar'
+  " Plug 'farseer90718/vim-taskwarrior'
 
   " ## PlantUml
   Plug 'aklt/plantuml-syntax'
@@ -705,7 +707,7 @@ call plug#begin()
   
   au BufRead,BufNewFile *.sbt set filetype=scala
   
-
+  Plug 'github/copilot.vim'
 
   " Use release branch (recommend)
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -875,5 +877,6 @@ call plug#begin()
 call plug#end()
 
 set background=dark
-colorscheme solarized8_high
+colorscheme industry
+
 
