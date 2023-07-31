@@ -20,7 +20,7 @@ brew_update(){
     # remove downloads older than 6 months
     brew cleanup --prune 180
   else
-    echo "The 'brew' command is not installed on this system."
+    echo "Homebrew does not seem to be installed on this system."
     echo "Not updating Homebrew packages."
   fi
 }
@@ -38,26 +38,36 @@ fish_update(){
   if hash fish &>/dev/null; then
     fish --command="fisher update"
   else
-    echo "The 'fish' command is not installed on this system."
+    echo "Fish Shell does not seem to be installed on this system."
     echo "Not updating fisher packages."
   fi
 }
 vim_update(){
   if hash vim &>/dev/null; then
     vim +PlugUpgrade +qall
-    echo "\n"
+    printf "\n"
     vim +PlugUpdate +qall
-    echo "\n"
+    printf "\n"
     # TODO @alex figure out if there  is a better place/way to install taskwiki python dependencies (maybe done by vim-plug)
     # both python packages installed below are used by taskwiki
     pip3 install --upgrade pynvim
     # FIXME The use of a `pip3` might break in other OS's. Maybe we should try to handle this somehow and even default to pip?
     pip3 install --upgrade packaging
   else
-    echo "The 'vim' command is not installed on this system."
+    echo "Vim does not seem to be installed on this system."
     echo "Not updating Vim Plug packages for Vim."
   fi
 }
+
+neovim_update(){
+  if hash nvim &>/dev/null; then
+    nvim --headless "+Lazy! sync" +qa
+  else
+    echo "Neovim does not seem to be installed on this system."
+    echo "Not updating lazy.nvim packages for Neovim."
+  fi
+}
+
 tmux_update(){
   if hash tmux &>/dev/null; then
     if [ -f ~/.tmux/plugins/tpm/bin/update_plugins ]; then 
@@ -67,7 +77,7 @@ tmux_update(){
       echo "Not updating Tmux plugins with TPM."
     fi
   else
-    echo "The 'tmux' command is not installed on this system."
+    echo "Tmux is not installed on this system."
     echo "Not updating Tmux plugins."
   fi
 }
@@ -94,6 +104,9 @@ main(){
 
   print_heading "Vim - Vim Plug - Update"
   vim_update
+
+  print_heading "Neovim - Lazy Vim - Update"
+  neovim_update
 
   print_heading "Tmux - Tmux Plugin Manager (aka TMP) - Update"
   tmux_update
