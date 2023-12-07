@@ -133,18 +133,20 @@ if [[ "$(uname)" = "Darwin" ]]; then
     echo "Homebrew config for OS $(uname) and architecture $(uname -p) is not configured yet! Pleas fix this"
   fi
   # Setup brew under Mac OS X platform
+  . /opt/homebrew/etc/profile.d/z.sh
 elif [[ "$(expr substr $(uname -s) 1 5)" = "Linux" ]]; then
   echo "Linux"
   # Setup brew under GNU/Linux platform
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-  . /home/linuxbrew/.linuxbrew/etc/profile.d/z.sh
 fi
 
 # Brew will stop updating on every 'brew install'
 export HOMEBREW_NO_AUTO_UPDATE=1
 
 # Configure 'z' installed by brew
-$(brew --repository)/../etc/profile.d/z.sh
+if [[ -z $(brew --repository)/etc/profile.d/z.sh ]] ; then
+  . $(brew --repository)/etc/profile.d/z.sh
+fi
 
 # Add Nix configuartion
 if [ -e ~/.nix-profile/etc/profile.d/nix.sh ]; then . ~/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
@@ -159,3 +161,6 @@ export SDKMAN_DIR="$HOME/.sdkman"
 
 # added by travis gem
 [ ! -s /Users/amartins/.travis/travis.sh ] || source /Users/amartins/.travis/travis.sh
+
+# added by Snowflake SnowSQL installer
+export PATH=/Users/amartins/bin:$PATH

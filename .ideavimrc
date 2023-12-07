@@ -42,6 +42,10 @@ nmap <leader><leader>l :action KJumpAction.Line<cr>
 
 " # Sneak plugin: makes two character sS movements work
 set sneak
+" # Quickscope plugin: Allows for easy forward/backward navigation on a line
+" by highligthing unique characters in each word when using f/F/t/T
+# If you are using ideavim-sneak please ensure set quickscope is placed after set sneak.
+set quickscope
 
 
 set multicursor
