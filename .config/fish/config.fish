@@ -18,6 +18,7 @@ if status --is-interactive
 end
 
 # Config theFuck
+thefuck --alias | source
 eval (thefuck --alias | tr '
 ' ';')
 

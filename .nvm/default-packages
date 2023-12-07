@@ -10,7 +10,9 @@ nvm
 prettier
 pulp
 purescript
-spago
-typescript
-yarn
 snowsql-formatter-cli
+spago
+ts-node
+typescript
+xpm
+yarn
