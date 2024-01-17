@@ -44,9 +44,8 @@ nmap <leader><leader>l :action KJumpAction.Line<cr>
 set sneak
 " # Quickscope plugin: Allows for easy forward/backward navigation on a line
 " by highligthing unique characters in each word when using f/F/t/T
-# If you are using ideavim-sneak please ensure set quickscope is placed after set sneak.
+" If you are using ideavim-sneak please ensure set quickscope is placed after set sneak.
 set quickscope
-
 
 set multicursor
 
