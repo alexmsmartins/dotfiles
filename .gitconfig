@@ -6,11 +6,8 @@
 	excludesfile = ~/.gitignore_global
 	editor = nvim
 	pager = delta | less --tabs=4 -RFX
-
-
 [interactive]
 	diffFilter = delta --color-only --features=interactive
-
 [delta]
 	navigate = true
 	features = decorations
@@ -36,7 +33,7 @@
 
 [commit]
 	template = ~/.stCommitMsg
-  verbose = true
+	verbose = true
 [merge]
 	conflictstyle = diff3
 [filter "lfs"]
@@ -45,8 +42,12 @@
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
 [push]
-  default = current
+	default = current
 [alias]
-    patch = !git --no-pager diff --no-color
+	patch = !git --no-pager diff --no-color
+	# alias to ignore and unignore local files
+	ignore = update-index --assume-unchanged
+	unignore = update-index --no-assume-unchanged
+	ignored = !git ls-files -v | grep "^[[:lower:]]"
 [pull]
 	rebase = true
