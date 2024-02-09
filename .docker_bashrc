@@ -1,0 +1,10 @@
+# shellcheck shell=sh
+set -o vi
+set termguicolors
+
+# vim keys for info command
+alias info='info --vi-keys'
+
+# Save command to .bash_history when it is run
+shopt -s histappend
+PROMPT_COMMAND="history -a;$PROMPT_COMMAND"
