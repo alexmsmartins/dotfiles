@@ -128,7 +128,7 @@ if [[ "$(uname)" = "Darwin" ]]; then
   if [[ "$(uname -p)" = "i386" ]]; then
     export PATH="/usr/local/sbin:$PATH"
   elif [[ "$(uname -p)" = "arm" ]]; then
-    eval "$($HOMEBREW_PREFIX/bin/brew shellenv)"
+    eval "$("$HOMEBREW_PREFIX"/bin/brew shellenv)"
   else
     echo "Homebrew config for OS $(uname) and architecture $(uname -p) is not configured yet! Pleas fix this"
   fi
