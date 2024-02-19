@@ -44,15 +44,6 @@ matches:
         params:
           format: "%Y%m%d%H%M%S"
 
-
-  - trigger: ":myname"
-    replace: "{{myname}}"
-    vars:
-      - name: myname
-        type: string
-        params:
-          format: "Pedro Alexandre Mesquita dos Santos Martins"
-
   - trigger: ":uname"
     replace: "{{unameoutput}}"
     vars:
@@ -68,3 +59,11 @@ matches:
         type: shell
         params:
           cmd: ipconfig getifaddr $(netstat -nr | grep -E '^default|^0\.0\.0\.0' | awk '{print $NF; exit}')
+
+  - trigger: ":mypublicip"
+    replace: "{{publicipoutput}}"
+    vars:
+      - name: publicipoutput
+        type: shell
+        params:
+          cmd: curl -s ifconfig.me
