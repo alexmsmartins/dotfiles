@@ -68,3 +68,12 @@ matches:
         type: shell
         params:
           cmd: ipconfig getifaddr $(netstat -nr | grep -E '^default|^0\.0\.0\.0' | awk '{print $NF; exit}')
+
+
+  - trigger: ":mypublicip"
+    replace: "{{publicipoutput}}"
+    vars:
+      - name: publicipoutput
+        type: shell
+        params:
+          cmd: curl -s ifconfig.me
