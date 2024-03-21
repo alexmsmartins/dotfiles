@@ -14,5 +14,6 @@ snowsql-formatter-cli
 spago
 ts-node
 typescript
+wiki-cli
 xpm
 yarn

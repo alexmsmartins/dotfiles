@@ -23,3 +23,6 @@ addSbtPlugin("com.scalapenos" % "sbt-prompt" % "1.0.2")
 // SBT plugin that can check Maven and Ivy repositories for dependency updates
 // https://github.com/rtimush/sbt-updates
 addSbtPlugin("com.timushev.sbt" % "sbt-updates" % "0.6.3")
+
+// "sbt plugins for sbt 1.x, 0.13.x, 0.12.x etc" at "https://repo.scala-sbt.org/scalasbt/sbt-plugin-releases"
+// addSbtPlugin ("com.github.xuwei-k" % "unused-code-plugin" % "version")
