@@ -11,17 +11,27 @@ print_heading(){
   local -r surround="${blue}########################${normal}"
   printf "%s %s %s\n" "$surround" "${green}${heading}${normal}" "$surround"
 }
-brew_update(){
+brew_upgrade(){
   if hash brew &>/dev/null; then
     brew update
     brew upgrade
-    brew upgrade --cask --greedy
     brew autoremove
-    # remove downloads older than 6 months
-    brew cleanup --prune 180
+    # remove downloads older than 2 months
+    brew cleanup --prune=60
   else
     echo "Homebrew does not seem to be installed on this system."
-    echo "Not updating Homebrew packages."
+    echo "Not upgrading Homebrew packages."
+  fi
+}
+brew_upgrade_cask(){
+  if hash brew &>/dev/null; then
+    brew update
+    brew upgrade --cask --greedy
+    # remove downloads older than 2 months
+    brew cleanup --prune=60
+  else
+    echo "Homebrew does not seem to be installed on this system."
+    echo "Not upgrading Homebrew Cask packages."
   fi
 }
 app_store_update(){
@@ -81,6 +91,16 @@ tmux_update(){
     echo "Not updating Tmux plugins."
   fi
 }
+
+coursier_update(){
+  if hash cs &>/dev/null; then
+    cs update
+  else
+    echo "Coursier is not installed on this system."
+    echo "Not updating Coursier packages."
+  fi
+}
+
 pipx_update(){
   if hash pipx &>/dev/null; then
     pipx upgrade-all
@@ -90,8 +110,11 @@ pipx_update(){
   fi
 }
 main(){
-  print_heading "Homebrew - Update"
-  brew_update
+  print_heading "Homebrew - Upgrade"
+  brew_upgrade
+
+  print_heading "Homebrew - Upgrade Cask"
+  brew_upgrade_cask
 
   print_heading "Pipx - Update"
   pipx_update
@@ -110,6 +133,9 @@ main(){
 
   print_heading "Tmux - Tmux Plugin Manager (aka TMP) - Update"
   tmux_update
+
+  print_heading "Coursier - Update"
+  coursier_update
 
   print_heading "All updates terminated successfully"
 }
