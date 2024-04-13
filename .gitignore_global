@@ -10,6 +10,7 @@ log/
 
 # Intellij and Jetbrains products
 
+.idea
 # User-specific stuff:
 .idea/**/workspace.xml
 .idea/**/tasks.xml

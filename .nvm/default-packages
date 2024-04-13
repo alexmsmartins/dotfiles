@@ -5,6 +5,7 @@ bower
 eslint
 gulp
 j2m
+jest
 neovim
 nvm
 prettier
