@@ -91,7 +91,7 @@ augroup END
 " Uncomment the following to have Vim jump to the last position when reopening a file
 if has('autocmd')
   augroup jump_to_last_position
-    au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+    autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
   augroup END
 endif
 
@@ -111,7 +111,7 @@ augroup END
 
 " Always autosave everything
 augroup autosave
-  au FocusLost * :wa
+  autocmd FocusLost * :wa
 augroup END
 
 " move between buffers
@@ -121,14 +121,14 @@ map <C-S-Tab> :bprevious<cr>
 
 " Spellchecking for markdown files
 augroup markdown_spelling
-  au FileType markdown setl spell spelllang=en_gb
+  autocmd FileType markdown setl spell spelllang=en_gb
 augroup END
 
 " Log files with bug lines should still syntax highlight properly
 set synmaxcol=3000
 augroup logs_and_json
-  au FileType log setl synmaxcol=3000 "j FIXME if 0 is too big, lets try something else
-  au FileType markdown setl synmaxcol=3000 "j FIXME if 0 is too big, lets try something else
+  autocmd FileType log setl synmaxcol=3000 "j FIXME if 0 is too big, lets try something else
+  autocmd FileType markdown setl synmaxcol=3000 "j FIXME if 0 is too big, lets try something else
 augroup END
 
 " setup vim splits
@@ -144,7 +144,7 @@ augroup linelength
   if exists('+colorcolumn')
     set colorcolumn=120
   else
-    au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>120v.\+', -1)
+    autocmd BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>120v.\+', -1)
   endif
 augroup END
 
@@ -189,7 +189,7 @@ augroup END
 
 " # Open Zip, Jar, War, Ear file edit in vim
 augroup edit_zip_files_in_vim
-  au BufRead,BufNewFile *.jar,*.war,*.ear,*.sar,*.rar set filetype=zip
+  autocmd BufRead,BufNewFile *.jar,*.war,*.ear,*.sar,*.rar set filetype=zip
 augroup END
 
 " # Markdown preview
@@ -581,7 +581,7 @@ call plug#begin()
   Plug 'aklt/plantuml-syntax'
   Plug 'scrooloose/vim-slumlord'
   Plug 'weirongxu/plantuml-previewer.vim'
-  au FileType plantuml let g:plantuml_previewer#plantuml_jar_path = get(
+  autocmd FileType plantuml let g:plantuml_previewer#plantuml_jar_path = get(
       \  matchlist(system('cat `which plantuml` | grep plantuml.jar'), '\v.*\s[''"]?(\S+plantuml\.jar).*'),
       \  1,
       \  0
@@ -705,7 +705,7 @@ call plug#begin()
     Plug 'derekwyatt/vim-scala'
   endif
   
-  au BufRead,BufNewFile *.sbt set filetype=scala
+  autocmd BufRead,BufNewFile *.sbt set filetype=scala
   
   Plug 'github/copilot.vim'
 
