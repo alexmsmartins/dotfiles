@@ -11,6 +11,9 @@ then
   autoload -Uz compinit
   compinit
 fi
+if test -f /opt/homebrew/etc/profile.d/z.sh; then
+  . /opt/homebrew/etc/profile.d/z.sh
+fi
 
 # TODO @alex run uname and uname -p only once
 # TODO @alex refactor shared code between .zshrc and ,bashrc

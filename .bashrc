@@ -13,7 +13,7 @@ export HISTSIZE=
 declare PROMPT_COMMAND="history -a;history -r"
 
 # add bash completions
-if type brew &>/dev/null
+if type brew & >/dev/null
 then
   HOMEBREW_PREFIX="$(brew --prefix)"
   if [[ -r "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh" ]]
@@ -25,6 +25,10 @@ then
       [[ -r "${COMPLETION}" ]] && source "${COMPLETION}"
     done
   fi
+fi
+
+if test -f /opt/homebrew/etc/profile.d/bash.sh; then
+  . /opt/homebrew/etc/profile.d/bash.sh
 fi
 
 # git repo for dot files
