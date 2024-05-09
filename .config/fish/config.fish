@@ -159,13 +159,13 @@ or set fish_user_paths "/usr/local/opt/python@3.9/Frameworks/Python.framework/Ve
 contains "/usr/local/opt/python@3.9/Frameworks/Python.framework/Versions/3.9/bin" $PATH
 or set fish_user_paths "/usr/local/opt/python@3.9/Frameworks/Python.framework/Versions/3.9/bin" $PATH
 
-# Add Nix configuration
-# TOOD @alex do I want to reinstall nix on the new macbookpro M1?
-# bass source ~/.nix-profile/etc/profile.d/nix.sh
-
 # fzf configuration
 # Revert the default key binding for search directory from 'Ctrl+Alt+F` to 'Ctrl+F'.
 fzf_configure_bindings --directory=\cf
+# fish
+fzf --fish | source
+
+
 
 # The minimal, blazing-fast, and infinitely customizable prompt for any shell!
 # https://github.com/starship/starship

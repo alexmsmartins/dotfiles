@@ -56,7 +56,7 @@ PATH="$HOME/Library/Python/3.9/bin:$PATH"
 export SSH_KEY_PATH="~/.ssh/rsa_id"
 
 # FZF
-[ -f ~/.fzf.bash ] && . ~/.fzf.bash
+eval "$(fzf --bash)"
 
 # NVM
 export NVM_DIR="$HOME/.nvm"
