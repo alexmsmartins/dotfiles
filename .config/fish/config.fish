@@ -54,10 +54,6 @@ or set fish_user_paths "$HOME/.cargo/bin" $PATH
 contains "$HOME/Library/Application Support/Coursier/bin" $PATH
 or set fish_user_paths "$HOME/Library/Application Support/Coursier/bin" $PATH
 
-# Python at user level
-contains "$HOME/Library/Python/3.9/bin" $PATH
-or set fish_user_paths "$HOME/Library/Python/3.9/bin" $PATH
-
 # content has to be in .config/fish/config.fish
 # if it does not exist, create the file
 setenv SSH_ENV $HOME/.ssh/environment
@@ -121,24 +117,13 @@ set -x PAGER less
 complete --command aws --no-files --arguments '(begin; set --local --export COMP_SHELL fish; set --local --export COMP_LINE (commandline); aws_completer | sed \'s/ $//\'; end)'
 
 
-# The lines below make sure the artifactory related variables are exported 
-# and can be picked up by bash scripts
-# set -x ARTIFACTORY_USERNAME $ARTIFACTORY_USERNAME
-launchctl setenv ARTIFACTORY_USERNAME $ARTIFACTORY_USERNAME
-# set -x ARTIFACTORY_PROD_USERNAME $ARTIFACTORY_USERNAME
-launchctl setenv ARTIFACTORY_PROD_USERNAME $ARTIFACTORY_USERNAME
-# set -x ARTIFACTORY_USER $ARTIFACTORY_USER
-launchctl setenv ARTIFACTORY_USER $ARTIFACTORY_USER
-# set -x ARTIFACTORY_PASSWORD $ARTIFACTORY_PASSWORD
-launchctl setenv ARTIFACTORY_PASSWORD $ARTIFACTORY_PASSWORD
-# set -x ARTIFACTORY_API_TOKEN $ARTIFACTORY_PASSWORD
-launchctl setenv ARTIFACTORY_API_TOKEN $ARTIFACTORY_PASSWORD
-# set -x ARTIFACTORY_URL $ARTIFACTORY_URL
-launchctl setenv ARTIFACTORY_URL $ARTIFACTORY_URL
-
-set -x SNOWSQL_PWD $SNOWSQL_PWD
-launchctl setenv SNOWSQL_PWD $SNOWSQL_PWD
-
+# Local configuration (not to be commited or shared with other conputers)
+set local_config_fish '~/.config/fish/config_local.fish'
+if test -e local_config_fish 
+    source local_config_fish
+else
+    echo "Config file $local_config_fish does not exist"
+end
 
 # set -x AWS_ACCESS_KEY_ID $AWS_ACCESS_KEY_ID
 # launchctl setenv AWS_ACCESS_KEY_ID $AWS_ACCESS_KEY_ID
@@ -149,15 +134,6 @@ launchctl setenv SNOWSQL_PWD $SNOWSQL_PWD
 # contains "/usr/local/opt/openssl@1.1/bin" $PATH
 # or set fish_user_paths "/usr/local/opt/openssl@1.1/bin" $PATH
 
-
-# Python 3.9 packages in path
-contains "/usr/local/opt/python@3.9/Frameworks/Python.framework/Versions/3.9/bin" $PATH
-or set fish_user_paths "/usr/local/opt/python@3.9/Frameworks/Python.framework/Versions/3.9/bin" $PATH
-
-# Work related scripts
-# TODO @alex move this into an
-contains "/usr/local/opt/python@3.9/Frameworks/Python.framework/Versions/3.9/bin" $PATH
-or set fish_user_paths "/usr/local/opt/python@3.9/Frameworks/Python.framework/Versions/3.9/bin" $PATH
 
 # fzf configuration
 # Revert the default key binding for search directory from 'Ctrl+Alt+F` to 'Ctrl+F'.
