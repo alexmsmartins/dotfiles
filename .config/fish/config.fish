@@ -118,9 +118,9 @@ complete --command aws --no-files --arguments '(begin; set --local --export COMP
 
 
 # Local configuration (not to be commited or shared with other conputers)
-set local_config_fish '~/.config/fish/config_local.fish'
-if test -e local_config_fish 
-    source local_config_fish
+set local_config_fish $HOME/.config/fish/config_local.fish
+if test -e $local_config_fish 
+    source $local_config_fish
 else
     echo "Config file $local_config_fish does not exist"
 end
