@@ -11,6 +11,9 @@ then
   autoload -Uz compinit
   compinit
 fi
+if test -f /opt/homebrew/etc/profile.d/z.sh; then
+  . /opt/homebrew/etc/profile.d/z.sh
+fi
 
 # TODO @alex run uname and uname -p only once
 # TODO @alex refactor shared code between .zshrc and ,bashrc
@@ -57,3 +60,9 @@ export PATH=/Applications/SnowSQL.app/Contents/MacOS:$PATH
 
 # added by travis gem
 [ ! -s $HOME/.travis/travis.sh ] || source $HOME/.travis/travis.sh
+
+# Created by `pipx` on 2024-04-25 23:20:58
+export PATH="$PATH:/Users/alexmsmartins/.local/bin"
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
