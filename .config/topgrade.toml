@@ -15,7 +15,12 @@
 # sudo_command = "sudo"
 
 # Disable specific steps - same options as the command line flag
-disable = ["vim"]
+disable = [
+	"vim", # plug install does not work
+	"node", # node update hangs
+	"gem", # fails on macOS due to priviledge issues on the work computer.
+	"ruby_gems" # fails on macOS due to priviledge issues on the work computer.
+]
 
 # Ignore failures for these steps
 # ignore_failures = ["powershell"]
