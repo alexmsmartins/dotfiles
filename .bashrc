@@ -137,9 +137,10 @@ if [[ "$(uname)" = "Darwin" ]]; then
   # Setup brew under Mac OS X platform
   . /opt/homebrew/etc/profile.d/z.sh
 elif [[ "$(expr substr $(uname -s) 1 5)" = "Linux" ]]; then
-  echo "Linux"
   # Setup brew under GNU/Linux platform
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+else
+  echo "Homebrew config for OS $(uname) and architecture $(uname -p) is not configured yet! Pleas fix this"
 fi
 
 # Brew will stop updating on every 'brew install'
