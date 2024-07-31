@@ -124,13 +124,8 @@ if test -e $local_config_fish
 else
     echo "Config file $local_config_fish does not exist"
 end
-
 # fzf
 fzf --fish | source
-
-# zoxide configuration
-# zoxide init fish | source
-
 
 # The minimal, blazing-fast, and infinitely customizable prompt for any shell!
 # https://github.com/starship/starship
