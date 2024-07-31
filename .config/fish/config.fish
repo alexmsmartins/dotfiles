@@ -125,22 +125,11 @@ else
     echo "Config file $local_config_fish does not exist"
 end
 
-# set -x AWS_ACCESS_KEY_ID $AWS_ACCESS_KEY_ID
-# launchctl setenv AWS_ACCESS_KEY_ID $AWS_ACCESS_KEY_ID
-# 
-# set -x AWS_SECRET_ACCESS_KEY $AWS_SECRET_ACCESS_KEY
-# launchctl setenv AWS_SECRET_ACCESS_KEY $AWS_SECRET_ACCESS_KEY
-# 
-# contains "/usr/local/opt/openssl@1.1/bin" $PATH
-# or set fish_user_paths "/usr/local/opt/openssl@1.1/bin" $PATH
-
-
-# fzf configuration
-# Revert the default key binding for search directory from 'Ctrl+Alt+F` to 'Ctrl+F'.
-fzf_configure_bindings --directory=\cf
-# fish
+# fzf
 fzf --fish | source
 
+# zoxide configuration
+# zoxide init fish | source
 
 
 # The minimal, blazing-fast, and infinitely customizable prompt for any shell!

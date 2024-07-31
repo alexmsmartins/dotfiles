@@ -1,4 +1,4 @@
-function fisher --argument-names cmd --description "A plugin manager for Fish"
+function fisher --description 'A plugin manager for Fish' --argument cmd
     set --query fisher_path || set --local fisher_path $__fish_config_dir
     set --local fisher_version 4.4.4
     set --local fish_plugins $__fish_config_dir/fish_plugins
@@ -221,20 +221,5 @@ function fisher --argument-names cmd --description "A plugin manager for Fish"
             ) plugin/s
         case \*
             echo "fisher: Unknown command: \"$cmd\"" >&2 && return 1
-    end
-end
-
-if ! set --query _fisher_upgraded_to_4_4
-    set --universal _fisher_upgraded_to_4_4
-    if functions --query _fisher_list
-        set --query XDG_DATA_HOME[1] || set --local XDG_DATA_HOME ~/.local/share
-        command rm -rf $XDG_DATA_HOME/fisher
-        functions --erase _fisher_{list,plugin_parse}
-        fisher update >/dev/null 2>/dev/null
-    else
-        for var in (set --names | string match --entire --regex '^_fisher_.+_files$')
-            set $var (string replace -- ~ \~ $$var)
-        end
-        functions --erase _fisher_fish_postexec
     end
 end

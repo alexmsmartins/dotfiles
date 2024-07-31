@@ -14,8 +14,8 @@ username = amartins
 # Password shoud be stored as environment variable $SNOWSQL_PWD
 dbname = MW_DEV_SANDBOX_AMARTINS
 #schemaname = defaultschema
-warehousename = MWAREHOUSEV2_NONPROD_MONITOR_WAREHOUSE
-rolename = MWAREHOUSE_DEVELOPER_WRITE_ROLE
+#warehousename = MWAREHOUSEV2_NONPROD_MONITOR_WAREHOUSE
+#rolename = MWAREHOUSE_DEVELOPER_WRITE_ROLE
 schemaname = DEFAULT
 #proxy_host = defaultproxyhost
 #proxy_port = defaultproxyport
@@ -44,7 +44,7 @@ auto_completion = True
 
 # main log file location. The file includes the log from SnowSQL main
 # executable.
-log_file = ../snowsql_rt.log
+log_file = ~/.snowsql/snowsql_rt.log
 
 # bootstrap log file location. The file includes the log from SnowSQL bootstrap executable.
 log_bootstrap_file = ~/.snowsql/log_bootstrap
