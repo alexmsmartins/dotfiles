@@ -16,7 +16,7 @@
 
 # Disable specific steps - same options as the command line flag
 disable = [
-	# "vim", # plug install does not work
+	"vim", # FIXME plug install errors on the company's laptop
 	"gem", # fails on macOS due to priviledge issues on the work computer.
 	"ruby_gems", # fails on macOS due to priviledge issues on the work computer.
 	# 20240722111427
