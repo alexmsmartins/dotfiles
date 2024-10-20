@@ -1,5 +1,11 @@
+<<<<<<< Updated upstream
 jethrokuan/z
 rbenv/fish-rbenv
+||||||| Stash base
+rbenv/fish-rbenv
+=======
+jethrokuan/z
+>>>>>>> Stashed changes
 edc/bass
 reitzig/sdkman-for-fish
 PatrickF1/fzf.fish

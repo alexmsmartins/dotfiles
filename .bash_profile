@@ -9,5 +9,9 @@ test -e "$HOME/.iterm2_shell_integration.bash" && source "$HOME/.iterm2_shell_in
 . "$HOME/.cargo/env"
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/Users/alexmsmartins/.sdkman"
-[[ -s "/Users/alexmsmartins/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/alexmsmartins/.sdkman/bin/sdkman-init.sh"
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+# >>> coursier install directory >>>
+export PATH="$PATH:$HOME/Library/Application Support/Coursier/bin"
+# <<< coursier install directory <<<

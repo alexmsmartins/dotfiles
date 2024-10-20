@@ -17,10 +17,6 @@ if status --is-interactive
     abbr --add --global -- blue /Users/amartins/development/amartins-mdsol-notes/Blue_Wave
 end
 
-# Config theFuck
-thefuck --alias | source
-eval (thefuck --alias | tr '
-' ';')
 
 # Homebrew
 # TODO @alex distinguish architectures specially because of rosseta
@@ -34,9 +30,11 @@ contains "/opt/homebrew/sbin" $PATH
 or fish_add_path /opt/homebrew/sbin
 
 
-
 # Brew will stop updating on every 'brew install'
 set -x HOMEBREW_NO_AUTO_UPDATE 1
+
+# Setup theFuck (run after homebrew setup)
+thefuck --alias | source
 
 # Ruby-build from Homebrew
 # ruby-build installs a non-Homebrew OpenSSL for each Ruby version installed and these are never upgraded.
