@@ -1,6 +1,6 @@
 [user]
 	name = Alexandre Martins
-	email = amartins@mdsol.com
+#	email = amartins@mdsol.com
 #	email = alexmsmartins@gmail.com
 # Lets comment out the email to force me to choose one for each new repository
 [core]
@@ -33,7 +33,7 @@
 	colorMoved = default
 
 [commit]
-	template = ~/.stCommitMsg
+	template = ~/.gitmessage
 	verbose = true
 [merge]
 	conflictstyle = diff3
@@ -53,3 +53,5 @@
 	root = !git rev-parse --show-toplevel
 [pull]
 	rebase = true
+[git-mob-config]
+	github-fetch = true

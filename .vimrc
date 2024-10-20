@@ -702,8 +702,6 @@ call plug#begin()
   
   autocmd BufRead,BufNewFile *.sbt set filetype=scala
   
-  Plug 'github/copilot.vim'
-
   " Use release branch (recommend)
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
   let g:coc_global_extensions = [

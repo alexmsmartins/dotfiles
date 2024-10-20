@@ -3,9 +3,11 @@ any-json
 bash-language-server
 bower
 eslint
+git-mob
 gulp
 j2m
 jest
+mediumexporter
 neovim
 nvm
 prettier
