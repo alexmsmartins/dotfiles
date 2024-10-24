@@ -1,8 +1,21 @@
 [user]
+	# for setting up work specific git configuration
+	# Use direnv in the directory where work specific projects are created
+	# ──────┬─────────────────────────────────────────────
+	#       │ File: .envrc
+	# ──────┼─────────────────────────────────────────────
+	#   1   │ export GIT_CONFIG_GLOBAL=$(pwd)/.gitconfig
+	# ──────┬─────────────────────────────────────────────
+	#       │ File: .gitconfig
+	# ──────┼─────────────────────────────────────────────
+	#   1   │ [include]
+	#   2   │     path = ~/.gitconfig
+	#   3   │ [user]
+	#   4   │     name = Alexandre Martins
+	#   5   │     email = ...
+	# ──────┴─────────────────────────────────────────────
 	name = Alexandre Martins
-#	email = amartins@mdsol.com
-#	email = alexmsmartins@gmail.com
-# Lets comment out the email to force me to choose one for each new repository
+	email = alexmsmartins@gmail.com
 [core]
 	excludesfile = ~/.gitignore_global
 	editor = nvim
