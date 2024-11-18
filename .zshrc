@@ -27,7 +27,8 @@ elif [[ "$(expr substr $(uname -s) 1 5)" = "Linux" ]]; then
   echo "Linux"
   # Setup brew under GNU/Linux platform
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-  . /home/linuxbrew/.linuxbrew/etc/profile.d/z.sh
+  # 20241103185932 removed to replace with zoxide
+  #. /home/linuxbrew/.linuxbrew/etc/profile.d/z.sh
 fi
 
 # Brew will stop updating on every 'brew install'
@@ -44,7 +45,7 @@ export PATH=/opt/snowflake/snowcd:$PATH
 # FZF
 eval "$(fzf --zsh)"
 
-# Z
+# zoxide
 eval "$(zoxide init zsh)"
 
 # Fuck configuration

@@ -115,6 +115,7 @@ if test -e $local_config_fish
 else
     echo "Config file $local_config_fish does not exist"
 end
+
 # fzf
 fzf --fish | source
 

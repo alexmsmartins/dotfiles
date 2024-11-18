@@ -62,6 +62,9 @@ export SSH_KEY_PATH="~/.ssh/rsa_id"
 # FZF
 eval "$(fzf --bash)"
 
+# zoxide
+eval "$(zoxide init bash)"
+
 # NVM
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -134,8 +137,6 @@ if [[ "$(uname)" = "Darwin" ]]; then
   else
     echo "Homebrew config for OS $(uname) and architecture $(uname -p) is not configured yet! Pleas fix this"
   fi
-  # Setup brew under Mac OS X platform
-  . /opt/homebrew/etc/profile.d/z.sh
 elif [[ "$(expr substr $(uname -s) 1 5)" = "Linux" ]]; then
   # Setup brew under GNU/Linux platform
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
@@ -146,10 +147,11 @@ fi
 # Brew will stop updating on every 'brew install'
 export HOMEBREW_NO_AUTO_UPDATE=1
 
+# 20241103185706 commented out to replace with zoxide
 # Configure 'z' installed by brew
-if [[ -z $(brew --repository)/etc/profile.d/z.sh ]] ; then
-  . $(brew --repository)/etc/profile.d/z.sh
-fi
+#if [[ -z $(brew --repository)/etc/profile.d/z.sh ]] ; then
+#  . $(brew --repository)/etc/profile.d/z.sh
+#fi
 
 # Add Nix configuartion
 if [ -e ~/.nix-profile/etc/profile.d/nix.sh ]; then . ~/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
