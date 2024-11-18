@@ -62,7 +62,8 @@ export PATH=/Applications/SnowSQL.app/Contents/MacOS:$PATH
 [ ! -s $HOME/.travis/travis.sh ] || source $HOME/.travis/travis.sh
 
 # Created by `pipx` on 2024-04-25 23:20:58
-export PATH="$PATH:/Users/alexmsmartins/.local/bin"
+export PATH="$PATH:$HOME/.local/bin"
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
+export PATH="$PATH:$HOME/bin"
