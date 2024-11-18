@@ -162,4 +162,4 @@ export TASKDDATA=/var/taskd
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
-export PATH=/Users/amartins/bin:$PATH
+export PATH=$HOME/bin:$PATH
