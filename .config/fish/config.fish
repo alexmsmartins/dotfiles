@@ -8,22 +8,13 @@ or set fish_user_paths "$HOME/bin" $PATH
 contains "$HOME/.local/bin"  $PATH
 or set fish_user_paths "$HOME/.local/bin" $PATH
 
-# add GNU coreutils to the path - this may change behaviour in the Mac
-# contains "/usr/local/opt/coreutils/libexec/gnubin"  $PATH
-# or set fish_user_paths "/usr/local/opt/coreutils/libexec/gnubin" $PATH
-
-# Interactive shell abbreviations
-if status --is-interactive
-    abbr --add --global -- blue /Users/amartins/development/amartins-mdsol-notes/Blue_Wave
-end
-
 # Config theFuck
 thefuck --alias | source
 eval (thefuck --alias | tr '
 ' ';')
 
 # Homebrew
-# TODO @alex distinguish architectures specially because of rosseta
+# TODO @alex distinguish architectures specially because of roseta
 # i386 mac
 #contains "/usr/local/sbin" $PATH
 #or set fish_user_paths "/usr/local/sbin" $PATH
@@ -127,6 +118,9 @@ end
 # fzf
 fzf --fish | source
 
+# zoxide
+zoxide init fish | source
+
 # The minimal, blazing-fast, and infinitely customizable prompt for any shell!
 # https://github.com/starship/starship
 starship init fish | source
@@ -142,4 +136,9 @@ source $HOME/.config/fish/config_local.fish
 # SDKMAN setup
 fish_add_path (find ~/.sdkman/candidates/*/current/bin -maxdepth 0)
 
-set -q GHCUP_INSTALL_BASE_PREFIX[1]; or set GHCUP_INSTALL_BASE_PREFIX $HOME ; set -gx PATH $HOME/.cabal/bin /Users/amartins/.ghcup/bin $PATH # ghcup-env
+set -q GHCUP_INSTALL_BASE_PREFIX[1]; or set GHCUP_INSTALL_BASE_PREFIX $HOME ; set -gx PATH $HOME/.cabal/bin $HOME/.ghcup/bin $PATH # ghcup-env
+
+
+# Add $HOME/bin directory to $PATH
+contains "$HOME/bin" $PATH
+or fish_add_path $HOME/bin
