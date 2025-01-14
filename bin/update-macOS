@@ -60,9 +60,11 @@ vim_update(){
     printf "\n"
     # TODO @alex figure out if there  is a better place/way to install taskwiki python dependencies (maybe done by vim-plug)
     # both python packages installed below are used by taskwiki
-    pip3 install --upgrade pynvim
+    # 20250114131727 commenting remnants of taskwiki
+    #pip3 install --upgrade pynvim
     # FIXME The use of a `pip3` might break in other OS's. Maybe we should try to handle this somehow and even default to pip?
-    pip3 install --upgrade packaging
+    # 20250114131727 commenting remnants of taskwiki
+    #pip3 install --upgrade packaging
   else
     echo "Vim does not seem to be installed on this system."
     echo "Not updating Vim Plug packages for Vim."
