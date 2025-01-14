@@ -558,9 +558,10 @@ call plug#begin()
   " ## Vimwiki
   " Commented in 20220228 because the <Tab> and <S-Tab> keybindings clash with Coc autocomplete
   " AND I am not using VimWiki anyway
-  Plug 'vimwiki/vimwiki'
-  let g:vimwiki_list = [{'path': '~/development/amartins-mdsol-notes/',
-                        \ 'syntax': 'markdown', 'ext': '.md'}]
+  " 20250114131727 commenting remnants of taskwiki and vimwiki
+  " Plug 'vimwiki/vimwiki'
+  " let g:vimwiki_list = [{'path': '~/development/amartins-mdsol-notes/',
+  "                       \ 'syntax': 'markdown', 'ext': '.md'}]
 
   " ## Tasks and project management
   " 20230710 Stopped using taskwarrior and taskwiki.
