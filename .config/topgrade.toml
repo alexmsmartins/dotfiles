@@ -16,11 +16,10 @@
 
 # Disable specific steps - same options as the command line flag
 disable = [
-	"vim", # FIXME plug install errors on the company's laptop
+	# "vim", # FIXME plug install errors on the company's laptop
 	"gem", # fails on macOS due to priviledge issues on the work computer.
 	"ruby_gems", # fails on macOS due to priviledge issues on the work computer.
-	# 20240722111427
-	# "node", # the node update takes too long and never fails. Or it fails after more than 30 minutes since I have not left it running all that time..
+	"pnpm", # not installed but falsely detected nonetheless
 ]
 
 # Ignore failures for these steps
