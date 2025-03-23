@@ -1,3 +1,8 @@
+" .ideavimrc is a configuration file for IdeaVim plugin. It uses
+"   the same commands as the original .vimrc configuration.
+" You can find a list of commands here: https://jb.gg/h38q75
+" Find more examples here: https://jb.gg/share-ideavimrc
+
 """ Editing and Reloading the Config
 set clipboard+=unnamed
 set clipboard+=ideaput
@@ -10,9 +15,9 @@ set smartcase
 set incsearch " Highlight search results when typing
 set hlsearch " Highlight search results
 
-""" The Leader Key
-let mapleader = ";" " giving ';' as leader a go.
-let maplocalleader = "\<Space>" " i never use localLeader but maybe it is time to start trying it.
+" <leader>
+let mapleader = "\<Space>" " I ended up sticking to Space as the leader and not ;
+let maplocalleader = "\\" " 20250218140105 trying '\' as a localleader for a while
 
 """" Distraction Free Mode
 nnoremap <c-z> :action ToggleDistractionFreeMode<CR>
@@ -177,6 +182,13 @@ nnoremap ]c :action GotoNextError<cr>
 nnoremap [c :action GotoPreviousError<cr>
 nnoremap ]h :action VcsShowNextChangeMarker<cr>
 nnoremap [h :action VcsShowPrevChangeMarker<cr>
+
+" Debugging
+" Map <leader>d to start debug
+map <leader>d <Action>(Debug)
+
+" Map \b to toggle the breakpoint on the current line
+map <leader>b <Action>(ToggleLineBreakpoint)
 
 " Misc
 nnoremap <leader>vr :source ~/.ideavimrc<CR>

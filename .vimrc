@@ -25,8 +25,9 @@ endif
 set signcolumn=yes
 
 " <leader>
-let mapleader = ";" " giving ';' as leader a go.
-let maplocalleader = "\<Space>" " i never use localLeader but maybe it is time to start trying it.
+let mapleader = "\<Space>" " I ended up sticking to Space as the leader and not ;
+let maplocalleader = "\\" " 20250218140105 trying '\' as a localleader for a while
+
 
 " Copy to and paste from the system clipboards 
 set clipboard=unnamed,unnamedplus
